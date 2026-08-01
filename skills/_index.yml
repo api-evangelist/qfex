@@ -1,0 +1,29 @@
+generated: '2026-07-20'
+method: generated
+source:
+- openapi/qfex-openapi-original.yml
+- asyncapi/qfex-trade-asyncapi.yml
+- asyncapi/qfex-mds-asyncapi.yml
+- conventions/qfex-conventions.yml
+note: >-
+  Packaged operating instructions grounded in real QFEX operationIds (REST) and
+  AsyncAPI operations (WebSocket). QFEX also publishes its own agent setup via the
+  CLI (`qfex agents init` writes CLAUDE.md/AGENTS.md); these skills complement that
+  by grounding direct API use.
+skills:
+- file: qfex-place-and-manage-order.md
+  name: Place and manage an order on the trade WebSocket
+  api: asyncapi/qfex-trade-asyncapi.yml
+  operations: [authenticate, subscribeOrdersStream, placeOrder, modifyOrder, cancelOrder, getOrder]
+- file: qfex-stream-market-data.md
+  name: Stream real-time market data
+  api: asyncapi/qfex-mds-asyncapi.yml
+  operations: [subscribeBboStream, subscribeOrderBookStream, subscribeTradesStream, subscribeCandlesStream]
+- file: qfex-account-and-history.md
+  name: Read account state and trading history (REST)
+  api: openapi/qfex-openapi-original.yml
+  operations: [read-user-positions, read-account-equity, read-user-trades, read-historic-orders, read-user-fees]
+- file: qfex-manage-subaccounts.md
+  name: Create subaccounts and transfer balance (REST)
+  api: openapi/qfex-openapi-original.yml
+  operations: [list-subaccounts, create-subaccount, transfer-balance, set-user-leverage]

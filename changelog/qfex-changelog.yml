@@ -1,0 +1,56 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.qfex.com/websocket/changelog
+scheme: dated
+note: >-
+  QFEX publishes a dated changelog of docs and API updates. Some entries carry a
+  version label (e.g. v0.0.10); most are docs updates announcing new channels,
+  fields, and behavior changes on the WebSocket trading API.
+current_version: v0.0.10
+entries:
+- date: '2026-02-17'
+  label: Docs Update
+  highlights:
+  - Added default_max_leverage field to refdata response.
+- date: '2026-02-09'
+  label: Docs Update
+  highlights:
+  - Documented funding scaling; final funding rate scaled by 1/100 and funding stream reflects post-scaling value.
+- date: '2026-01-26'
+  label: Docs Update
+  additions:
+  - Added the fills channel and fill response payload documentation.
+- date: '2025-11-12'
+  label: Docs Update
+  additions:
+  - Trades response now includes execution_type.
+  - Order response now includes trade_id (unique fill id for FILLED order responses).
+- date: '2025-11-11'
+  label: Docs Update
+  highlights:
+  - get_user_trades endpoint supports more filtering.
+- date: '2025-10-30'
+  label: Docs Update
+  breaking:
+  - Stop order response type changed to STOP_LOSS and TAKE_PROFIT; stop orders shown in the orders key.
+- date: '2025-10-27'
+  label: Docs Update
+  additions:
+  - Added documentation for stop orders (add/modify/cancel).
+- date: '2025-10-17'
+  label: Docs Update
+  additions:
+  - Added Close Position request (frontend quick-close).
+- date: '2025-10-15'
+  label: Docs Update
+  additions:
+  - Added HMAC-SHA256 authentication requirements for the trade WebSocket.
+  - Documented the cancel-on-disconnect channel with Python/Node/Go/Java examples.
+- date: '2025-10-13'
+  label: v0.0.10
+  breaking:
+  - Modify order must now include order type.
+- date: '2025-09-25'
+  label: v0.0.10
+  breaking:
+  - Clients must now subscribe to order responses.

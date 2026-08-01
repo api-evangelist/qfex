@@ -1,0 +1,79 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qfex-openapi-original.yml
+note: >-
+  Entity graph derived from OpenAPI component schemas and id-reference fields. QFEX
+  trades perpetual futures on traditional assets; the central entity is the Symbol
+  (contract), against which users hold Positions and execute Orders/Trades under an
+  Account (or Subaccount).
+entities:
+- name: Account
+  description: The authenticated user's master trading account.
+  identifier: account_id (UUID)
+- name: Subaccount
+  description: A separate margin/risk account under a master Account.
+  identifier: account_id (UUID)
+  schema: CreateSubaccountResponseBody, ListSubaccountsResponseBody
+- name: Symbol
+  description: A tradable contract / instrument (e.g. AAPL-USD, CL-USD, EUR-USD).
+  schema: RefdataSymbol
+- name: Order
+  description: A resting or historic order (limit/market/stop/TWAP).
+  schema: HistoricOrder
+- name: Twap
+  description: A time-weighted average price order.
+  schema: HistoricTwap
+- name: Trade
+  description: An executed fill.
+  schema: Trade
+- name: Position
+  description: A user's open position in a symbol.
+  schema: PositionPublic
+- name: Balance
+  schema: BalancePublic
+- name: Fee
+  schema: FeeEntry
+- name: ReferralReward
+  schema: ReferralReward
+- name: Candle
+  schema: Candle
+- name: SettlementCalendarEntry
+  description: Source of truth for oracle roll state / dated future resolution.
+  schema: SettlementCalendarEntry
+- name: PersonaInquiry
+  description: KYC identity verification event delivered via Persona webhook.
+  schema: PersonaPayload, PersonaWebhookResponseBody
+relationships:
+- from: Subaccount
+  to: Account
+  type: belongs_to
+  via: master account
+- from: Order
+  to: Symbol
+  type: belongs_to
+  via: symbol
+- from: Trade
+  to: Symbol
+  type: belongs_to
+  via: symbol
+- from: Position
+  to: Symbol
+  type: belongs_to
+  via: symbol
+- from: Order
+  to: Account
+  type: belongs_to
+  via: account_id
+- from: Trade
+  to: Order
+  type: belongs_to
+  via: trade_id / order_id
+- from: Account
+  to: Position
+  type: has_many
+- from: Account
+  to: Order
+  type: has_many
+- from: Account
+  to: Subaccount
+  type: has_many

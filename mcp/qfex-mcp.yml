@@ -1,0 +1,55 @@
+generated: '2026-07-20'
+method: derived
+status: candidate
+source: openapi/qfex-openapi-original.yml
+note: >-
+  No official hosted QFEX MCP server was found. QFEX instead ships a JSON-native
+  CLI (github.com/QFEX-org/cli) explicitly built for agentic trading and
+  Claude Code / Codex integration via `qfex agents init`. The tool list below is a
+  candidate derived from REST operations; the CLI is the provider's real
+  agent-integration surface.
+server:
+  name: qfex
+  transport: stdio
+  url: null
+  cli_alternative: github.com/QFEX-org/cli
+tools:
+- name: read_candles
+  description: Return OHLCV candles for a symbol over a time range.
+  source_operation: openapi/qfex-openapi-original.yml#read-candles
+- name: read_refdata
+  description: Return symbol reference data.
+  source_operation: openapi/qfex-openapi-original.yml#read-refdata
+- name: read_funding_historic
+  description: Return historic funding rates for a symbol.
+  source_operation: openapi/qfex-openapi-original.yml#read-funding-historic
+- name: read_open_interest_historic
+  description: Return historic open interest for a symbol.
+  source_operation: openapi/qfex-openapi-original.yml#read-open-interest-historic
+- name: read_settlement_prices
+  description: Return current and historic settlement prices and ratios.
+  source_operation: openapi/qfex-openapi-original.yml#read-settlement-prices
+- name: read_user_positions
+  description: Return current positions for the authenticated user.
+  source_operation: openapi/qfex-openapi-original.yml#read-user-positions
+- name: read_user_trades
+  description: Return trades for the authenticated user.
+  source_operation: openapi/qfex-openapi-original.yml#read-user-trades
+- name: read_historic_orders
+  description: Return historic orders for the authenticated user.
+  source_operation: openapi/qfex-openapi-original.yml#read-historic-orders
+- name: read_account_equity
+  description: Return total account equity over time.
+  source_operation: openapi/qfex-openapi-original.yml#read-account-equity
+- name: set_user_leverage
+  description: Set the leverage for the authenticated user.
+  source_operation: openapi/qfex-openapi-original.yml#set-user-leverage
+- name: list_subaccounts
+  description: Return subaccount IDs for the authenticated user.
+  source_operation: openapi/qfex-openapi-original.yml#list-subaccounts
+- name: create_subaccount
+  description: Allocate a new subaccount for the authenticated user.
+  source_operation: openapi/qfex-openapi-original.yml#create-subaccount
+- name: transfer_balance
+  description: Transfer available balance between the user's accounts.
+  source_operation: openapi/qfex-openapi-original.yml#transfer-balance

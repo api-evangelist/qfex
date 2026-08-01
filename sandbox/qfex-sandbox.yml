@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.qfex.com/api-reference/cli
+note: >-
+  QFEX exposes a separate UAT (user acceptance testing) environment for testing
+  strategies and integrations without real funds. It is selected through the CLI
+  or config rather than via test/live key prefixes. No published magic test
+  values, test cards, or fixture tooling were found; nothing is invented here.
+environments:
+- name: uat
+  purpose: Test strategies and integrations without real funds.
+  host: qfex.io
+  selection:
+  - During `qfex login` (environment prompt)
+  - Editing ~/.config/qfex/config.yaml then restarting the daemon
+- name: prod
+  purpose: Live trading with real funds.
+  host: qfex.com
+test_credentials: null
+test_values: null
+market_data_note: >-
+  CLI market-data commands (e.g. `qfex market bbo AAPL-USD`) require no credentials,
+  allowing read-only exploration before authenticating.

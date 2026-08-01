@@ -1,0 +1,63 @@
+generated: '2026-07-20'
+method: searched
+source:
+- https://docs.qfex.com/api-reference/introduction
+- https://docs.qfex.com/websocket/rate
+- https://docs.qfex.com/websocket/errors
+authentication:
+  style: hmac-signed-request
+  scheme: HMAC-SHA256
+  headers:
+  - x-qfex-public-key
+  - x-qfex-hmac-signature
+  - x-qfex-nonce
+  - x-qfex-timestamp
+  optional_headers:
+  - x-qfex-requested-account-id
+  signature: >-
+    HMAC-SHA256 of the string "${nonce}:${unix_ts}" using the secret key, hex-encoded.
+  nonce_window: Nonce must be unique within a 15 minute window (replay protection).
+  websocket_note: >-
+    trade.qfex.com requires authentication within 1 minute of connecting;
+    re-authenticating an already-authenticated socket returns AlreadyAuthenticated.
+idempotency:
+  supported: true
+  mechanism: client_order_id
+  scope: order entry (add_order and related WebSocket order commands)
+  guidance: >-
+    Use client order IDs where supported so that a retry does not create duplicate
+    orders if the first attempt actually succeeded server-side (QFEX rate-limit
+    client best practices).
+  source: https://docs.qfex.com/websocket/rate
+rate_limiting:
+  model: EMA (exponential moving average) of weighted message rate
+  limit: 12000 weight units per 60 seconds (200 units/sec)
+  buckets:
+  - general
+  - cancel
+  scope: per user, aggregated across all concurrent WebSocket connections
+  error_code: RateLimited
+  retry: error carries a retry-after hint; back off with jitter
+  source: https://docs.qfex.com/websocket/rate
+pagination:
+  style: time-range
+  note: >-
+    Historic REST endpoints (candles, funding, trades, orders, etc.) are queried by
+    symbol and time range rather than cursor/offset pagination; several endpoints
+    also stream full result sets as CSV.
+error_envelope:
+  rest: See errors/qfex-problem-types.yml (HTTP status responses).
+  websocket:
+    shape: '{ "err": { "error_code": <string>, "message": <string|null>, "incoming_message": <object|null> } }'
+    machine_field: error_code
+    echo: incoming_message echoes the offending request
+    source: https://docs.qfex.com/websocket/errors
+subaccounts:
+  note: >-
+    A master account may hold subaccounts identified by UUID. Set
+    x-qfex-requested-account-id to act as a subaccount; omit to use the primary.
+cross_links:
+  errors: errors/qfex-problem-types.yml
+  lifecycle: lifecycle/qfex-lifecycle.yml
+  authentication: authentication/qfex-authentication.yml
+  rate_limits: https://docs.qfex.com/websocket/rate

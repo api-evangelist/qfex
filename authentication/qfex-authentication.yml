@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: derived
+source: openapi/qfex-openapi-original.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: HMACSignature
+  type: apiKey
+  in: header
+  parameter: x-qfex-hmac-signature
+  description: HMAC-SHA256 signature (hex-encoded).
+  sources:
+  - openapi/qfex-openapi-original.yml
+- name: Nonce
+  type: apiKey
+  in: header
+  parameter: x-qfex-nonce
+  description: Unique request nonce (hex encoded, max 100 characters).
+  sources:
+  - openapi/qfex-openapi-original.yml
+- name: PublicKey
+  type: apiKey
+  in: header
+  parameter: x-qfex-public-key
+  description: |-
+    QFEX API Authentication requires these headers:
+
+    - **x-qfex-public-key**: Your public API key
+    - **x-qfex-hmac-signature**: HMAC signature of the request (hex encoded)
+    - **x-qfex-nonce**: Unique nonce for the request (hex encoded, max 100 characters)
+    - **x-qfex-timestamp**: Unix timestamp of the request
+
+    These four are required. Optionally send **x-qfex-requested-account-id** (UUID) to act as a sub
+  sources:
+  - openapi/qfex-openapi-original.yml
+- name: Timestamp
+  type: apiKey
+  in: header
+  parameter: x-qfex-timestamp
+  description: Unix timestamp (seconds since epoch).
+  sources:
+  - openapi/qfex-openapi-original.yml

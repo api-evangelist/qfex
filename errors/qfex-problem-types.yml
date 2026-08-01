@@ -1,0 +1,45 @@
+generated: '2026-07-20'
+method: searched
+source:
+- https://docs.qfex.com/websocket/errors
+- openapi/qfex-openapi-original.yml
+note: >-
+  QFEX does not use RFC 9457 application/problem+json. REST errors surface as HTTP
+  status codes; the WebSocket API uses a consistent error-frame envelope with a
+  machine-readable error_code enum. This catalog captures the WebSocket error_code
+  registry (the primary error surface) plus the REST HTTP status semantics.
+format: custom
+envelope:
+  field: err.error_code
+  shape: '{ "err": { "error_code": string, "message": string|null, "incoming_message": object|null } }'
+websocket_error_codes:
+- code: RateLimited
+  when: Exceeded the allowed weighted message rate.
+  action: Back off and retry using the retry-after hint; batch and respect limits.
+- code: InvalidJSONFormat
+  when: Message is not valid JSON or does not match the expected schema.
+  action: Validate JSON and schema; include required fields with correct types/enums.
+- code: AlreadyAuthenticated
+  when: Attempted to authenticate again on an already-authenticated connection.
+  action: Do not re-auth on an authenticated socket.
+- code: InvalidParameter
+  when: One or more parameters are out of range, missing, or invalid.
+  action: Correct the parameter(s) and retry.
+- code: PermissionDenied
+  when: The API key or user lacks permission for the requested action.
+  action: Check key scopes/roles; contact support if needed.
+- code: ServerError
+  when: Unexpected internal error.
+  action: Retry after a short delay; if persistent, contact support with timestamp and incoming_message.
+- code: InvalidOrder
+  when: The order is invalid or malformed.
+  action: Check order parameters and format; correct and retry.
+- code: AlreadySubscribedToLeaderboard
+  when: The user is already subscribed to a leaderboard.
+  action: Do not subscribe again; check current subscriptions first.
+- code: TncRequired
+  when: The user must agree to the latest Terms and Conditions.
+  action: Agree to the latest Terms and Conditions.
+rest_status_note: >-
+  REST operations declare standard HTTP responses (200 success; 4xx client / 5xx
+  server). The OpenAPI does not define an application/problem+json schema.

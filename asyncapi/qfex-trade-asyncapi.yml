@@ -1,0 +1,1787 @@
+asyncapi: 3.0.0
+info:
+  title: QFEX Multiplexed WebSocket API
+  version: 1.0.0
+  description: |-
+    Single WebSocket gateway for all QFEX real‑time streams.  
+    Clients publish subscription and order commands here,  
+    and receive all updates over the same endpoint.
+defaultContentType: application/json
+servers:
+  production:
+    host: trade.qfex.com
+    protocol: wss
+    description: Production WebSocket gateway
+channels:
+  qfex:
+    address: /
+    description: Single channel for order commands, positions, balances, fills
+    messages:
+      authenticate:
+        $ref: '#/components/messages/AuthenticateCommand'
+      subscribeOrders:
+        $ref: '#/components/messages/SubscribeOrdersCommand'
+      subscribePositions:
+        $ref: '#/components/messages/SubscribePositionsCommand'
+      subscribeBalance:
+        $ref: '#/components/messages/SubscribeBalanceCommand'
+      subscribeFills:
+        $ref: '#/components/messages/SubscribeFillsCommand'
+      getLeverage:
+        $ref: '#/components/messages/GetLeverageCommand'
+      setLeverage:
+        $ref: '#/components/messages/SetLeverageCommand'
+      getAvailableLeverage:
+        $ref: '#/components/messages/GetAvailableLeverageCommand'
+      addOrder:
+        $ref: '#/components/messages/AddOrderCommand'
+      cancelOrder:
+        $ref: '#/components/messages/CancelOrderCommand'
+      modifyOrder:
+        $ref: '#/components/messages/ModifyOrderCommand'
+      cancelAllOrders:
+        $ref: '#/components/messages/CancelAllOrdersCommand'
+      getOrder:
+        $ref: '#/components/messages/GetOrderCommand'
+      getUserOrders:
+        $ref: '#/components/messages/GetUserOrdersCommand'
+      cancelOnDisconnect:
+        $ref: '#/components/messages/CancelOnDisconnectCommand'
+      closePosition:
+        $ref: '#/components/messages/ClosePositionCommand'
+      addTwap:
+        $ref: '#/components/messages/AddTwapCommand'
+      getUserTrades:
+        $ref: '#/components/messages/GetUserTradesCommand'
+      cancelStopOrder:
+        $ref: '#/components/messages/CancelStopOrderCommand'
+      modifyStopOrder:
+        $ref: '#/components/messages/ModifyStopOrderCommand'
+      unsubscribe:
+        $ref: '#/components/messages/UnsubscribeCommand'
+      balanceUpdate:
+        $ref: '#/components/messages/BalanceUpdate'
+      positionUpdate:
+        $ref: '#/components/messages/PositionUpdate'
+      orderResponse:
+        $ref: '#/components/messages/OrderResponse'
+      fillResponse:
+        $ref: '#/components/messages/FillResponse'
+      allOrdersResponse:
+        $ref: '#/components/messages/AllOrdersResponse'
+      authenticatedResponse:
+        $ref: '#/components/messages/AuthenticatedResponse'
+      twapResponse:
+        $ref: '#/components/messages/TwapResponse'
+      userTradesResponse:
+        $ref: '#/components/messages/UserTradesResponse'
+      userLeverageResponse:
+        $ref: '#/components/messages/UserLeverageResponse'
+      availableLeverageLevelsResponse:
+        $ref: '#/components/messages/AvailableLeverageLevelsResponse'
+      subscribedResponse:
+        $ref: '#/components/messages/SubscribedResponse'
+      unsubscribedResponse:
+        $ref: '#/components/messages/UnsubscribedResponse'
+      stopOrderResponse:
+        $ref: '#/components/messages/StopOrderResponse'
+      positionResponse:
+        $ref: '#/components/messages/PositionResponse'
+      balanceResponse:
+        $ref: '#/components/messages/BalanceResponse'
+      ackResponse:
+        $ref: '#/components/messages/AckResponse'
+      errorResponse:
+        $ref: '#/components/messages/ErrorResponse'
+operations:
+  authenticate:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Authenticate with the WebSocket gateway
+    messages:
+      - $ref: '#/channels/qfex/messages/authenticate'
+  subscribeOrdersStream:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Subscribe to a data stream
+    messages:
+      - $ref: '#/channels/qfex/messages/subscribeOrders'
+  subscribePositionsStream:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Subscribe to a data stream
+    messages:
+      - $ref: '#/channels/qfex/messages/subscribePositions'
+  subscribeBalanceStream:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Subscribe to a data stream
+    messages:
+      - $ref: '#/channels/qfex/messages/subscribeBalance'
+  subscribeFillsStream:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Subscribe to a data stream
+    messages:
+      - $ref: '#/channels/qfex/messages/subscribeFills'
+  getLeverageLevels:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Get user leverage levels
+    messages:
+      - $ref: '#/channels/qfex/messages/getLeverage'
+  setLeverageLevels:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Set user leverage levels
+    messages:
+      - $ref: '#/channels/qfex/messages/setLeverage'
+  getAvailableLeverageLevels:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Get available leverage levels
+    messages:
+      - $ref: '#/channels/qfex/messages/getAvailableLeverage'
+  placeOrder:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Place a new order
+    messages:
+      - $ref: '#/channels/qfex/messages/addOrder'
+  cancelOrder:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Cancel an existing order
+    messages:
+      - $ref: '#/channels/qfex/messages/cancelOrder'
+  modifyOrder:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Modify an existing order
+    messages:
+      - $ref: '#/channels/qfex/messages/modifyOrder'
+  getOrder:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Get order details
+    messages:
+      - $ref: '#/channels/qfex/messages/getOrder'
+  getUserOrders:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Get user orders
+    messages:
+      - $ref: '#/channels/qfex/messages/getUserOrders'
+  cancelOnDisconnect:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Set cancel on disconnect preference
+    messages:
+      - $ref: '#/channels/qfex/messages/cancelOnDisconnect'
+  closePosition:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Close a position
+    messages:
+      - $ref: '#/channels/qfex/messages/closePosition'
+  addTwap:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Create a TWAP order
+    messages:
+      - $ref: '#/channels/qfex/messages/addTwap'
+  getUserTrades:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Get user trades
+    messages:
+      - $ref: '#/channels/qfex/messages/getUserTrades'
+  cancelStopOrder:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Cancel a stop order
+    messages:
+      - $ref: '#/channels/qfex/messages/cancelStopOrder'
+  modifyStopOrder:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Modify a stop order
+    messages:
+      - $ref: '#/channels/qfex/messages/modifyStopOrder'
+  unsubscribe:
+    action: receive
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Unsubscribe from channels
+    messages:
+      - $ref: '#/channels/qfex/messages/unsubscribe'
+  receiveUpdates:
+    action: send
+    channel:
+      $ref: '#/channels/qfex'
+    summary: Receive all update messages and events
+    messages:
+      - $ref: '#/channels/qfex/messages/balanceUpdate'
+      - $ref: '#/channels/qfex/messages/positionUpdate'
+      - $ref: '#/channels/qfex/messages/orderResponse'
+      - $ref: '#/channels/qfex/messages/fillResponse'
+      - $ref: '#/channels/qfex/messages/allOrdersResponse'
+      - $ref: '#/channels/qfex/messages/authenticatedResponse'
+      - $ref: '#/channels/qfex/messages/userTradesResponse'
+      - $ref: '#/channels/qfex/messages/userLeverageResponse'
+      - $ref: '#/channels/qfex/messages/availableLeverageLevelsResponse'
+      - $ref: '#/channels/qfex/messages/subscribedResponse'
+      - $ref: '#/channels/qfex/messages/unsubscribedResponse'
+      - $ref: '#/channels/qfex/messages/stopOrderResponse'
+      - $ref: '#/channels/qfex/messages/positionResponse'
+      - $ref: '#/channels/qfex/messages/balanceResponse'
+      - $ref: '#/channels/qfex/messages/ackResponse'
+      - $ref: '#/channels/qfex/messages/errorResponse'
+components:
+  parameters:
+    apiKey:
+      description: Your QFEX API key
+  securitySchemes:
+    PublicKeyQuery:
+      type: httpApiKey
+      name: api_key
+      in: query
+      description: Provide your public key as a query parameter (?api_key=...).
+    JwtQuery:
+      type: httpApiKey
+      name: jwt
+      in: query
+      description: Provide your JWT as a query parameter (?jwt=...).
+  messageTraits:
+    commonHeaders:
+      headers:
+        type: object
+        properties:
+          x-qfex-client:
+            type: string
+            description: Client identifier
+  operationTraits:
+    websocket:
+      bindings:
+        ws: {}
+  messages:
+    AuthenticateCommand:
+      name: authenticate
+      title: Authenticate
+      summary: >-
+        Authenticate to the WebSocket gateway. Required before any other
+        commands.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/AuthenticateCommand'
+    SubscribeOrdersCommand:
+      name: subscribe_orders
+      title: Subscribe to Orders
+      summary: Subscribe to user orders. Receive live updates on current orders.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/SubscribePositionsCommand'
+    SubscribePositionsCommand:
+      name: subscribe_positions
+      title: Subscribe to Positions
+      summary: >-
+        Subscribe to user positions. Receive 1s pulsed updates on current
+        positions.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/SubscribePositionsCommand'
+    SubscribeBalanceCommand:
+      name: subscribe_balance
+      title: Subscribe to Balance
+      summary: Subscribe to user balance. Receive 1s pulsed updates on current balance.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/SubscribeBalanceCommand'
+    SubscribeFillsCommand:
+      name: subscribe_fills
+      title: Subscribe to Fills
+      summary: Subscribe to user fills. Receive live updates for executed trades.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/SubscribeFillsCommand'
+    SetLeverageCommand:
+      name: set_leverage
+      title: Set Leverage
+      summary: Set leverage level for a symbol
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/SetLeverageCommand'
+    GetLeverageCommand:
+      name: get_leverage
+      title: Get Leverage
+      summary: Get current leverage levels per symbol
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/GetLeverageCommand'
+    GetAvailableLeverageCommand:
+      name: get_available_leverage
+      title: Get Available Leverage
+      summary: Get available leverage levels per symbol
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/GetAvailableLeverageCommand'
+    AddOrderCommand:
+      name: add_order
+      title: Add Order
+      summary: Add order.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/AddOrderCommand'
+    CancelOrderCommand:
+      name: cancel_order
+      title: Cancel Order
+      summary: Cancel order.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/CancelOrderCommand'
+    ModifyOrderCommand:
+      name: modify_order
+      title: Modify Order
+      summary: Modify order.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/ModifyOrderCommand'
+    UnsubscribeCommand:
+      name: unsubscribe
+      title: Unsubscribe
+      summary: Unsubscribe from channels.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/UnsubscribeCommand'
+    GetOrderCommand:
+      name: get_order
+      title: Get Order
+      summary: Get order details by order_id or client_order_id.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/GetOrderCommand'
+    GetUserOrdersCommand:
+      name: get_user_orders
+      title: Get User Orders
+      summary: Get active orders for the user.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/GetUserOrdersCommand'
+    CancelOnDisconnectCommand:
+      name: cancel_on_disconnect
+      title: Cancel On Disconnect
+      summary: Enable or disable cancel-on-disconnect feature for this connection.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/CancelOnDisconnectCommand'
+    ClosePositionCommand:
+      name: close_position
+      title: Close Position
+      summary: Close an open position.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/ClosePositionCommand'
+    AddTwapCommand:
+      name: add_twap
+      title: Add TWAP
+      summary: Create a TWAP order.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/AddTwapCommand'
+    GetUserTradesCommand:
+      name: get_user_trades
+      title: Get User Trades
+      summary: Get user trade history.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/GetUserTradesCommand'
+    CancelStopOrderCommand:
+      name: cancel_stop_order
+      title: Cancel Stop Order
+      summary: Cancel a stop order.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/CancelStopOrderCommand'
+    ModifyStopOrderCommand:
+      name: modify_stop_order
+      title: Modify Stop Order
+      summary: Modify a stop order.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/ModifyStopOrderCommand'
+    CancelAllOrdersCommand:
+      name: cancel_all_orders
+      title: Cancel All Orders
+      summary: Cancel all orders.
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/CancelAllOrdersCommand'
+    BalanceUpdate:
+      name: balance_update
+      title: Balance Update
+      summary: User balance updates
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/BalanceUpdate'
+    PositionUpdate:
+      name: position_update
+      title: Position Update
+      summary: User position updates
+      contentType: application/json
+      traits:
+        - $ref: '#/components/messageTraits/commonHeaders'
+      payload:
+        $ref: '#/components/schemas/PositionUpdate'
+    OrderResponse:
+      name: order_response
+      title: Order Response
+      summary: Response containing a single order.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          order_response:
+            $ref: '#/components/schemas/OrderResponse'
+    FillResponse:
+      name: fill_response
+      title: Fill Response
+      summary: Response containing a single fill.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          fill_response:
+            $ref: '#/components/schemas/FillResponse'
+    AllOrdersResponse:
+      name: all_orders_response
+      title: All Orders Response
+      summary: Response containing a list of orders.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          all_orders_response:
+            $ref: '#/components/schemas/AllOrdersResponse'
+    AuthenticatedResponse:
+      name: authenticated
+      title: Authenticated Response
+      summary: Response indicating authentication success.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          authenticated:
+            type: boolean
+    TwapResponse:
+      name: twap_response
+      title: TWAP Response
+      summary: Response containing a TWAP.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          twap_response:
+            $ref: '#/components/schemas/TwapResponse'
+    UserTradesResponse:
+      name: user_trades_response
+      title: User Trades Response
+      summary: Response containing user trades.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          user_trades_response:
+            type: array
+            items:
+              $ref: '#/components/schemas/TradePayload'
+    UserLeverageResponse:
+      name: user_leverage_response
+      title: User Leverage Response
+      summary: Response containing user leverage settings.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          user_leverage_response:
+            type: array
+            items:
+              $ref: '#/components/schemas/LeveragePublic'
+    AvailableLeverageLevelsResponse:
+      name: available_leverage_levels_response
+      title: Available Leverage Levels Response
+      summary: Response containing available leverage levels.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          available_leverage_levels_response:
+            type: array
+            items:
+              $ref: '#/components/schemas/LeveragePublic'
+    SubscribedResponse:
+      name: subscribed
+      title: Subscribed Response
+      summary: Confirmation of subscription.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          subscribed:
+            type: string
+            enum:
+              - stop_orders
+              - positions
+              - balances
+              - order_responses
+              - fills
+    UnsubscribedResponse:
+      name: unsubscribed
+      title: Unsubscribed Response
+      summary: Confirmation of unsubscription.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          unsubscribed:
+            type: string
+            enum:
+              - stop_orders
+              - positions
+              - balances
+              - order_responses
+              - fills
+    StopOrderResponse:
+      name: stop_order_response
+      title: Stop Order Response
+      summary: Response containing a stop order.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          stop_order_response:
+            $ref: '#/components/schemas/StopOrder'
+    PositionResponse:
+      name: position_response
+      title: Position Response
+      summary: Response containing a position.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          position_response:
+            $ref: '#/components/schemas/PositionPayload'
+    BalanceResponse:
+      name: balance_response
+      title: Balance Response
+      summary: Response containing a balance.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          balance_response:
+            $ref: '#/components/schemas/BalancePayload'
+    AckResponse:
+      name: ack
+      title: Acknowledgment Response
+      summary: General acknowledgment.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          ack:
+            $ref: '#/components/schemas/AckResponse'
+    ErrorResponse:
+      name: err
+      title: Error Response
+      summary: Error response.
+      contentType: application/json
+      payload:
+        type: object
+        properties:
+          err:
+            $ref: '#/components/schemas/ErrResponse'
+  schemas:
+    MessageEnvelope:
+      type: object
+      properties:
+        type:
+          type: string
+        connection_id:
+          type: string
+        message_id:
+          type: integer
+        channel:
+          type: string
+        id:
+          type: string
+      required:
+        - type
+        - connection_id
+        - message_id
+    SubscribeOrdersCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - unsubscribe
+            - subscribe
+          default: subscribe
+        params:
+          type: object
+          properties:
+            channels:
+              type: array
+              items:
+                type: string
+                enum:
+                  - order_responses
+                  - stop_orders
+              description: order_responses or stop_orders
+      required:
+        - type
+        - params
+      examples:
+        - type: subscribe
+          params:
+            channels:
+              - order_responses
+        - type: subscribe
+          params:
+            channels:
+              - stop_orders
+    SubscribePositionsCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - unsubscribe
+            - subscribe
+          default: subscribe
+        params:
+          type: object
+          properties:
+            channels:
+              type: array
+              items:
+                type: string
+                enum:
+                  - positions
+              description: positions
+      required:
+        - type
+        - params
+      examples:
+        - type: subscribe
+          params:
+            channels:
+              - positions
+    SubscribeBalanceCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - unsubscribe
+            - subscribe
+          default: subscribe
+        params:
+          type: object
+          properties:
+            channels:
+              type: array
+              items:
+                type: string
+                enum:
+                  - balances
+              description: balances
+      required:
+        - type
+        - params
+      examples:
+        - type: subscribe
+          params:
+            channels:
+              - balances
+    SubscribeFillsCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - unsubscribe
+            - subscribe
+          default: subscribe
+        params:
+          type: object
+          properties:
+            channels:
+              type: array
+              items:
+                type: string
+                enum:
+                  - fills
+              description: fills
+      required:
+        - type
+        - params
+      examples:
+        - type: subscribe
+          params:
+            channels:
+              - fills
+    SetLeverageCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - set_user_leverage
+          default: set_user_leverage
+        params:
+          type: object
+          properties:
+            symbol:
+              type: string
+            leverage:
+              type: number
+      required:
+        - type
+        - params
+      examples:
+        - type: set_user_leverage
+          params:
+            symbol: AAPL-USD
+            leverage: 10
+    GetLeverageCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - get_user_leverage
+          default: get_user_leverage
+        params:
+          type: object
+          properties:
+            limit:
+              type: number
+            offset:
+              type: number
+      required:
+        - type
+        - params
+      examples:
+        - type: get_user_leverage
+          params:
+            limit: 10
+            offset: 0
+    GetAvailableLeverageCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - get_available_leverage_levels
+          default: get_available_leverage_levels
+        params:
+          type: object
+          properties:
+            limit:
+              type: number
+            offset:
+              type: number
+      required:
+        - type
+        - params
+      examples:
+        - type: get_available_leverage_levels
+          params:
+            limit: 10
+            offset: 0
+    AuthenticateCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - auth
+          default: auth
+        params:
+          type: object
+          properties:
+            hmac:
+              type: object
+              properties:
+                public_key:
+                  type: string
+                  description: Your public (API) key
+                nonce:
+                  type: string
+                  description: Secure random hex string
+                unix_ts:
+                  type: integer
+                  description: Current Unix timestamp (seconds)
+                signature:
+                  type: string
+                  description: Hex-encoded HMAC-SHA256(secret, "nonce:unix_ts")
+              required:
+                - public_key
+                - nonce
+                - unix_ts
+                - signature
+            jwt:
+              type: string
+              description: JWT token fetched via https://verify.qfex.com
+          oneOf:
+            - required:
+                - hmac
+            - required:
+                - jwt
+      required:
+        - type
+        - params
+      examples:
+        - type: auth
+          params:
+            hmac:
+              public_key: qfex_pub_xxxxx
+              nonce: c0ffee...
+              unix_ts: 1760545414
+              signature: 5f2e...
+        - type: auth
+          params:
+            jwt: >-
+              eyJhbGciOiJFUzI1NiIsImtpZCI6ImNiYzVmZWNmLTlhODItNGFlNy04NDFkLTBkMTdjMjUzMWM3OCIsInR5cCI6IkpXVCJ9...
+    GetOrderCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - get_order
+          default: get_order
+        params:
+          type: object
+          properties:
+            order_id:
+              type: string
+            symbol:
+              type: string
+          required:
+            - order_id
+            - symbol
+      required:
+        - type
+        - params
+      examples:
+        - type: get_order
+          params:
+            order_id: 5b309929-206f-40ec-804d-cbe46e81afc1
+            symbol: AAPL-USD
+    GetUserOrdersCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - get_user_orders
+          default: get_user_orders
+        params:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+            symbol:
+              type: string
+      required:
+        - type
+        - params
+      examples:
+        - type: get_user_orders
+          params:
+            limit: 10
+            offset: 0
+            symbol: AAPL-USD
+    CancelOnDisconnectCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - cancel_on_disconnect
+          default: cancel_on_disconnect
+        params:
+          type: object
+          properties:
+            cancel_on_disconnect:
+              type: boolean
+          required:
+            - cancel_on_disconnect
+      required:
+        - type
+        - params
+      examples:
+        - type: cancel_on_disconnect
+          params:
+            cancel_on_disconnect: true
+    ClosePositionCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - close_position
+          default: close_position
+        params:
+          type: object
+          properties:
+            symbol:
+              type: string
+            client_order_id:
+              type: string
+          required:
+            - symbol
+      required:
+        - type
+        - params
+      examples:
+        - type: close_position
+          params:
+            symbol: AAPL-USD
+            client_order_id: my-close-order-1
+    AddTwapCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - add_twap
+          default: add_twap
+        params:
+          type: object
+          properties:
+            symbol:
+              type: string
+            side:
+              type: string
+              enum:
+                - BUY
+                - SELL
+            total_quantity:
+              type: number
+            num_orders:
+              type: integer
+            order_interval_secs:
+              type: integer
+            reduce_only:
+              type: boolean
+            client_twap_id:
+              type: string
+              nullable: true
+          required:
+            - symbol
+            - side
+            - total_quantity
+            - num_orders
+            - order_interval_secs
+            - reduce_only
+      required:
+        - type
+        - params
+      examples:
+        - type: add_twap
+          params:
+            symbol: AAPL-USD
+            side: BUY
+            total_quantity: 10
+            num_orders: 5
+            order_interval_secs: 30
+            reduce_only: false
+            client_twap_id: rebalance-aapl-001
+    GetUserTradesCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - get_user_trades
+          default: get_user_trades
+        params:
+          type: object
+          properties:
+            limit:
+              type: integer
+            offset:
+              type: integer
+            order_id:
+              type: string
+            start_ts:
+              type: integer
+              description: Unix timestamp in seconds
+            end_ts:
+              type: integer
+              description: Unix timestamp in seconds
+      required:
+        - type
+        - params
+      examples:
+        - type: get_user_trades
+          params:
+            limit: 20
+            start_ts: 1760545414
+    CancelStopOrderCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - cancel_stop_order
+          default: cancel_stop_order
+        params:
+          type: object
+          properties:
+            stop_order_id:
+              type: string
+          required:
+            - stop_order_id
+      required:
+        - type
+        - params
+      examples:
+        - type: cancel_stop_order
+          params:
+            stop_order_id: stop-order-uuid
+    ModifyStopOrderCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - modify_stop_order
+          default: modify_stop_order
+        params:
+          type: object
+          properties:
+            stop_order_id:
+              type: string
+            symbol:
+              type: string
+            price:
+              type: number
+            quantity:
+              type: number
+          required:
+            - stop_order_id
+            - symbol
+            - price
+            - quantity
+      required:
+        - type
+        - params
+      examples:
+        - type: modify_stop_order
+          params:
+            stop_order_id: stop-order-uuid
+            symbol: AAPL-USD
+            price: 160
+            quantity: 5
+    UnsubscribeCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - unsubscribe
+          default: unsubscribe
+        params:
+          type: object
+          properties:
+            channels:
+              type: array
+              items:
+                type: string
+                enum:
+                  - order_responses
+                  - positions
+                  - balances
+                  - stop_orders
+                  - fills
+          required:
+            - channels
+      required:
+        - type
+        - params
+      examples:
+        - type: unsubscribe
+          params:
+            channels:
+              - order_responses
+              - positions
+    AddOrderCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - add_order
+          default: add_order
+        params:
+          type: object
+          properties:
+            symbol:
+              type: string
+            side:
+              type: string
+              enum:
+                - BUY
+                - SELL
+            order_type:
+              type: string
+              enum:
+                - LIMIT
+                - MARKET
+                - ALO
+            order_time_in_force:
+              type: string
+              enum:
+                - GTC
+                - IOC
+                - FOK
+            quantity:
+              type: number
+            price:
+              type: number
+              description: Only required for LIMIT or ALO orders
+            take_profit:
+              type: number
+            stop_loss:
+              type: number
+            client_order_id:
+              type: string
+          required:
+            - symbol
+            - side
+            - order_type
+            - order_time_in_force
+            - quantity
+      required:
+        - type
+        - params
+      examples:
+        - type: add_order
+          params:
+            symbol: AAPL-USD
+            side: BUY
+            order_type: LIMIT
+            order_time_in_force: GTC
+            quantity: 10
+            price: 150.5
+            client_order_id: my-order-123
+    CancelOrderCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - cancel_order
+          default: cancel_order
+        params:
+          type: object
+          properties:
+            symbol:
+              type: string
+            order_id:
+              type: string
+            cancel_order_id_type:
+              type: string
+              enum:
+                - order_id
+                - client_order_id
+                - twap_id
+                - client_twap_id
+          required:
+            - symbol
+            - order_id
+            - cancel_order_id_type
+      required:
+        - type
+        - params
+      examples:
+        - type: cancel_order
+          params:
+            symbol: AAPL-USD
+            order_id: 5b309929-206f-40ec-804d-cbe46e81afc1
+            cancel_order_id_type: order_id
+    ModifyOrderCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - modify_order
+          default: modify_order
+        params:
+          type: object
+          properties:
+            symbol:
+              type: string
+            order_id:
+              type: string
+            price:
+              type: number
+            quantity:
+              type: number
+            take_profit:
+              type: number
+            stop_loss:
+              type: number
+            side:
+              type: string
+              enum:
+                - BUY
+                - SELL
+            order_type:
+              type: string
+              enum:
+                - LIMIT
+                - MARKET
+                - ALO
+          required:
+            - symbol
+            - order_id
+            - side
+            - order_type
+      required:
+        - type
+        - params
+      examples:
+        - type: modify_order
+          params:
+            symbol: AAPL-USD
+            order_id: 5b309929-206f-40ec-804d-cbe46e81afc1
+            price: 152
+            quantity: 15
+            side: BUY
+            order_type: LIMIT
+    CancelAllOrdersCommand:
+      type: object
+      properties:
+        type:
+          type: string
+          enum:
+            - cancel_all_orders
+          default: cancel_all_orders
+        params:
+          type: object
+          properties: {}
+      required:
+        - type
+        - params
+      examples:
+        - type: cancel_all_orders
+          params: {}
+    BalanceUpdate:
+      examples:
+        - type: subscribed
+          connection_id: ee987ddf-822c-4356-b0d1-012314859b00
+          message_id: 1
+          id: 3ab267fd-7c83-49c6-b42e-65bb94682b41
+          channel: v4_balances
+          contents:
+            - id: 2cb208e3-6e54-48c4-82e9-641e64bf185d
+              user_id: 0f5208e3-6e54-48c4-82e9-641e64bf185d
+              deposit: 1000
+              realised_pnl: -898.65735
+              unrealised_pnl: 0
+              order_margin: 0
+              position_margin: 0
+              net_funding: -1.5354636
+              available_balance: 99.80721
+      allOf:
+        - $ref: '#/components/schemas/MessageEnvelope'
+        - type: object
+          properties:
+            contents:
+              type: array
+              items:
+                $ref: '#/components/schemas/BalancePayload'
+    PositionUpdate:
+      examples:
+        - type: subscribed
+          connection_id: ee987ddf-822c-4356-b0d1-012314859b00
+          message_id: 1
+          id: 3ab267fd-7c83-49c6-b42e-65bb94682b41
+          channel: v4_positions
+          contents:
+            - id: PLTR-USD
+              symbol: PLTR-USD
+              user_id: 0f5208e3-6e54-48c4-82e9-641e64bf185d
+              position: 0
+              margin_alloc: 0
+              realised_pnl: 1.327875
+              unrealised_pnl: 0
+              net_funding: 0.00000482
+              open_orders: 1
+              open_quantity: 10
+              leverage: 20
+              initial_margin: 0
+              maintenance_margin: 0
+              average_price: 0
+              timestamp: '2025-05-09T03:47:20.505934+00:00'
+      allOf:
+        - $ref: '#/components/schemas/MessageEnvelope'
+        - type: object
+          properties:
+            contents:
+              type: array
+              items:
+                $ref: '#/components/schemas/PositionPayload'
+    BboPayload:
+      type: object
+      properties:
+        symbol:
+          type: string
+        bidPrice:
+          type: string
+        bidSize:
+          type: string
+        askPrice:
+          type: string
+        askSize:
+          type: string
+    OrderBookPayload:
+      type: object
+      properties:
+        bids:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+        asks:
+          type: array
+          items:
+            type: array
+            items:
+              type: string
+    TradePayload:
+      type: object
+      properties:
+        trade_id:
+          type: string
+        symbol:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: number
+        side:
+          type: string
+          enum:
+            - BUY
+            - SELL
+        order_id:
+          type: string
+        fee:
+          type: number
+        order_type:
+          type: string
+          enum:
+            - LIMIT
+            - MARKET
+            - ALO
+            - TAKE_PROFIT
+            - STOP_LOSS
+            - STOP_MARKET
+        tif:
+          type: string
+          enum:
+            - GTC
+            - IOC
+            - FOK
+    FillResponse:
+      type: object
+      properties:
+        trade_id:
+          type: string
+        user_id:
+          type: string
+        symbol:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: number
+        side:
+          type: string
+          enum:
+            - BUY
+            - SELL
+        aggressor_side:
+          type: string
+          enum:
+            - BUY
+            - SELL
+        order_id:
+          type: string
+        fee:
+          type: number
+        order_type:
+          type: string
+          enum:
+            - LIMIT
+            - MARKET
+            - ALO
+            - TAKE_PROFIT
+            - STOP_LOSS
+            - STOP_MARKET
+        tif:
+          type: string
+          enum:
+            - GTC
+            - IOC
+            - FOK
+        order_price:
+          type: number
+        client_order_id:
+          type: string
+        remaining_quantity:
+          type: number
+        take_profit:
+          type: number
+        stop_loss:
+          type: number
+        execution_type:
+          type: string
+        timestamp:
+          type: number
+          description: Timestamp in seconds with fractional part
+        realised_pnl:
+          type: number
+    BalancePayload:
+      type: object
+      properties:
+        id:
+          type: string
+        user_id:
+          type: string
+        deposit:
+          type: number
+        realised_pnl:
+          type: number
+        order_margin:
+          type: number
+        position_margin:
+          type: number
+        unrealised_pnl:
+          type: number
+        net_funding:
+          type: number
+        available_balance:
+          type: number
+        referral_rewards:
+          type: number
+        fees:
+          type: number
+    PositionPayload:
+      type: object
+      properties:
+        id:
+          type: string
+        symbol:
+          type: string
+        position:
+          type: number
+        margin_alloc:
+          type: number
+        realised_pnl:
+          type: number
+        unrealised_pnl:
+          type: number
+        net_funding:
+          type: number
+        open_orders:
+          type: number
+        open_quantity:
+          type: number
+        leverage:
+          type: number
+        initial_margin:
+          type: number
+        maintenance_margin:
+          type: number
+        average_price:
+          type: number
+    OrderResponse:
+      type: object
+      properties:
+        order_id:
+          type: string
+        symbol:
+          type: string
+        status:
+          type: string
+          enum:
+            - ACK
+            - FILLED
+            - MODIFIED
+            - CANCELLED
+            - CANCELLED_STP
+            - REJECTED
+            - NO_SUCH_ORDER
+            - INVALID_ORDER_TYPE
+            - BAD_SYMBOL
+            - PRICE_LESS_THAN_MIN_PRICE
+            - PRICE_GREATER_THAN_MAX_PRICE
+            - CANNOT_MODIFY_PARTIAL_FILL
+            - FAILED_MARGIN_CHECK
+            - INVALID_TICK_SIZE_PRECISION_PRICE
+            - INVALID_TICK_SIZE_PRECISION_QUANTITY
+            - QUANTITY_LESS_THAN_MIN_QUANTITY
+            - QUANTITY_GREATER_THAN_MAX_QUANTITY
+            - INVALID_TIME_IN_FORCE
+            - REJECTED_WOULD_BREACH_MAX_NOTIONAL
+            - CANNOT_MODIFY_NO_SUCH_ORDER
+            - REJECTED_MARKET_CLOSED
+            - REJECTED_FAILED_TO_PROCESS
+            - INVALID_TAKEPROFIT_PRICE
+            - INVALID_STOPLOSS_PRICE
+            - RATE_LIMITED
+            - REJECTED_TOO_MANY_OPEN_ORDERS
+            - REJECTED_OPEN_INTEREST_LIMIT
+        quantity:
+          type: number
+        price:
+          type: number
+        take_profit:
+          type: number
+        stop_loss:
+          type: number
+        side:
+          type: string
+          enum:
+            - BUY
+            - SELL
+        type:
+          type: string
+          enum:
+            - LIMIT
+            - MARKET
+            - ALO
+            - TAKE_PROFIT
+            - STOP_LOSS
+            - STOP_MARKET
+        time_in_force:
+          type: string
+          enum:
+            - GTC
+            - IOC
+            - FOK
+        user_id:
+          type: string
+        client_order_id:
+          type: string
+        quantity_remaining:
+          type: number
+        update_time:
+          type: number
+          description: Timestamp in seconds with fractional part
+        trade_id:
+          type: string
+          nullable: true
+    AllOrdersResponse:
+      type: object
+      properties:
+        orders:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrderResponse'
+        twaps:
+          type: array
+          items:
+            $ref: '#/components/schemas/TwapResponse'
+    TwapResponse:
+      type: object
+      properties:
+        twap_id:
+          type: string
+        client_twap_id:
+          type: string
+          nullable: true
+        user_id:
+          type: string
+        status:
+          type: string
+        symbol:
+          type: string
+        total_quantity:
+          type: number
+        filled_quantity:
+          type: number
+        average_fill_price:
+          type: number
+        total_num_orders:
+          type: integer
+        order_interval_secs:
+          type: integer
+        reduce_only:
+          type: boolean
+        side:
+          type: string
+          enum:
+            - BUY
+            - SELL
+        updated_at:
+          type: number
+          nullable: true
+        created_at:
+          type: number
+          nullable: true
+    ErrResponse:
+      type: object
+      properties:
+        error_code:
+          type: string
+          enum:
+            - RateLimited
+            - InvalidJSONFormat
+            - AlreadyAuthenticated
+            - InvalidParameter
+            - PermissionDenied
+            - ServerError
+            - InvalidOrder
+            - KycRequired
+            - TncRequired
+        message:
+          type: string
+          nullable: true
+        incoming_message:
+          oneOf:
+            - type: object
+            - type: string
+      required:
+        - error_code
+    LeveragePublic:
+      type: object
+      properties:
+        id:
+          type: string
+        symbol:
+          type: string
+        initial_margin:
+          type: number
+        maintenance_margin:
+          type: number
+        max_notional:
+          type: number
+        leverage:
+          type: string
+    StopOrder:
+      type: object
+      properties:
+        stop_order_id:
+          type: string
+        user_id:
+          type: string
+        symbol:
+          type: string
+        price:
+          type: number
+        quantity:
+          type: number
+        direction:
+          type: string
+          enum:
+            - BUY
+            - SELL
+        stop_order_type:
+          type: string
+          enum:
+            - TAKE_PROFIT
+            - STOP_LOSS
+        client_order_id:
+          type: string
+        update_time:
+          type: string
+          format: date-time
+    AckResponse:
+      type: object
+      properties:
+        incoming_message:
+          type: object
+    PnlEntryPayload:
+      type: object
+      properties:
+        user_id:
+          type: string
+        available_balance:
+          type: number
+        realised_pnl:
+          type: number

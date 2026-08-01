@@ -1,0 +1,18 @@
+{
+  "provider": "qfex",
+  "sources": [
+    "qfex-market-data-api-openapi.yml",
+    "qfex-pnl-api-openapi.yml",
+    "qfex-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "qfex-market-data-api-openapi.yml",
+    "qfex-pnl-api-openapi.yml",
+    "qfex-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

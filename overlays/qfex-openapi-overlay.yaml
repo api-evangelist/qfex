@@ -1,0 +1,27 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for QFEX REST API
+  version: 1.0.0
+extends: openapi/qfex-openapi-original.yml
+actions:
+- target: $.info
+  update:
+    x-apievangelist-provider: qfex
+    x-apievangelist-category:
+    - Trading
+    - Exchange
+    - Market Data
+    - Perpetual Futures
+    x-apievangelist-auth: hmac-sha256-signed
+    x-apievangelist-rate-limit: 12000 weight units / 60s (WebSocket API)
+    x-apievangelist-idempotency: client_order_id (order entry)
+    x-apievangelist-artifacts:
+      authentication: authentication/qfex-authentication.yml
+      conventions: conventions/qfex-conventions.yml
+      errors: errors/qfex-problem-types.yml
+      data_model: data-model/qfex-data-model.yml
+      cli: cli/qfex-cli.yml
+- target: $.servers
+  update:
+  - url: https://api.qfex.com
+    description: Production REST server

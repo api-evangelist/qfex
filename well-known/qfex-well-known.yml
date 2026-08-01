@@ -1,0 +1,33 @@
+generated: '2026-07-20'
+method: probed
+source: live probes of /.well-known/* on QFEX hosts
+note: >-
+  No real .well-known discovery documents are served. api.qfex.com returns 401
+  (auth required) for every /.well-known/ path; the qfex.com marketing site returns
+  its SPA index.html (HTTP 200 but not a discovery document) as a catch-all. Recorded
+  as an honest negative result; no WellKnown/SecurityTxt pointer is wired.
+hosts:
+- host: https://api.qfex.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 401
+  - path: /.well-known/openid-configuration
+    status: 401
+  - path: /.well-known/oauth-authorization-server
+    status: 401
+  - path: /.well-known/api-catalog
+    status: 401
+  - path: /.well-known/ai-plugin.json
+    status: 401
+- host: https://qfex.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 200
+    note: SPA index.html catch-all, not a real RFC 9116 security.txt
+  - path: /.well-known/openid-configuration
+    status: 200
+    note: SPA index.html catch-all, not OIDC discovery
+- host: https://docs.qfex.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404

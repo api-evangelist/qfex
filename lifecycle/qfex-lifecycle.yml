@@ -1,0 +1,23 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.qfex.com/websocket/changelog
+versioning:
+  scheme: dated-changelog
+  current: v0.0.10
+  openapi_version: 0.1.0
+  docs: https://docs.qfex.com/websocket/changelog
+  note: >-
+    REST is hosted under a single production server with no version segment in the
+    path; the WebSocket API is versioned informally (v0.0.x) and evolved through a
+    dated changelog. Several changes have been announced as breaking (e.g. modify
+    order must include order type; clients must subscribe to order responses).
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: No formal deprecation/Sunset (RFC 8594) policy found; breaking changes are
+    announced via the dated changelog.
+sla:
+  url: null
+  uptime_target: null
+status_page: https://status.qfex.com
+deprecated_operations: []

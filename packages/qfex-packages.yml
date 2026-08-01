@@ -1,0 +1,17 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.qfex.com/api-reference/cli
+note: >-
+  QFEX ships a first-party JSON-native CLI (Go) distributed via a Homebrew tap.
+  No first-party language SDKs (npm/PyPI/etc.) are published; the docs provide
+  raw Python/Node/Go WebSocket samples instead. The CLI is the primary packaged
+  client and doubles as the agentic-trading integration surface.
+packages:
+- language: shell
+  registry: homebrew
+  name: QFEX-org/tap/qfex
+  url: https://github.com/QFEX-org/homebrew-tap
+  install: brew install QFEX-org/tap/qfex
+  repo: https://github.com/QFEX-org/cli
+  official: true
+  kind: cli

@@ -1,0 +1,106 @@
+# QFEX API Documentation
+
+## Docs
+
+- [CLI](https://docs.qfex.com/api-reference/cli.md): Use the QFEX CLI for agentic trading and JSON-native command-line workflows.
+- [Enums](https://docs.qfex.com/api-reference/enums.md)
+- [Introduction](https://docs.qfex.com/api-reference/introduction.md)
+- [Candles](https://docs.qfex.com/api-reference/rest/market-data/candles.md): Return OHLCV candles for a symbol over a time range.
+- [Funding Historic](https://docs.qfex.com/api-reference/rest/market-data/funding-historic.md): Return historic funding rates for a symbol over a time range with forward filling.
+- [Open Interest Historic](https://docs.qfex.com/api-reference/rest/market-data/open-interest-historic.md): Return historic open interest for a symbol over a time range with forward filling.
+- [Refdata](https://docs.qfex.com/api-reference/rest/market-data/refdata.md): Return symbol reference data.
+- [Settlement Calendar](https://docs.qfex.com/api-reference/rest/market-data/settlement-calendar.md): Return the settlement calendar entry used to resolve the dated future for a futures-based QFEX product at a given time. This is the source of truth for oracle roll state for symbols such as CL-USD, US100-USD, COPPER-USD, and NATGAS-USD. If `time` is omitted, the currently active contract is returned…
+- [Settlement Prices](https://docs.qfex.com/api-reference/rest/market-data/settlement-prices.md): Return current and historic settlement prices and ratios.
+- [Symbol Long Short Historic](https://docs.qfex.com/api-reference/rest/market-data/symbol-long-short-historic.md): Return historic long and short user counts for a symbol over a time range.
+- [Taker Volume Historic](https://docs.qfex.com/api-reference/rest/market-data/taker-volume-historic.md): Return historic taker volume metrics for a symbol over a time range.
+- [Underlier Historic](https://docs.qfex.com/api-reference/rest/market-data/underlier-historic.md): Return historic underlier OHLC data for a symbol over a time range.
+- [Hourly PnL (approx. first position per hour)](https://docs.qfex.com/api-reference/rest/pnl/hourly-pnl-approx-first-position-per-hour.md): Return approximate first position per symbol per hour for the user, including realised/unrealised pnl, net_funding, fees, quantity, and cost.
+- [Account Equity](https://docs.qfex.com/api-reference/rest/user/account-equity.md): Return total account equity over time for preset durations.
+- [Create Subaccount](https://docs.qfex.com/api-reference/rest/user/create-subaccount.md): Allocates a new subaccount ID for the authenticated user and returns it in the response body.
+- [Historic Orders](https://docs.qfex.com/api-reference/rest/user/historic-orders.md): Return historic orders (filled or terminally closed) for the authenticated user.
+- [Historic TWAPs](https://docs.qfex.com/api-reference/rest/user/historic-twaps.md): Return historic TWAPs (cancelled or completed) for the authenticated user.
+- [Historic User PnL](https://docs.qfex.com/api-reference/rest/user/historic-user-pnl.md): Return historic user pnl change over preset durations. Supports number and percent units, and optional comma-separated symbol filters.
+- [List Subaccounts](https://docs.qfex.com/api-reference/rest/user/list-subaccounts.md): Returns subaccount IDs for the authenticated user excluding the master account ID.
+- [Set User Leverage](https://docs.qfex.com/api-reference/rest/user/set-user-leverage.md): Set the leverage for the authenticated user.
+- [Stream Historic Orders CSV](https://docs.qfex.com/api-reference/rest/user/stream-historic-orders-csv.md): Stream a CSV of all historic orders for the authenticated user.
+- [Stream Historic TWAPs CSV](https://docs.qfex.com/api-reference/rest/user/stream-historic-twaps-csv.md): Stream a CSV of all historic TWAPs for the authenticated user.
+- [Stream Trades CSV](https://docs.qfex.com/api-reference/rest/user/stream-trades-csv.md): Stream a CSV of all trades for the authenticated user.
+- [Transfer Balance](https://docs.qfex.com/api-reference/rest/user/transfer-balance.md): Transfer available balance between two of the authenticated user's accounts (master account or subaccounts).
+- [User Fees](https://docs.qfex.com/api-reference/rest/user/user-fees.md): Return Fees data for the authenticated user.
+- [User Positions](https://docs.qfex.com/api-reference/rest/user/user-positions.md): Return current positions for the authenticated user.
+- [User Referral Rewards](https://docs.qfex.com/api-reference/rest/user/user-referral-rewards.md): Return daily referral rewards for the authenticated user.
+- [User Trades](https://docs.qfex.com/api-reference/rest/user/user-trades.md): Return trades for the authenticated user.
+- [User Volume](https://docs.qfex.com/api-reference/rest/user/user-volume.md): Return daily user notional volume for one of: 1w, 1m, ytd, or all time. Supports optional comma-separated symbol filters.
+- [Bug Bounty](https://docs.qfex.com/legal/bug-bounty.md)
+- [Client Agreement](https://docs.qfex.com/legal/client-agreement.md): Last Updated: 28 November 2025
+- [Cookie Policy](https://docs.qfex.com/legal/cookie-policy.md): Last Updated: 28 November 2025
+- [Privacy Policy](https://docs.qfex.com/legal/privacy-policy.md): Last Updated: 28 November 2025
+- [Waitlist Agreement](https://docs.qfex.com/legal/waitlist-agreement.md): Last Updated: 28 November 2025
+- [About QFEX](https://docs.qfex.com/qfex/about.md): How Markets Should Be
+- [Exchange](https://docs.qfex.com/qfex/architecture.md): Technical Description of the Exchange
+- [Bank Transfer](https://docs.qfex.com/qfex/bank-transfer.md): Pay via Bank Transfer
+- [Contract Specifications](https://docs.qfex.com/qfex/contract-specifications.md): Perpetual Futures Adapted for Traditional Assets
+- [Corporate Actions](https://docs.qfex.com/qfex/corporate-actions.md): QFEX Policy on Equity Corporate Actions
+- [Definitions and Formulae](https://docs.qfex.com/qfex/definitions.md): Common Terms Used in the Rulebook
+- [FAQ](https://docs.qfex.com/qfex/faq.md): Frequently Asked Questions
+- [Fees](https://docs.qfex.com/qfex/fees.md)
+- [Funding](https://docs.qfex.com/qfex/funding.md): When funding is active, why it can be zero, and how rates are computed.
+- [Margin and Liquidations](https://docs.qfex.com/qfex/liquidation-margin-call.md): A Detailed Description of the Liquidation Cascade
+- [Market Makers](https://docs.qfex.com/qfex/market-makers.md): Institutional connectivity enquiries
+- [Order Entry](https://docs.qfex.com/qfex/order-types.md): Supported Order Types and Times in Force
+- [Blocked Countries and Restrictions](https://docs.qfex.com/qfex/prohibited-jurisdictions.md)
+- [QFEX Referral Program](https://docs.qfex.com/qfex/referral.md): Earn Cash Rewards
+- [Risk Limits](https://docs.qfex.com/qfex/risk-limits.md): Stay Safe
+- [Stablecoins](https://docs.qfex.com/qfex/stablecoins.md): Pay via Stablecoins
+- [Subaccounts](https://docs.qfex.com/qfex/subaccounts.md): Separate your margin and risk
+- [Changelog](https://docs.qfex.com/websocket/changelog.md): Product updates and announcements
+- [Pulsed BBO](https://docs.qfex.com/websocket/channels/mds/bbo.md)
+- [Funding Rate](https://docs.qfex.com/websocket/channels/mds/funding_rate.md)
+- [Mark Price](https://docs.qfex.com/websocket/channels/mds/mark_price.md)
+- [Market Stats](https://docs.qfex.com/websocket/channels/mds/market_stats.md)
+- [Minmax Price](https://docs.qfex.com/websocket/channels/mds/minmax_price.md)
+- [Open Interest](https://docs.qfex.com/websocket/channels/mds/open_interest.md)
+- [Pulsed Order Book](https://docs.qfex.com/websocket/channels/mds/orderbook.md)
+- [Reference Data](https://docs.qfex.com/websocket/channels/mds/refdata.md)
+- [Public Trades](https://docs.qfex.com/websocket/channels/mds/trades.md)
+- [Underlier Price](https://docs.qfex.com/websocket/channels/mds/underlier.md)
+- [Order Entry — Add Order](https://docs.qfex.com/websocket/channels/trade/add_order.md)
+- [Order Entry — Add TWAP](https://docs.qfex.com/websocket/channels/trade/add_twap.md)
+- [Authenticate](https://docs.qfex.com/websocket/channels/trade/authenticate.md)
+- [Subscribe — Balances](https://docs.qfex.com/websocket/channels/trade/balance.md)
+- [Cancel All Orders](https://docs.qfex.com/websocket/channels/trade/cancel_all_orders.md)
+- [Cancel On Disconnect](https://docs.qfex.com/websocket/channels/trade/cancel_on_disconnect.md)
+- [Order Entry — Cancel Order](https://docs.qfex.com/websocket/channels/trade/cancel_order.md)
+- [Order Entry — Close Position](https://docs.qfex.com/websocket/channels/trade/close_position.md)
+- [Subscribe — Fills](https://docs.qfex.com/websocket/channels/trade/fills.md)
+- [Get Available Leverage Levels](https://docs.qfex.com/websocket/channels/trade/get_available_leverage.md)
+- [Get Leverage Levels](https://docs.qfex.com/websocket/channels/trade/get_leverage.md)
+- [Get Order](https://docs.qfex.com/websocket/channels/trade/get_order.md)
+- [Get User Orders](https://docs.qfex.com/websocket/channels/trade/get_user_orders.md)
+- [Get User Trades](https://docs.qfex.com/websocket/channels/trade/get_user_trades.md)
+- [Order Entry — Modify Order](https://docs.qfex.com/websocket/channels/trade/modify_order.md)
+- [Subscribe — Order Responses](https://docs.qfex.com/websocket/channels/trade/order.md)
+- [Subscribe — Positions](https://docs.qfex.com/websocket/channels/trade/positions.md)
+- [Set Leverage](https://docs.qfex.com/websocket/channels/trade/set_leverage.md)
+- [Order Entry — Add Stop Order](https://docs.qfex.com/websocket/channels/trade/stop_add_order.md)
+- [Order Entry — Cancel Stop Order](https://docs.qfex.com/websocket/channels/trade/stop_cancel_order.md)
+- [Order Entry — Modify Stop Order](https://docs.qfex.com/websocket/channels/trade/stop_modify_order.md)
+- [Errors](https://docs.qfex.com/websocket/errors.md)
+- [Websocket Overview](https://docs.qfex.com/websocket/main.md)
+- [MDS Playground](https://docs.qfex.com/websocket/mds.md): Single channel for orderbook, trades, candles
+- [API Rate Limits](https://docs.qfex.com/websocket/rate.md): This page explains how request throttling works on our **WebSocket trading API**. If you’re writing a client, read this to avoid `RateLimited` errors.
+- [Trade Playground](https://docs.qfex.com/websocket/trade.md): Single channel for order commands, positions, balances, fills
+
+## OpenAPI Specs
+
+- [openapi](https://docs.qfex.com/api-reference/openapi.yaml)
+
+## AsyncAPI Specs
+
+- [mds](https://docs.qfex.com/websocket/mds.yaml)
+- [trade](https://docs.qfex.com/websocket/trade.yaml)
+- [asyncapi](https://docs.qfex.com/docs/websocket/asyncapi.yaml)
+
+## Optional
+
+- [Status](https://status.qfex.com)

@@ -1,0 +1,60 @@
+generated: '2026-07-20'
+method: searched
+source: https://docs.qfex.com/api-reference/cli
+name: qfex
+description: >-
+  JSON-native command-line client for QFEX. All output is JSON for easy piping to
+  jq. A background daemon holds persistent market-data and trade WebSocket
+  connections so scripts do not manage subscriptions, auth, or socket lifecycle.
+  Purpose-built for agentic trading workflows; integrates directly with Claude
+  Code and Codex.
+repo: https://github.com/QFEX-org/cli
+install:
+- method: homebrew
+  command: brew install QFEX-org/tap/qfex
+agent_setup:
+- command: qfex agents init
+  description: >-
+    Global setup for Claude Code and Codex (writes ~/.claude/ and ~/.codex/) so
+    qfex runs without repeated permission prompts.
+- command: qfex agents init --local
+  description: Project-local setup; writes CLAUDE.md and AGENTS.md into the current directory.
+environments:
+- name: prod
+  connects: qfex.com
+  note: real funds
+- name: uat
+  connects: qfex.io
+  note: testing strategies and integrations without real funds
+command_groups:
+- group: daemon
+  commands: [start, stop, restart, status]
+  note: The daemon must be running before most commands work.
+- group: market
+  commands: [bbo, orderbook, trades]
+  note: Market data works without credentials.
+- group: order
+  commands: [place, list, cancel]
+- group: position
+  commands: [list]
+- group: account
+  commands: [balance, leverage, subaccounts]
+  subcommands:
+    subaccounts: [current, select, list, transfer]
+- group: watch
+  commands: [bbo, orders, fills]
+  note: Live streaming subscriptions.
+- group: login
+  commands: [login]
+key_flows:
+- name: Agentic trading setup
+  steps:
+  - qfex agents init
+  - qfex daemon start
+  - qfex login
+  - qfex daemon restart
+  - qfex daemon status
+- name: Place a limit order
+  steps:
+  - qfex order place --symbol AAPL-USD --side BUY --type LIMIT --tif GTC --qty 1 --price 200
+config: ~/.config/qfex/config.yaml

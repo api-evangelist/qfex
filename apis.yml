@@ -1,7 +1,28 @@
 aid: qfex
 name: Qfex
-description: Qfex is a company surfaced as a portfolio company of general-catalyst and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  QFEX is the first 24/7 exchange built exclusively for US equities, commodities,
+  and FX, offering high-leverage perpetual futures on traditional assets without a
+  broker. Founded by former Tower Research and Citadel engineers who met studying
+  mathematics at Cambridge, QFEX gives retail and institutional traders direct,
+  high-frequency access to markets around the clock. Its developer platform exposes
+  a REST API for historic market data and account operations, two multiplexed
+  WebSocket gateways (market data and trading) documented with AsyncAPI 3.0, and a
+  JSON-native CLI purpose-built for agentic trading workflows. Authentication uses
+  HMAC-SHA256 request signing with public/secret API key pairs.
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://qfex.com/qfex-logo-with-text-for-metadata.png
 url: https://raw.githubusercontent.com/api-evangelist/qfex/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,12 +32,168 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-20'
 tags:
 - Company
-apis: []
+- Trading
+- Exchange
+- Perpetual Futures
+- Market Data
+- WebSocket
+- FX
+- Commodities
+- Equities
+- Financial Services
+- CLI
+- Fintech
+- Real-time
+apis:
+- name: QFEX Market Data WebSocket (MDS)
+  description: >-
+    Multiplexed WebSocket gateway for all QFEX real-time market data streams: order book, trades, candles,
+    BBO, mark price, funding rate, open interest, market stats and reference data. Documented as AsyncAPI
+    3.0.
+  humanURL: https://docs.qfex.com/websocket/mds
+  baseURL: wss://mds.qfex.com
+  tags:
+  - Market Data
+  - WebSocket
+  - Real-time
+  properties:
+  - type: AsyncAPI
+    url: asyncapi/qfex-mds-asyncapi.yml
+- name: QFEX Trade WebSocket
+  description: >-
+    Multiplexed WebSocket gateway for QFEX order entry and account streams: add / modify / cancel orders,
+    stop orders, TWAPs, close position, leverage, balances, positions, fills and order responses. Requires
+    HMAC-SHA256 authentication within one minute of connecting. Documented as AsyncAPI 3.0.
+  humanURL: https://docs.qfex.com/websocket/trade
+  baseURL: wss://trade.qfex.com
+  tags:
+  - Trading
+  - WebSocket
+  - Real-time
+  properties:
+  - type: AsyncAPI
+    url: asyncapi/qfex-trade-asyncapi.yml
+  - type: Webhooks
+    url: asyncapi/qfex-trade-asyncapi.yml
+- aid: qfex:qfex-market-data-api
+  name: Qfex market-data API
+  description: The market-data API from Qfex — 9 operation(s) for market-data.
+  humanURL: https://docs.qfex.com/api-reference/introduction
+  baseURL: https://api.qfex.com
+  tags:
+  - market-data
+  properties:
+  - type: OpenAPI
+    url: openapi/qfex-market-data-api-openapi.yml
+  - type: Authentication
+    url: authentication/qfex-authentication.yml
+  - type: ErrorCatalog
+    url: errors/qfex-problem-types.yml
+  - type: DataModel
+    url: data-model/qfex-data-model.yml
+- aid: qfex:qfex-pnl-api
+  name: Qfex pnl API
+  description: The pnl API from Qfex — 1 operation(s) for pnl.
+  humanURL: https://docs.qfex.com/api-reference/introduction
+  baseURL: https://api.qfex.com
+  tags:
+  - pnl
+  properties:
+  - type: OpenAPI
+    url: openapi/qfex-pnl-api-openapi.yml
+  - type: Authentication
+    url: authentication/qfex-authentication.yml
+  - type: ErrorCatalog
+    url: errors/qfex-problem-types.yml
+  - type: DataModel
+    url: data-model/qfex-data-model.yml
+- aid: qfex:qfex-user-api
+  name: Qfex user API
+  description: The user API from Qfex — 15 operation(s) for user.
+  humanURL: https://docs.qfex.com/api-reference/introduction
+  baseURL: https://api.qfex.com
+  tags:
+  - user
+  properties:
+  - type: OpenAPI
+    url: openapi/qfex-user-api-openapi.yml
+  - type: Authentication
+    url: authentication/qfex-authentication.yml
+  - type: ErrorCatalog
+    url: errors/qfex-problem-types.yml
+  - type: DataModel
+    url: data-model/qfex-data-model.yml
+common:
+- type: DeveloperPortal
+  url: https://docs.qfex.com
+- type: Documentation
+  url: https://docs.qfex.com
+- type: APIReference
+  url: https://docs.qfex.com/api-reference/introduction
+- type: GettingStarted
+  url: https://docs.qfex.com/api-reference/introduction
+- type: Authentication
+  url: authentication/qfex-authentication.yml
+- type: CLI
+  url: cli/qfex-cli.yml
+- type: Packages
+  url: packages/qfex-packages.yml
+- type: Sandbox
+  url: sandbox/qfex-sandbox.yml
+- type: Conventions
+  url: conventions/qfex-conventions.yml
+- type: Idempotency
+  url: conventions/qfex-conventions.yml
+- type: RateLimits
+  url: https://docs.qfex.com/websocket/rate
+- type: ChangeLog
+  url: changelog/qfex-changelog.yml
+- type: Lifecycle
+  url: lifecycle/qfex-lifecycle.yml
+- type: StatusPage
+  url: https://status.qfex.com
+- type: MCPServer
+  url: mcp/qfex-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/qfex-llms.txt
+- type: Conformance
+  url: conformance/qfex-conformance.yml
+- type: ErrorCatalog
+  url: errors/qfex-problem-types.yml
+- type: DomainSecurity
+  url: security/qfex-domain-security.yml
+- type: VulnerabilityDisclosure
+  url: security/qfex-vulnerability-disclosure.yml
+- type: Security
+  url: https://docs.qfex.com/legal/bug-bounty
+- type: GitHubOrganization
+  url: https://github.com/QFEX-org
+- type: Blog
+  url: https://blog.qfex.com
+- type: Support
+  url: mailto:support@qfex.com
+- type: Pricing
+  url: https://docs.qfex.com/qfex/fees
+- type: SignUp
+  url: https://www.qfex.com/signup
+- type: Login
+  url: https://www.qfex.com/login
+- type: TermsOfService
+  url: https://docs.qfex.com/legal/client-agreement
+- type: PrivacyPolicy
+  url: https://docs.qfex.com/legal/privacy-policy
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+x-enrichment:
+  date: '2026-07-20'
+  status: enriched
+  artifacts_added: 22
+  pass: local-v1
