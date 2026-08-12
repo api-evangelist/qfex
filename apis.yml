@@ -127,6 +127,8 @@ apis:
   - type: DataModel
     url: data-model/qfex-data-model.yml
 common:
+- type: Overlay
+  url: overlays/qfex-openapi-overlay.yaml
 - type: DeveloperPortal
   url: https://docs.qfex.com
 - type: Documentation
