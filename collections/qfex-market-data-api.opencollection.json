@@ -1,0 +1,292 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "QFEX REST market-data API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "market-data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Candles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/candles/:symbol",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "resolution",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromISO",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toISO",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return OHLCV candles for a symbol over a time range."
+        },
+        {
+          "info": {
+            "name": "Funding Historic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/funding/:symbol",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "intervalMinutes",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromISO",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toISO",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return historic funding rates for a symbol over a time range with forward filling."
+        },
+        {
+          "info": {
+            "name": "Open Interest Historic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/open-interest/:symbol",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "intervalMinutes",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromISO",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toISO",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return historic open interest for a symbol over a time range with forward filling."
+        },
+        {
+          "info": {
+            "name": "Refdata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/refdata",
+            "params": [
+              {
+                "name": "ticker",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return symbol reference data."
+        },
+        {
+          "info": {
+            "name": "Settlement Calendar",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/settlement-calendar",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query",
+                "description": "QFEX symbol to resolve, for example `CL-USD`, `US100-USD`, `COPPER-USD`, or `NATGAS-USD`."
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "Optional timestamp to resolve against the settlement calendar. If omitted, QFEX returns the currently active dated future."
+              }
+            ]
+          },
+          "docs": "Return the settlement calendar entry used to resolve the dated future for a futures-based QFEX product at a given time. This is the source of truth for oracle roll state for symbols such as CL-USD, US100-USD, COPPER-USD, and NATGAS-USD. If `time` is omitted, the currently active contract is returned."
+        },
+        {
+          "info": {
+            "name": "Settlement Prices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/settlement-prices",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return current and historic settlement prices and ratios."
+        },
+        {
+          "info": {
+            "name": "Symbol Long Short Historic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/symbol-long-short/:symbol",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromISO",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toISO",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return historic long and short user counts for a symbol over a time range."
+        },
+        {
+          "info": {
+            "name": "Taker Volume Historic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/taker-volume/:symbol",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "intervalMinutes",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromISO",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toISO",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return historic taker volume metrics for a symbol over a time range."
+        },
+        {
+          "info": {
+            "name": "Underlier Historic",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/underlier/:symbol",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "interval",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "fromISO",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "toISO",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Return historic underlier OHLC data for a symbol over a time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

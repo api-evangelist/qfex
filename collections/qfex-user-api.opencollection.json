@@ -1,0 +1,456 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "QFEX REST market-data user API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "user",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Stream Historic Orders CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/historic-orders-csv",
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Stream a CSV of all historic orders for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Stream Historic TWAPs CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/historic-twaps-csv",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Stream a CSV of all historic TWAPs for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Stream Trades CSV",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/trades-csv",
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Stream a CSV of all trades for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Account Equity",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/account-equity",
+            "params": [
+              {
+                "name": "duration",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return total account equity over time for preset durations."
+        },
+        {
+          "info": {
+            "name": "User Fees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/fees",
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return Fees data for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Historic Orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/historic-orders",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "client_order_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return historic orders (filled or terminally closed) for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Historic User PnL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/historic-pnl",
+            "params": [
+              {
+                "name": "duration",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "unit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return historic user pnl change over preset durations. Supports number and percent units, and optional comma-separated symbol filters."
+        },
+        {
+          "info": {
+            "name": "Historic TWAPs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/historic-twaps",
+            "params": [
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return historic TWAPs (cancelled or completed) for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Set User Leverage",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.qfex.com/user/leverage",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Set the leverage for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "User Positions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/positions",
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return current positions for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "User Referral Rewards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/referral-rewards",
+            "params": [
+              {
+                "name": "duration",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return daily referral rewards for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "List Subaccounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/subaccounts",
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Returns subaccount IDs for the authenticated user excluding the master account ID."
+        },
+        {
+          "info": {
+            "name": "Create Subaccount",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.qfex.com/user/subaccounts",
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Allocates a new subaccount ID for the authenticated user and returns it in the response body."
+        },
+        {
+          "info": {
+            "name": "User Trades",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/trade",
+            "params": [
+              {
+                "name": "exchange_order_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "start_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "end_time",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "ordertype",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "orderdirection",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return trades for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Transfer Balance",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.qfex.com/user/transfer",
+            "params": [
+              {
+                "name": "src_account_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dst_account_id",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Transfer available balance between two of the authenticated user's accounts (master account or subaccounts)."
+        },
+        {
+          "info": {
+            "name": "User Volume",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.qfex.com/user/volume",
+            "params": [
+              {
+                "name": "range",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "symbol",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "x-qfex-hmac-signature",
+              "value": "{{x-qfex-hmac-signature}}",
+              "placement": "header"
+            }
+          },
+          "docs": "Return daily user notional volume for one of: 1w, 1m, ytd, or all time. Supports optional comma-separated symbol filters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

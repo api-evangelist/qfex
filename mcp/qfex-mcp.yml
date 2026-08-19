@@ -2,12 +2,10 @@ generated: '2026-07-20'
 method: derived
 status: candidate
 source: openapi/qfex-openapi-original.yml
-note: >-
-  No official hosted QFEX MCP server was found. QFEX instead ships a JSON-native
-  CLI (github.com/QFEX-org/cli) explicitly built for agentic trading and
-  Claude Code / Codex integration via `qfex agents init`. The tool list below is a
-  candidate derived from REST operations; the CLI is the provider's real
-  agent-integration surface.
+note: No official hosted QFEX MCP server was found. QFEX instead ships a JSON-native CLI (github.com/QFEX-org/cli)
+  explicitly built for agentic trading and Claude Code / Codex integration via `qfex agents init`. The
+  tool list below is a candidate derived from REST operations; the CLI is the provider's real agent-integration
+  surface.
 server:
   name: qfex
   transport: stdio
@@ -53,3 +51,9 @@ tools:
 - name: transfer_balance
   description: Transfer available balance between the user's accounts.
   source_operation: openapi/qfex-openapi-original.yml#transfer-balance
+deployment:
+  mode: none
+  verified: derived
+  tools: 13
+  checked: '2026-08-12'
+  source: catalog MCP census
