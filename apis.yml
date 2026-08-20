@@ -43,6 +43,20 @@ tags:
 - FX
 - Commodities
 - Equities
+- Financial-Services
+- CLI
+- Fintech
+- Real-Time
+tags_raw:
+- Company
+- Trading
+- Exchange
+- Perpetual Futures
+- Market Data
+- WebSocket
+- FX
+- Commodities
+- Equities
 - Financial Services
 - CLI
 - Fintech
@@ -56,6 +70,10 @@ apis:
   humanURL: https://docs.qfex.com/websocket/mds
   baseURL: wss://mds.qfex.com
   tags:
+  - Market Data
+  - WebSocket
+  - Real-Time
+  tags_raw:
   - Market Data
   - WebSocket
   - Real-time
@@ -72,6 +90,10 @@ apis:
   tags:
   - Trading
   - WebSocket
+  - Real-Time
+  tags_raw:
+  - Trading
+  - WebSocket
   - Real-time
   properties:
   - type: AsyncAPI
@@ -84,6 +106,8 @@ apis:
   humanURL: https://docs.qfex.com/api-reference/introduction
   baseURL: https://api.qfex.com
   tags:
+  - Market Data
+  tags_raw:
   - market-data
   properties:
   - type: OpenAPI
@@ -100,6 +124,8 @@ apis:
   humanURL: https://docs.qfex.com/api-reference/introduction
   baseURL: https://api.qfex.com
   tags:
+  - PNL
+  tags_raw:
   - pnl
   properties:
   - type: OpenAPI
@@ -116,6 +142,8 @@ apis:
   humanURL: https://docs.qfex.com/api-reference/introduction
   baseURL: https://api.qfex.com
   tags:
+  - User
+  tags_raw:
   - user
   properties:
   - type: OpenAPI
