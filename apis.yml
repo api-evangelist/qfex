@@ -10,6 +10,18 @@ description: >-
   WebSocket gateways (market data and trading) documented with AsyncAPI 3.0, and a
   JSON-native CLI purpose-built for agentic trading workflows. Authentication uses
   HMAC-SHA256 request signing with public/secret API key pairs.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
