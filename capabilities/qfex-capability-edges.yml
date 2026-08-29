@@ -1,0 +1,26 @@
+slug: qfex
+provider: Qfex
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Banking & Capital Markets
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: user
+  spec_file: qfex-user-api-openapi.yml
+  capability_id: BC-1370.20
+  capability_id_l1: BC-1370
+  capability_name: Trading Position Management
+  confidence: 0.7
+  evidence: GET /user/positions read-user-positions User Positions; GET /user/account-equity; POST /user/leverage
+    set-user-leverage; GET /user/historic-pnl
+  reason: 'Trader account surface on a derivatives exchange: positions, equity, leverage, historic orders
+    and PnL. Best fits Trading Position Management; some spread into order management (historic orders)
+    and fee/rebate data, so not higher confidence.'
