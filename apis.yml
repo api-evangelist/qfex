@@ -136,7 +136,7 @@ apis:
   humanURL: https://docs.qfex.com/api-reference/introduction
   baseURL: https://api.qfex.com
   tags:
-  - PNL
+  - pnl
   tags_raw:
   - pnl
   properties:
