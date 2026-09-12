@@ -169,6 +169,8 @@ apis:
   - type: DataModel
     url: data-model/qfex-data-model.yml
 common:
+- type: Website
+  url: https://www.qfex.com/
 - type: CapabilityMap
   url: capabilities/qfex-capability-edges.yml
   name: Qfex Business Capability Map
