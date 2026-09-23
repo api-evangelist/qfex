@@ -1,9 +1,7 @@
 {
   "provider": "qfex",
   "sources": [
-    "qfex-market-data-api-openapi.yml",
-    "qfex-pnl-api-openapi.yml",
-    "qfex-user-api-openapi.yml"
+    "_original/qfex-openapi-original.yml"
   ],
   "outputs": [
     "qfex-market-data-api-openapi.yml",
@@ -13,6 +11,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "qfex-openapi-original.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "qfex-openapi-original.yml: declared missing tag: market-data",
+    "qfex-openapi-original.yml: declared missing tag: pnl",
+    "qfex-openapi-original.yml: declared missing tag: user",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "qfex-market-data-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qfex-pnl-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qfex-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

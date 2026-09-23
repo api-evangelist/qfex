@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@qfex.com
@@ -7,13 +7,13 @@ info:
   license:
     name: QFEX License
     url: https://qfex.com/license
-  title: QFEX REST market-data API
+  title: QFEX REST Market Data API
   version: 0.1.0
 servers:
 - description: Production server
   url: https://api.qfex.com
 tags:
-- name: market-data
+- name: Market Data
 paths:
   /candles/{symbol}:
     get:
@@ -59,7 +59,7 @@ paths:
       security: []
       summary: Candles
       tags:
-      - market-data
+      - Market Data
   /funding/{symbol}:
     get:
       description: Return historic funding rates for a symbol over a time range with forward filling.
@@ -105,7 +105,7 @@ paths:
       security: []
       summary: Funding Historic
       tags:
-      - market-data
+      - Market Data
   /open-interest/{symbol}:
     get:
       description: Return historic open interest for a symbol over a time range with forward filling.
@@ -151,7 +151,7 @@ paths:
       security: []
       summary: Open Interest Historic
       tags:
-      - market-data
+      - Market Data
   /refdata:
     get:
       description: Return symbol reference data.
@@ -182,7 +182,7 @@ paths:
       security: []
       summary: Refdata
       tags:
-      - market-data
+      - Market Data
   /settlement-calendar:
     get:
       description: Return the settlement calendar entry used to resolve the dated future for a futures-based QFEX product at a given time. This is the source of truth for oracle roll state for symbols such as CL-USD, US100-USD, COPPER-USD, and NATGAS-USD. If `time` is omitted, the currently active contract is returned.
@@ -229,7 +229,7 @@ paths:
       security: []
       summary: Settlement Calendar
       tags:
-      - market-data
+      - Market Data
   /settlement-prices:
     get:
       description: Return current and historic settlement prices and ratios.
@@ -277,7 +277,7 @@ paths:
       security: []
       summary: Settlement Prices
       tags:
-      - market-data
+      - Market Data
   /symbol-long-short/{symbol}:
     get:
       description: Return historic long and short user counts for a symbol over a time range.
@@ -322,7 +322,7 @@ paths:
       security: []
       summary: Symbol Long Short Historic
       tags:
-      - market-data
+      - Market Data
   /taker-volume/{symbol}:
     get:
       description: Return historic taker volume metrics for a symbol over a time range.
@@ -368,7 +368,7 @@ paths:
       security: []
       summary: Taker Volume Historic
       tags:
-      - market-data
+      - Market Data
   /underlier/{symbol}:
     get:
       description: Return historic underlier OHLC data for a symbol over a time range.
@@ -413,46 +413,16 @@ paths:
       security: []
       summary: Underlier Historic
       tags:
-      - market-data
+      - Market Data
 components:
   schemas:
-    UnderlierPoint:
-      additionalProperties: false
-      properties:
-        closePrice:
-          format: double
-          type: number
-        highPrice:
-          format: double
-          type: number
-        interval:
-          type: string
-        lowPrice:
-          format: double
-          type: number
-        openPrice:
-          format: double
-          type: number
-        symbol:
-          type: string
-        windowStart:
-          type: string
-      required:
-      - symbol
-      - interval
-      - windowStart
-      - openPrice
-      - closePrice
-      - highPrice
-      - lowPrice
-      type: object
-    SettlementPricesResponseBody:
+    OpenInterestHistoricResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/SettlementPricesResponseBody.json
+          - https://api.qfex.com/schemas/OpenInterestHistoricResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -461,13 +431,34 @@ components:
           type: integer
         data:
           items:
-            $ref: '#/components/schemas/SettlementPrice'
+            $ref: '#/components/schemas/OpenInterestPoint'
           type:
           - array
           - 'null'
       required:
       - data
       - count
+      type: object
+    OpenInterestPoint:
+      additionalProperties: false
+      properties:
+        intervalMinutes:
+          format: int64
+          type: integer
+        openInterest:
+          format: double
+          type:
+          - number
+          - 'null'
+        symbol:
+          type: string
+        windowStart:
+          type: string
+      required:
+      - symbol
+      - intervalMinutes
+      - windowStart
+      - openInterest
       type: object
     TakerVolumePoint:
       additionalProperties: false
@@ -504,56 +495,6 @@ components:
       - takerSellNotional
       - netTakerQty
       type: object
-    ErrorDetail:
-      additionalProperties: false
-      properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
-          type: string
-        message:
-          description: Error message text
-          type: string
-        value:
-          description: The value at the given location
-      type: object
-    SettlementCalendarEntry:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/SettlementCalendarEntry.json
-          format: uri
-          readOnly: true
-          type: string
-        active_until:
-          description: Last timestamp at which this dated future remains active for oracle and settlement purposes for the QFEX symbol.
-          examples:
-          - '2026-04-13T21:30:00Z'
-          format: date-time
-          type: string
-        expiration:
-          description: Expiration timestamp of the underlying dated future contract.
-          examples:
-          - '2026-04-21T21:30:00Z'
-          format: date-time
-          type: string
-        future_symbol:
-          description: Dated futures contract used for pricing, for example `CLK6` or `NQM6`.
-          examples:
-          - CLK6
-          type: string
-        qfex_symbol:
-          description: QFEX perpetual symbol whose oracle references the dated future.
-          examples:
-          - CL-USD
-          type: string
-      required:
-      - expiration
-      - active_until
-      - future_symbol
-      - qfex_symbol
-      type: object
     TakerVolumeHistoricResponseBody:
       additionalProperties: false
       properties:
@@ -570,52 +511,6 @@ components:
         data:
           items:
             $ref: '#/components/schemas/TakerVolumePoint'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    SymbolLongShortHistoricResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/SymbolLongShortHistoricResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/SymbolLongShortPoint'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    FundingHistoricResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/FundingHistoricResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/FundingPoint'
           type:
           - array
           - 'null'
@@ -653,51 +548,59 @@ components:
       - inserted_at
       - spot_to_future_ratio
       type: object
-    Candle:
+    ErrorDetail:
       additionalProperties: false
       properties:
-        baseTokenVolume:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
           type: string
-        close:
+        message:
+          description: Error message text
           type: string
-        high:
+        value:
+          description: The value at the given location
+      type: object
+    CandlesResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/CandlesResponseBody.json
+          format: uri
+          readOnly: true
           type: string
-        low:
-          type: string
-        open:
-          type: string
-        orderbookMidPriceClose:
-          type: string
-        orderbookMidPriceOpen:
-          type: string
-        resolution:
-          type: string
-        startedAt:
-          type: string
-        startingOpenInterest:
-          type: string
-        ticker:
-          type: string
-        trades:
-          format: int64
-          minimum: 0
-          type: integer
-        usdVolume:
-          type: string
+        candles:
+          items:
+            $ref: '#/components/schemas/Candle'
+          type:
+          - array
+          - 'null'
       required:
-      - startedAt
-      - ticker
-      - resolution
-      - low
-      - high
-      - open
-      - close
-      - baseTokenVolume
-      - usdVolume
-      - trades
-      - startingOpenInterest
-      - orderbookMidPriceOpen
-      - orderbookMidPriceClose
+      - candles
+      type: object
+    SettlementPricesResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/SettlementPricesResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/SettlementPrice'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
       type: object
     RefdataSymbol:
       additionalProperties: false
@@ -772,51 +675,6 @@ components:
       - status
       - product_category
       type: object
-    UnderlierHistoricResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/UnderlierHistoricResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/UnderlierPoint'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    RefdataResponse:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/RefdataResponse.json
-          format: uri
-          readOnly: true
-          type: string
-        data:
-          items:
-            $ref: '#/components/schemas/RefdataSymbol'
-          type:
-          - array
-          - 'null'
-        type:
-          type: string
-      required:
-      - type
-      - data
-      type: object
     SymbolLongShortPoint:
       additionalProperties: false
       properties:
@@ -841,26 +699,58 @@ components:
       - longUsers
       - shortUsers
       type: object
-    OpenInterestPoint:
+    UnderlierPoint:
       additionalProperties: false
       properties:
-        intervalMinutes:
-          format: int64
-          type: integer
-        openInterest:
+        closePrice:
           format: double
-          type:
-          - number
-          - 'null'
+          type: number
+        highPrice:
+          format: double
+          type: number
+        interval:
+          type: string
+        lowPrice:
+          format: double
+          type: number
+        openPrice:
+          format: double
+          type: number
         symbol:
           type: string
         windowStart:
           type: string
       required:
       - symbol
-      - intervalMinutes
+      - interval
       - windowStart
-      - openInterest
+      - openPrice
+      - closePrice
+      - highPrice
+      - lowPrice
+      type: object
+    SymbolLongShortHistoricResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/SymbolLongShortHistoricResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/SymbolLongShortPoint'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
       type: object
     FundingPoint:
       additionalProperties: false
@@ -882,6 +772,29 @@ components:
       - intervalMinutes
       - windowStart
       - rate
+      type: object
+    UnderlierHistoricResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/UnderlierHistoricResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/UnderlierPoint'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
       type: object
     ErrorModel:
       additionalProperties: false
@@ -930,32 +843,81 @@ components:
           format: uri
           type: string
       type: object
-    CandlesResponseBody:
+    RefdataResponse:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/CandlesResponseBody.json
+          - https://api.qfex.com/schemas/RefdataResponse.json
           format: uri
           readOnly: true
           type: string
-        candles:
+        data:
           items:
-            $ref: '#/components/schemas/Candle'
+            $ref: '#/components/schemas/RefdataSymbol'
           type:
           - array
           - 'null'
+        type:
+          type: string
       required:
-      - candles
+      - type
+      - data
       type: object
-    OpenInterestHistoricResponseBody:
+    Candle:
+      additionalProperties: false
+      properties:
+        baseTokenVolume:
+          type: string
+        close:
+          type: string
+        high:
+          type: string
+        low:
+          type: string
+        open:
+          type: string
+        orderbookMidPriceClose:
+          type: string
+        orderbookMidPriceOpen:
+          type: string
+        resolution:
+          type: string
+        startedAt:
+          type: string
+        startingOpenInterest:
+          type: string
+        ticker:
+          type: string
+        trades:
+          format: int64
+          minimum: 0
+          type: integer
+        usdVolume:
+          type: string
+      required:
+      - startedAt
+      - ticker
+      - resolution
+      - low
+      - high
+      - open
+      - close
+      - baseTokenVolume
+      - usdVolume
+      - trades
+      - startingOpenInterest
+      - orderbookMidPriceOpen
+      - orderbookMidPriceClose
+      type: object
+    FundingHistoricResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/OpenInterestHistoricResponseBody.json
+          - https://api.qfex.com/schemas/FundingHistoricResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -964,13 +926,51 @@ components:
           type: integer
         data:
           items:
-            $ref: '#/components/schemas/OpenInterestPoint'
+            $ref: '#/components/schemas/FundingPoint'
           type:
           - array
           - 'null'
       required:
       - data
       - count
+      type: object
+    SettlementCalendarEntry:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/SettlementCalendarEntry.json
+          format: uri
+          readOnly: true
+          type: string
+        active_until:
+          description: Last timestamp at which this dated future remains active for oracle and settlement purposes for the QFEX symbol.
+          examples:
+          - '2026-04-13T21:30:00Z'
+          format: date-time
+          type: string
+        expiration:
+          description: Expiration timestamp of the underlying dated future contract.
+          examples:
+          - '2026-04-21T21:30:00Z'
+          format: date-time
+          type: string
+        future_symbol:
+          description: Dated futures contract used for pricing, for example `CLK6` or `NQM6`.
+          examples:
+          - CLK6
+          type: string
+        qfex_symbol:
+          description: QFEX perpetual symbol whose oracle references the dated future.
+          examples:
+          - CL-USD
+          type: string
+      required:
+      - expiration
+      - active_until
+      - future_symbol
+      - qfex_symbol
       type: object
   securitySchemes:
     HMACSignature:

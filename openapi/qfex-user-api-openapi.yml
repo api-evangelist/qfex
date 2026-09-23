@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   contact:
     email: support@qfex.com
@@ -7,13 +7,13 @@ info:
   license:
     name: QFEX License
     url: https://qfex.com/license
-  title: QFEX REST market-data user API
+  title: QFEX REST User API
   version: 0.1.0
 servers:
 - description: Production server
   url: https://api.qfex.com
 tags:
-- name: user
+- name: User
 paths:
   /historic-orders-csv:
     get:
@@ -35,7 +35,7 @@ paths:
         Timestamp: []
       summary: Stream Historic Orders CSV
       tags:
-      - user
+      - User
   /historic-twaps-csv:
     get:
       description: Stream a CSV of all historic TWAPs for the authenticated user.
@@ -62,7 +62,7 @@ paths:
         Timestamp: []
       summary: Stream Historic TWAPs CSV
       tags:
-      - user
+      - User
   /trades-csv:
     get:
       description: Stream a CSV of all trades for the authenticated user.
@@ -83,7 +83,7 @@ paths:
         Timestamp: []
       summary: Stream Trades CSV
       tags:
-      - user
+      - User
   /user/account-equity:
     get:
       description: Return total account equity over time for preset durations.
@@ -115,7 +115,7 @@ paths:
         Timestamp: []
       summary: Account Equity
       tags:
-      - user
+      - User
   /user/fees:
     get:
       description: Return Fees data for the authenticated user.
@@ -140,7 +140,7 @@ paths:
         Timestamp: []
       summary: User Fees
       tags:
-      - user
+      - User
   /user/historic-orders:
     get:
       description: Return historic orders (filled or terminally closed) for the authenticated user.
@@ -205,7 +205,7 @@ paths:
         Timestamp: []
       summary: Historic Orders
       tags:
-      - user
+      - User
   /user/historic-pnl:
     get:
       description: Return historic user pnl change over preset durations. Supports number and percent units, and optional comma-separated symbol filters.
@@ -248,7 +248,7 @@ paths:
         Timestamp: []
       summary: Historic User PnL
       tags:
-      - user
+      - User
   /user/historic-twaps:
     get:
       description: Return historic TWAPs (cancelled or completed) for the authenticated user.
@@ -288,7 +288,7 @@ paths:
         Timestamp: []
       summary: Historic TWAPs
       tags:
-      - user
+      - User
   /user/leverage:
     post:
       description: Set the leverage for the authenticated user.
@@ -324,7 +324,7 @@ paths:
         Timestamp: []
       summary: Set User Leverage
       tags:
-      - user
+      - User
   /user/positions:
     get:
       description: Return current positions for the authenticated user.
@@ -349,7 +349,7 @@ paths:
         Timestamp: []
       summary: User Positions
       tags:
-      - user
+      - User
   /user/referral-rewards:
     get:
       description: Return daily referral rewards for the authenticated user.
@@ -381,7 +381,7 @@ paths:
         Timestamp: []
       summary: User Referral Rewards
       tags:
-      - user
+      - User
   /user/subaccounts:
     get:
       description: Returns subaccount IDs for the authenticated user excluding the master account ID.
@@ -406,7 +406,7 @@ paths:
         Timestamp: []
       summary: List Subaccounts
       tags:
-      - user
+      - User
     post:
       description: Allocates a new subaccount ID for the authenticated user and returns it in the response body.
       operationId: create-subaccount
@@ -430,7 +430,7 @@ paths:
         Timestamp: []
       summary: Create Subaccount
       tags:
-      - user
+      - User
   /user/trade:
     get:
       description: Return trades for the authenticated user.
@@ -517,7 +517,7 @@ paths:
         Timestamp: []
       summary: User Trades
       tags:
-      - user
+      - User
   /user/transfer:
     post:
       description: Transfer available balance between two of the authenticated user's accounts (master account or subaccounts).
@@ -557,7 +557,7 @@ paths:
         Timestamp: []
       summary: Transfer Balance
       tags:
-      - user
+      - User
   /user/volume:
     get:
       description: 'Return daily user notional volume for one of: 1w, 1m, ytd, or all time. Supports optional comma-separated symbol filters.'
@@ -594,9 +594,161 @@ paths:
         Timestamp: []
       summary: User Volume
       tags:
-      - user
+      - User
 components:
   schemas:
+    ReferralRewardsResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/ReferralRewardsResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/ReferralReward'
+          type:
+          - array
+          - 'null'
+        duration:
+          type: string
+        end:
+          format: date-time
+          type: string
+        interval:
+          type: string
+        start:
+          format: date-time
+          type: string
+        total_amount:
+          format: double
+          type: number
+      required:
+      - duration
+      - interval
+      - end
+      - data
+      - count
+      - total_amount
+      type: object
+    CreateSubaccountResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/CreateSubaccountResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        account_id:
+          format: uuid
+          type: string
+      required:
+      - account_id
+      type: object
+    HistoricTwapsResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/HistoricTwapsResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/HistoricTwap'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    SetUserLeverageRequestBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/SetUserLeverageRequestBody.json
+          format: uri
+          readOnly: true
+          type: string
+        leverage:
+          format: float
+          type: number
+        symbol:
+          type: string
+      required:
+      - leverage
+      - symbol
+      type: object
+    UserVolumeResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/UserVolumeResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/UserVolumePoint'
+          type:
+          - array
+          - 'null'
+        end:
+          format: date-time
+          type: string
+        interval:
+          type: string
+        range:
+          type: string
+        start:
+          format: date-time
+          type: string
+        symbols:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        total_maker_volume:
+          format: double
+          type: number
+        total_taker_volume:
+          format: double
+          type: number
+        total_volume:
+          format: double
+          type: number
+      required:
+      - range
+      - interval
+      - end
+      - data
+      - count
+      - total_maker_volume
+      - total_taker_volume
+      - total_volume
+      type: object
     PositionPublic:
       additionalProperties: false
       properties:
@@ -645,170 +797,27 @@ components:
       - maintenance_margin
       - average_price
       type: object
-    Trade:
-      additionalProperties: false
-      properties:
-        fee:
-          format: double
-          type: number
-        id:
-          type: string
-        margin_used:
-          format: double
-          type: number
-        order_id:
-          type: string
-        order_timestamp:
-          format: double
-          type: number
-        order_type:
-          type: string
-        price:
-          format: double
-          type: number
-        quantity:
-          format: double
-          type: number
-        realised_pnl_change:
-          format: double
-          type: number
-        side:
-          type: string
-        symbol:
-          type: string
-        tif:
-          type: string
-      required:
-      - id
-      - order_timestamp
-      - symbol
-      - price
-      - quantity
-      - side
-      - fee
-      - margin_used
-      - order_type
-      - tif
-      - order_id
-      - realised_pnl_change
-      type: object
-    ListSubaccountsResponseBody:
+    PositionsBalanceResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/ListSubaccountsResponseBody.json
+          - https://api.qfex.com/schemas/PositionsBalanceResponseBody.json
           format: uri
           readOnly: true
           type: string
-        account_ids:
+        balance:
+          $ref: '#/components/schemas/BalancePublic'
+        positions:
           items:
-            type: string
+            $ref: '#/components/schemas/PositionPublic'
           type:
           - array
           - 'null'
       required:
-      - account_ids
-      type: object
-    ReferralRewardsResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/ReferralRewardsResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/ReferralReward'
-          type:
-          - array
-          - 'null'
-        duration:
-          type: string
-        end:
-          format: date-time
-          type: string
-        interval:
-          type: string
-        start:
-          format: date-time
-          type: string
-        total_amount:
-          format: double
-          type: number
-      required:
-      - duration
-      - interval
-      - end
-      - data
-      - count
-      - total_amount
-      type: object
-    HistoricUserPnlResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/HistoricUserPnlResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/HistoricUserPnlPoint'
-          type:
-          - array
-          - 'null'
-        duration:
-          type: string
-        end:
-          format: date-time
-          type: string
-        interval_minutes:
-          format: int64
-          type: integer
-        start:
-          format: date-time
-          type: string
-        symbols:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        unit:
-          type: string
-      required:
-      - duration
-      - unit
-      - interval_minutes
-      - end
-      - data
-      - count
-      type: object
-    AccountEquityPoint:
-      additionalProperties: false
-      properties:
-        value:
-          format: double
-          type: number
-        window_start:
-          format: date-time
-          type: string
-      required:
-      - window_start
-      - value
+      - positions
+      - balance
       type: object
     HistoricOrder:
       additionalProperties: false
@@ -889,6 +898,51 @@ components:
         value:
           description: The value at the given location
       type: object
+    AccountEquityPoint:
+      additionalProperties: false
+      properties:
+        value:
+          format: double
+          type: number
+        window_start:
+          format: date-time
+          type: string
+      required:
+      - window_start
+      - value
+      type: object
+    TransferRequestBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/TransferRequestBody.json
+          format: uri
+          readOnly: true
+          type: string
+        amount:
+          format: double
+          type: number
+      required:
+      - amount
+      type: object
+    SetUserLeverageResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/SetUserLeverageResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        leverage:
+          format: float
+          type: number
+      required:
+      - leverage
+      type: object
     UserVolumePoint:
       additionalProperties: false
       properties:
@@ -909,6 +963,192 @@ components:
       - maker_volume
       - taker_volume
       - volume
+      type: object
+    Trade:
+      additionalProperties: false
+      properties:
+        fee:
+          format: double
+          type: number
+        id:
+          type: string
+        margin_used:
+          format: double
+          type: number
+        order_id:
+          type: string
+        order_timestamp:
+          format: double
+          type: number
+        order_type:
+          type: string
+        price:
+          format: double
+          type: number
+        quantity:
+          format: double
+          type: number
+        realised_pnl_change:
+          format: double
+          type: number
+        side:
+          type: string
+        symbol:
+          type: string
+        tif:
+          type: string
+      required:
+      - id
+      - order_timestamp
+      - symbol
+      - price
+      - quantity
+      - side
+      - fee
+      - margin_used
+      - order_type
+      - tif
+      - order_id
+      - realised_pnl_change
+      type: object
+    HistoricUserPnlResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/HistoricUserPnlResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/HistoricUserPnlPoint'
+          type:
+          - array
+          - 'null'
+        duration:
+          type: string
+        end:
+          format: date-time
+          type: string
+        interval_minutes:
+          format: int64
+          type: integer
+        start:
+          format: date-time
+          type: string
+        symbols:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        unit:
+          type: string
+      required:
+      - duration
+      - unit
+      - interval_minutes
+      - end
+      - data
+      - count
+      type: object
+    ReferralReward:
+      additionalProperties: false
+      properties:
+        amount:
+          format: double
+          type: number
+        reward_date:
+          format: date-time
+          type: string
+      required:
+      - reward_date
+      - amount
+      type: object
+    BalancePublic:
+      additionalProperties: false
+      properties:
+        available_balance:
+          format: double
+          type: number
+        deposit:
+          format: double
+          type: number
+        net_funding:
+          format: double
+          type: number
+        order_margin:
+          format: double
+          type: number
+        position_margin:
+          format: double
+          type: number
+        realised_pnl:
+          format: double
+          type: number
+        unrealised_pnl:
+          format: double
+          type: number
+      required:
+      - deposit
+      - realised_pnl
+      - order_margin
+      - position_margin
+      - unrealised_pnl
+      - net_funding
+      - available_balance
+      type: object
+    FeesResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/FeesResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        fees:
+          additionalProperties:
+            $ref: '#/components/schemas/FeeEntry'
+          examples:
+          - AUD-USD:
+              maker_fee: 10000
+              taker_fee: 20000
+            EUR-USD:
+              maker_fee: 10000
+              taker_fee: 20000
+          type: object
+      required:
+      - fees
+      type: object
+    TradesResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/TradesResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/Trade'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
       type: object
     AccountEquityResponseBody:
       additionalProperties: false
@@ -944,277 +1184,6 @@ components:
       - duration
       - interval_minutes
       - end
-      - data
-      - count
-      type: object
-    HistoricUserPnlPoint:
-      additionalProperties: false
-      properties:
-        value:
-          format: double
-          type: number
-        window_start:
-          format: date-time
-          type: string
-      required:
-      - window_start
-      - value
-      type: object
-    CreateSubaccountResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/CreateSubaccountResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        account_id:
-          format: uuid
-          type: string
-      required:
-      - account_id
-      type: object
-    SetUserLeverageRequestBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/SetUserLeverageRequestBody.json
-          format: uri
-          readOnly: true
-          type: string
-        leverage:
-          format: float
-          type: number
-        symbol:
-          type: string
-      required:
-      - leverage
-      - symbol
-      type: object
-    TransferRequestBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/TransferRequestBody.json
-          format: uri
-          readOnly: true
-          type: string
-        amount:
-          format: double
-          type: number
-      required:
-      - amount
-      type: object
-    ReferralReward:
-      additionalProperties: false
-      properties:
-        amount:
-          format: double
-          type: number
-        reward_date:
-          format: date-time
-          type: string
-      required:
-      - reward_date
-      - amount
-      type: object
-    PositionsBalanceResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/PositionsBalanceResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        balance:
-          $ref: '#/components/schemas/BalancePublic'
-        positions:
-          items:
-            $ref: '#/components/schemas/PositionPublic'
-          type:
-          - array
-          - 'null'
-      required:
-      - positions
-      - balance
-      type: object
-    SetUserLeverageResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/SetUserLeverageResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        leverage:
-          format: float
-          type: number
-      required:
-      - leverage
-      type: object
-    BalancePublic:
-      additionalProperties: false
-      properties:
-        available_balance:
-          format: double
-          type: number
-        deposit:
-          format: double
-          type: number
-        net_funding:
-          format: double
-          type: number
-        order_margin:
-          format: double
-          type: number
-        position_margin:
-          format: double
-          type: number
-        realised_pnl:
-          format: double
-          type: number
-        unrealised_pnl:
-          format: double
-          type: number
-      required:
-      - deposit
-      - realised_pnl
-      - order_margin
-      - position_margin
-      - unrealised_pnl
-      - net_funding
-      - available_balance
-      type: object
-    HistoricTwapsResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/HistoricTwapsResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/HistoricTwap'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    HistoricOrdersResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/HistoricOrdersResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/HistoricOrder'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    UserVolumeResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/UserVolumeResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/UserVolumePoint'
-          type:
-          - array
-          - 'null'
-        end:
-          format: date-time
-          type: string
-        interval:
-          type: string
-        range:
-          type: string
-        start:
-          format: date-time
-          type: string
-        symbols:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        total_maker_volume:
-          format: double
-          type: number
-        total_taker_volume:
-          format: double
-          type: number
-        total_volume:
-          format: double
-          type: number
-      required:
-      - range
-      - interval
-      - end
-      - data
-      - count
-      - total_maker_volume
-      - total_taker_volume
-      - total_volume
-      type: object
-    TradesResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/TradesResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/Trade'
-          type:
-          - array
-          - 'null'
-      required:
       - data
       - count
       type: object
@@ -1265,42 +1234,24 @@ components:
           format: uri
           type: string
       type: object
-    FeesResponseBody:
+    ListSubaccountsResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/FeesResponseBody.json
+          - https://api.qfex.com/schemas/ListSubaccountsResponseBody.json
           format: uri
           readOnly: true
           type: string
-        fees:
-          additionalProperties:
-            $ref: '#/components/schemas/FeeEntry'
-          examples:
-          - AUD-USD:
-              maker_fee: 10000
-              taker_fee: 20000
-            EUR-USD:
-              maker_fee: 10000
-              taker_fee: 20000
-          type: object
+        account_ids:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
       required:
-      - fees
-      type: object
-    FeeEntry:
-      additionalProperties: false
-      properties:
-        maker_fee:
-          format: int64
-          type: integer
-        taker_fee:
-          format: int64
-          type: integer
-      required:
-      - maker_fee
-      - taker_fee
+      - account_ids
       type: object
     HistoricTwap:
       additionalProperties: false
@@ -1365,6 +1316,55 @@ components:
       - side
       - updated_at
       - created_at
+      type: object
+    HistoricOrdersResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/HistoricOrdersResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/HistoricOrder'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    FeeEntry:
+      additionalProperties: false
+      properties:
+        maker_fee:
+          format: int64
+          type: integer
+        taker_fee:
+          format: int64
+          type: integer
+      required:
+      - maker_fee
+      - taker_fee
+      type: object
+    HistoricUserPnlPoint:
+      additionalProperties: false
+      properties:
+        value:
+          format: double
+          type: number
+        window_start:
+          format: date-time
+          type: string
+      required:
+      - window_start
+      - value
       type: object
   securitySchemes:
     HMACSignature:
