@@ -116,41 +116,6 @@ components:
           format: uri
           type: string
       type: object
-    HourlyPnlResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/HourlyPnlResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/PnlHour'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    ErrorDetail:
-      additionalProperties: false
-      properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
-          type: string
-        message:
-          description: Error message text
-          type: string
-        value:
-          description: The value at the given location
-      type: object
     PnlHour:
       additionalProperties: false
       properties:
@@ -186,6 +151,41 @@ components:
       - fees
       - quantity
       - cost
+      type: object
+    HourlyPnlResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/HourlyPnlResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/PnlHour'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
       type: object
   securitySchemes:
     HMACSignature:

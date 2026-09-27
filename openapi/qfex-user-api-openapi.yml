@@ -637,187 +637,85 @@ components:
       - count
       - total_amount
       type: object
-    CreateSubaccountResponseBody:
+    SetUserLeverageResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/CreateSubaccountResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        account_id:
-          format: uuid
-          type: string
-      required:
-      - account_id
-      type: object
-    HistoricTwapsResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/HistoricTwapsResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/HistoricTwap'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    SetUserLeverageRequestBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/SetUserLeverageRequestBody.json
+          - https://api.qfex.com/schemas/SetUserLeverageResponseBody.json
           format: uri
           readOnly: true
           type: string
         leverage:
           format: float
           type: number
-        symbol:
-          type: string
       required:
       - leverage
-      - symbol
       type: object
-    UserVolumeResponseBody:
+    HistoricTwap:
       additionalProperties: false
       properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/UserVolumeResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/UserVolumePoint'
+        average_fill_price:
+          format: double
+          type: number
+        client_twap_id:
           type:
-          - array
+          - string
           - 'null'
-        end:
+        created_at:
           format: date-time
-          type: string
-        interval:
-          type: string
-        range:
-          type: string
-        start:
-          format: date-time
-          type: string
-        symbols:
-          items:
-            type: string
           type:
-          - array
+          - string
           - 'null'
-        total_maker_volume:
-          format: double
-          type: number
-        total_taker_volume:
-          format: double
-          type: number
-        total_volume:
-          format: double
-          type: number
-      required:
-      - range
-      - interval
-      - end
-      - data
-      - count
-      - total_maker_volume
-      - total_taker_volume
-      - total_volume
-      type: object
-    PositionPublic:
-      additionalProperties: false
-      properties:
-        average_price:
-          format: double
-          type: number
-        initial_margin:
-          format: double
-          type: number
-        leverage:
-          format: double
-          type: number
-        maintenance_margin:
-          format: double
-          type: number
-        net_funding:
-          format: double
-          type: number
-        open_orders:
+        filled_num_orders:
           format: int64
+          minimum: 0
           type: integer
-        open_quantity:
+        filled_quantity:
           format: double
           type: number
-        position:
-          format: double
-          type: number
-        realised_pnl:
-          format: double
-          type: number
+        order_interval_secs:
+          format: int64
+          minimum: 0
+          type: integer
+        reduce_only:
+          type: boolean
+        side:
+          type: string
+        status:
+          type: string
         symbol:
           type: string
-        unrealised_pnl:
+        total_num_orders:
+          format: int64
+          minimum: 0
+          type: integer
+        total_quantity:
           format: double
           type: number
-      required:
-      - symbol
-      - position
-      - realised_pnl
-      - unrealised_pnl
-      - net_funding
-      - open_orders
-      - open_quantity
-      - leverage
-      - initial_margin
-      - maintenance_margin
-      - average_price
-      type: object
-    PositionsBalanceResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/PositionsBalanceResponseBody.json
-          format: uri
-          readOnly: true
+        twap_id:
           type: string
-        balance:
-          $ref: '#/components/schemas/BalancePublic'
-        positions:
-          items:
-            $ref: '#/components/schemas/PositionPublic'
+        updated_at:
+          format: date-time
           type:
-          - array
+          - string
           - 'null'
       required:
-      - positions
-      - balance
+      - twap_id
+      - client_twap_id
+      - status
+      - symbol
+      - total_quantity
+      - filled_quantity
+      - average_fill_price
+      - total_num_orders
+      - filled_num_orders
+      - order_interval_secs
+      - reduce_only
+      - side
+      - updated_at
+      - created_at
       type: object
     HistoricOrder:
       additionalProperties: false
@@ -898,72 +796,6 @@ components:
         value:
           description: The value at the given location
       type: object
-    AccountEquityPoint:
-      additionalProperties: false
-      properties:
-        value:
-          format: double
-          type: number
-        window_start:
-          format: date-time
-          type: string
-      required:
-      - window_start
-      - value
-      type: object
-    TransferRequestBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/TransferRequestBody.json
-          format: uri
-          readOnly: true
-          type: string
-        amount:
-          format: double
-          type: number
-      required:
-      - amount
-      type: object
-    SetUserLeverageResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/SetUserLeverageResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        leverage:
-          format: float
-          type: number
-      required:
-      - leverage
-      type: object
-    UserVolumePoint:
-      additionalProperties: false
-      properties:
-        date:
-          format: date-time
-          type: string
-        maker_volume:
-          format: double
-          type: number
-        taker_volume:
-          format: double
-          type: number
-        volume:
-          format: double
-          type: number
-      required:
-      - date
-      - maker_volume
-      - taker_volume
-      - volume
-      type: object
     Trade:
       additionalProperties: false
       properties:
@@ -1011,97 +843,24 @@ components:
       - order_id
       - realised_pnl_change
       type: object
-    HistoricUserPnlResponseBody:
+    ListSubaccountsResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/HistoricUserPnlResponseBody.json
+          - https://api.qfex.com/schemas/ListSubaccountsResponseBody.json
           format: uri
           readOnly: true
           type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/HistoricUserPnlPoint'
-          type:
-          - array
-          - 'null'
-        duration:
-          type: string
-        end:
-          format: date-time
-          type: string
-        interval_minutes:
-          format: int64
-          type: integer
-        start:
-          format: date-time
-          type: string
-        symbols:
+        account_ids:
           items:
             type: string
           type:
           - array
           - 'null'
-        unit:
-          type: string
       required:
-      - duration
-      - unit
-      - interval_minutes
-      - end
-      - data
-      - count
-      type: object
-    ReferralReward:
-      additionalProperties: false
-      properties:
-        amount:
-          format: double
-          type: number
-        reward_date:
-          format: date-time
-          type: string
-      required:
-      - reward_date
-      - amount
-      type: object
-    BalancePublic:
-      additionalProperties: false
-      properties:
-        available_balance:
-          format: double
-          type: number
-        deposit:
-          format: double
-          type: number
-        net_funding:
-          format: double
-          type: number
-        order_margin:
-          format: double
-          type: number
-        position_margin:
-          format: double
-          type: number
-        realised_pnl:
-          format: double
-          type: number
-        unrealised_pnl:
-          format: double
-          type: number
-      required:
-      - deposit
-      - realised_pnl
-      - order_margin
-      - position_margin
-      - unrealised_pnl
-      - net_funding
-      - available_balance
+      - account_ids
       type: object
     FeesResponseBody:
       additionalProperties: false
@@ -1150,13 +909,34 @@ components:
       - data
       - count
       type: object
-    AccountEquityResponseBody:
+    UserVolumePoint:
+      additionalProperties: false
+      properties:
+        date:
+          format: date-time
+          type: string
+        maker_volume:
+          format: double
+          type: number
+        taker_volume:
+          format: double
+          type: number
+        volume:
+          format: double
+          type: number
+      required:
+      - date
+      - maker_volume
+      - taker_volume
+      - volume
+      type: object
+    HistoricTwapsResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/AccountEquityResponseBody.json
+          - https://api.qfex.com/schemas/HistoricTwapsResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1165,7 +945,218 @@ components:
           type: integer
         data:
           items:
-            $ref: '#/components/schemas/AccountEquityPoint'
+            $ref: '#/components/schemas/HistoricTwap'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    PositionPublic:
+      additionalProperties: false
+      properties:
+        average_price:
+          format: double
+          type: number
+        initial_margin:
+          format: double
+          type: number
+        leverage:
+          format: double
+          type: number
+        maintenance_margin:
+          format: double
+          type: number
+        net_funding:
+          format: double
+          type: number
+        open_orders:
+          format: int64
+          type: integer
+        open_quantity:
+          format: double
+          type: number
+        position:
+          format: double
+          type: number
+        realised_pnl:
+          format: double
+          type: number
+        symbol:
+          type: string
+        unrealised_pnl:
+          format: double
+          type: number
+      required:
+      - symbol
+      - position
+      - realised_pnl
+      - unrealised_pnl
+      - net_funding
+      - open_orders
+      - open_quantity
+      - leverage
+      - initial_margin
+      - maintenance_margin
+      - average_price
+      type: object
+    PositionsBalanceResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/PositionsBalanceResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        balance:
+          $ref: '#/components/schemas/BalancePublic'
+        positions:
+          items:
+            $ref: '#/components/schemas/PositionPublic'
+          type:
+          - array
+          - 'null'
+      required:
+      - positions
+      - balance
+      type: object
+    CreateSubaccountResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/CreateSubaccountResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        account_id:
+          format: uuid
+          type: string
+      required:
+      - account_id
+      type: object
+    FeeEntry:
+      additionalProperties: false
+      properties:
+        maker_fee:
+          format: int64
+          type: integer
+        taker_fee:
+          format: int64
+          type: integer
+      required:
+      - maker_fee
+      - taker_fee
+      type: object
+    UserVolumeResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/UserVolumeResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/UserVolumePoint'
+          type:
+          - array
+          - 'null'
+        end:
+          format: date-time
+          type: string
+        interval:
+          type: string
+        range:
+          type: string
+        start:
+          format: date-time
+          type: string
+        symbols:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        total_maker_volume:
+          format: double
+          type: number
+        total_taker_volume:
+          format: double
+          type: number
+        total_volume:
+          format: double
+          type: number
+      required:
+      - range
+      - interval
+      - end
+      - data
+      - count
+      - total_maker_volume
+      - total_taker_volume
+      - total_volume
+      type: object
+    TransferRequestBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/TransferRequestBody.json
+          format: uri
+          readOnly: true
+          type: string
+        amount:
+          format: double
+          type: number
+      required:
+      - amount
+      type: object
+    SetUserLeverageRequestBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/SetUserLeverageRequestBody.json
+          format: uri
+          readOnly: true
+          type: string
+        leverage:
+          format: float
+          type: number
+        symbol:
+          type: string
+      required:
+      - leverage
+      - symbol
+      type: object
+    HistoricUserPnlResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/HistoricUserPnlResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/HistoricUserPnlPoint'
           type:
           - array
           - 'null'
@@ -1180,12 +1171,34 @@ components:
         start:
           format: date-time
           type: string
+        symbols:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        unit:
+          type: string
       required:
       - duration
+      - unit
       - interval_minutes
       - end
       - data
       - count
+      type: object
+    HistoricUserPnlPoint:
+      additionalProperties: false
+      properties:
+        value:
+          format: double
+          type: number
+        window_start:
+          format: date-time
+          type: string
+      required:
+      - window_start
+      - value
       type: object
     ErrorModel:
       additionalProperties: false
@@ -1234,88 +1247,88 @@ components:
           format: uri
           type: string
       type: object
-    ListSubaccountsResponseBody:
+    AccountEquityPoint:
+      additionalProperties: false
+      properties:
+        value:
+          format: double
+          type: number
+        window_start:
+          format: date-time
+          type: string
+      required:
+      - window_start
+      - value
+      type: object
+    BalancePublic:
+      additionalProperties: false
+      properties:
+        available_balance:
+          format: double
+          type: number
+        deposit:
+          format: double
+          type: number
+        net_funding:
+          format: double
+          type: number
+        order_margin:
+          format: double
+          type: number
+        position_margin:
+          format: double
+          type: number
+        realised_pnl:
+          format: double
+          type: number
+        unrealised_pnl:
+          format: double
+          type: number
+      required:
+      - deposit
+      - realised_pnl
+      - order_margin
+      - position_margin
+      - unrealised_pnl
+      - net_funding
+      - available_balance
+      type: object
+    AccountEquityResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/ListSubaccountsResponseBody.json
+          - https://api.qfex.com/schemas/AccountEquityResponseBody.json
           format: uri
           readOnly: true
           type: string
-        account_ids:
+        count:
+          format: int64
+          type: integer
+        data:
           items:
-            type: string
+            $ref: '#/components/schemas/AccountEquityPoint'
           type:
           - array
           - 'null'
-      required:
-      - account_ids
-      type: object
-    HistoricTwap:
-      additionalProperties: false
-      properties:
-        average_fill_price:
-          format: double
-          type: number
-        client_twap_id:
-          type:
-          - string
-          - 'null'
-        created_at:
+        duration:
+          type: string
+        end:
           format: date-time
-          type:
-          - string
-          - 'null'
-        filled_num_orders:
+          type: string
+        interval_minutes:
           format: int64
-          minimum: 0
           type: integer
-        filled_quantity:
-          format: double
-          type: number
-        order_interval_secs:
-          format: int64
-          minimum: 0
-          type: integer
-        reduce_only:
-          type: boolean
-        side:
-          type: string
-        status:
-          type: string
-        symbol:
-          type: string
-        total_num_orders:
-          format: int64
-          minimum: 0
-          type: integer
-        total_quantity:
-          format: double
-          type: number
-        twap_id:
-          type: string
-        updated_at:
+        start:
           format: date-time
-          type:
-          - string
-          - 'null'
+          type: string
       required:
-      - twap_id
-      - client_twap_id
-      - status
-      - symbol
-      - total_quantity
-      - filled_quantity
-      - average_fill_price
-      - total_num_orders
-      - filled_num_orders
-      - order_interval_secs
-      - reduce_only
-      - side
-      - updated_at
-      - created_at
+      - duration
+      - interval_minutes
+      - end
+      - data
+      - count
       type: object
     HistoricOrdersResponseBody:
       additionalProperties: false
@@ -1340,31 +1353,18 @@ components:
       - data
       - count
       type: object
-    FeeEntry:
+    ReferralReward:
       additionalProperties: false
       properties:
-        maker_fee:
-          format: int64
-          type: integer
-        taker_fee:
-          format: int64
-          type: integer
-      required:
-      - maker_fee
-      - taker_fee
-      type: object
-    HistoricUserPnlPoint:
-      additionalProperties: false
-      properties:
-        value:
+        amount:
           format: double
           type: number
-        window_start:
+        reward_date:
           format: date-time
           type: string
       required:
-      - window_start
-      - value
+      - reward_date
+      - amount
       type: object
   securitySchemes:
     HMACSignature:

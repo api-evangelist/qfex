@@ -57,7 +57,7 @@ tags:
 - FX
 - Commodities
 - Stocks
-- Financial-Services
+- Financial Services
 - CLI
 - Fintech
 - Real-Time
@@ -75,6 +75,7 @@ tags_raw:
 - CLI
 - Fintech
 - Real-time
+- Financial-Services
 apis:
 - name: QFEX Market Data WebSocket (MDS)
   description: >-
@@ -115,7 +116,7 @@ apis:
   - type: Webhooks
     url: asyncapi/qfex-trade-asyncapi.yml
 - aid: qfex:qfex-market-data-api
-  name: Qfex market-data API
+  name: Qfex Market Data API
   description: The market-data API from Qfex — 9 operation(s) for market-data.
   humanURL: https://docs.qfex.com/api-reference/introduction
   baseURL: https://api.qfex.com
@@ -133,7 +134,7 @@ apis:
   - type: DataModel
     url: data-model/qfex-data-model.yml
 - aid: qfex:qfex-pnl-api
-  name: Qfex pnl API
+  name: Qfex Pnl API
   description: The pnl API from Qfex — 1 operation(s) for pnl.
   humanURL: https://docs.qfex.com/api-reference/introduction
   baseURL: https://api.qfex.com
@@ -151,7 +152,7 @@ apis:
   - type: DataModel
     url: data-model/qfex-data-model.yml
 - aid: qfex:qfex-user-api
-  name: Qfex user API
+  name: Qfex User API
   description: The user API from Qfex — 15 operation(s) for user.
   humanURL: https://docs.qfex.com/api-reference/introduction
   baseURL: https://api.qfex.com
