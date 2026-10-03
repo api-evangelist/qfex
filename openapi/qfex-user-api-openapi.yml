@@ -597,125 +597,27 @@ paths:
       - User
 components:
   schemas:
-    ReferralRewardsResponseBody:
+    PositionsBalanceResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/ReferralRewardsResponseBody.json
+          - https://api.qfex.com/schemas/PositionsBalanceResponseBody.json
           format: uri
           readOnly: true
           type: string
-        count:
-          format: int64
-          type: integer
-        data:
+        balance:
+          $ref: '#/components/schemas/BalancePublic'
+        positions:
           items:
-            $ref: '#/components/schemas/ReferralReward'
+            $ref: '#/components/schemas/PositionPublic'
           type:
           - array
           - 'null'
-        duration:
-          type: string
-        end:
-          format: date-time
-          type: string
-        interval:
-          type: string
-        start:
-          format: date-time
-          type: string
-        total_amount:
-          format: double
-          type: number
       required:
-      - duration
-      - interval
-      - end
-      - data
-      - count
-      - total_amount
-      type: object
-    SetUserLeverageResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/SetUserLeverageResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        leverage:
-          format: float
-          type: number
-      required:
-      - leverage
-      type: object
-    HistoricTwap:
-      additionalProperties: false
-      properties:
-        average_fill_price:
-          format: double
-          type: number
-        client_twap_id:
-          type:
-          - string
-          - 'null'
-        created_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-        filled_num_orders:
-          format: int64
-          minimum: 0
-          type: integer
-        filled_quantity:
-          format: double
-          type: number
-        order_interval_secs:
-          format: int64
-          minimum: 0
-          type: integer
-        reduce_only:
-          type: boolean
-        side:
-          type: string
-        status:
-          type: string
-        symbol:
-          type: string
-        total_num_orders:
-          format: int64
-          minimum: 0
-          type: integer
-        total_quantity:
-          format: double
-          type: number
-        twap_id:
-          type: string
-        updated_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-      required:
-      - twap_id
-      - client_twap_id
-      - status
-      - symbol
-      - total_quantity
-      - filled_quantity
-      - average_fill_price
-      - total_num_orders
-      - filled_num_orders
-      - order_interval_secs
-      - reduce_only
-      - side
-      - updated_at
-      - created_at
+      - positions
+      - balance
       type: object
     HistoricOrder:
       additionalProperties: false
@@ -784,17 +686,117 @@ components:
       - last_fill_ts
       - execution_state
       type: object
-    ErrorDetail:
+    HistoricTwapsResponseBody:
       additionalProperties: false
       properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/HistoricTwapsResponseBody.json
+          format: uri
+          readOnly: true
           type: string
-        message:
-          description: Error message text
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/HistoricTwap'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    HistoricOrdersResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/HistoricOrdersResponseBody.json
+          format: uri
+          readOnly: true
           type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/HistoricOrder'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    SetUserLeverageResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/SetUserLeverageResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        leverage:
+          format: float
+          type: number
+      required:
+      - leverage
+      type: object
+    AccountEquityResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/AccountEquityResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/AccountEquityPoint'
+          type:
+          - array
+          - 'null'
+        duration:
+          type: string
+        end:
+          format: date-time
+          type: string
+        interval_minutes:
+          format: int64
+          type: integer
+        start:
+          format: date-time
+          type: string
+      required:
+      - duration
+      - interval_minutes
+      - end
+      - data
+      - count
+      type: object
+    HistoricUserPnlPoint:
+      additionalProperties: false
+      properties:
         value:
-          description: The value at the given location
+          format: double
+          type: number
+        window_start:
+          format: date-time
+          type: string
+      required:
+      - window_start
+      - value
       type: object
     Trade:
       additionalProperties: false
@@ -843,100 +845,26 @@ components:
       - order_id
       - realised_pnl_change
       type: object
-    ListSubaccountsResponseBody:
+    ReferralReward:
       additionalProperties: false
       properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/ListSubaccountsResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        account_ids:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-      required:
-      - account_ids
-      type: object
-    FeesResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/FeesResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        fees:
-          additionalProperties:
-            $ref: '#/components/schemas/FeeEntry'
-          examples:
-          - AUD-USD:
-              maker_fee: 10000
-              taker_fee: 20000
-            EUR-USD:
-              maker_fee: 10000
-              taker_fee: 20000
-          type: object
-      required:
-      - fees
-      type: object
-    TradesResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/TradesResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/Trade'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    UserVolumePoint:
-      additionalProperties: false
-      properties:
-        date:
+        amount:
+          format: double
+          type: number
+        reward_date:
           format: date-time
           type: string
-        maker_volume:
-          format: double
-          type: number
-        taker_volume:
-          format: double
-          type: number
-        volume:
-          format: double
-          type: number
       required:
-      - date
-      - maker_volume
-      - taker_volume
-      - volume
+      - reward_date
+      - amount
       type: object
-    HistoricTwapsResponseBody:
+    ReferralRewardsResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/HistoricTwapsResponseBody.json
+          - https://api.qfex.com/schemas/ReferralRewardsResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -945,112 +873,139 @@ components:
           type: integer
         data:
           items:
-            $ref: '#/components/schemas/HistoricTwap'
+            $ref: '#/components/schemas/ReferralReward'
           type:
           - array
           - 'null'
+        duration:
+          type: string
+        end:
+          format: date-time
+          type: string
+        interval:
+          type: string
+        start:
+          format: date-time
+          type: string
+        total_amount:
+          format: double
+          type: number
       required:
+      - duration
+      - interval
+      - end
       - data
       - count
+      - total_amount
       type: object
-    PositionPublic:
+    TransferRequestBody:
       additionalProperties: false
       properties:
-        average_price:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/TransferRequestBody.json
+          format: uri
+          readOnly: true
+          type: string
+        amount:
           format: double
           type: number
-        initial_margin:
+      required:
+      - amount
+      type: object
+    AccountEquityPoint:
+      additionalProperties: false
+      properties:
+        value:
           format: double
           type: number
-        leverage:
+        window_start:
+          format: date-time
+          type: string
+      required:
+      - window_start
+      - value
+      type: object
+    ErrorModel:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/ErrorModel.json
+          format: uri
+          readOnly: true
+          type: string
+        detail:
+          description: A human-readable explanation specific to this occurrence of the problem.
+          examples:
+          - Property foo is required but is missing.
+          type: string
+        errors:
+          description: Optional list of individual error details
+          items:
+            $ref: '#/components/schemas/ErrorDetail'
+          type:
+          - array
+          - 'null'
+        instance:
+          description: A URI reference that identifies the specific occurrence of the problem.
+          examples:
+          - https://example.com/error-log/abc123
+          format: uri
+          type: string
+        status:
+          description: HTTP status code
+          examples:
+          - 400
+          format: int64
+          type: integer
+        title:
+          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
+          examples:
+          - Bad Request
+          type: string
+        type:
+          default: about:blank
+          description: A URI reference to human-readable documentation for the error.
+          examples:
+          - https://example.com/errors/example
+          format: uri
+          type: string
+      type: object
+    BalancePublic:
+      additionalProperties: false
+      properties:
+        available_balance:
           format: double
           type: number
-        maintenance_margin:
+        deposit:
           format: double
           type: number
         net_funding:
           format: double
           type: number
-        open_orders:
-          format: int64
-          type: integer
-        open_quantity:
+        order_margin:
           format: double
           type: number
-        position:
+        position_margin:
           format: double
           type: number
         realised_pnl:
           format: double
           type: number
-        symbol:
-          type: string
         unrealised_pnl:
           format: double
           type: number
       required:
-      - symbol
-      - position
+      - deposit
       - realised_pnl
+      - order_margin
+      - position_margin
       - unrealised_pnl
       - net_funding
-      - open_orders
-      - open_quantity
-      - leverage
-      - initial_margin
-      - maintenance_margin
-      - average_price
-      type: object
-    PositionsBalanceResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/PositionsBalanceResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        balance:
-          $ref: '#/components/schemas/BalancePublic'
-        positions:
-          items:
-            $ref: '#/components/schemas/PositionPublic'
-          type:
-          - array
-          - 'null'
-      required:
-      - positions
-      - balance
-      type: object
-    CreateSubaccountResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/CreateSubaccountResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        account_id:
-          format: uuid
-          type: string
-      required:
-      - account_id
-      type: object
-    FeeEntry:
-      additionalProperties: false
-      properties:
-        maker_fee:
-          format: int64
-          type: integer
-        taker_fee:
-          format: int64
-          type: integer
-      required:
-      - maker_fee
-      - taker_fee
+      - available_balance
       type: object
     UserVolumeResponseBody:
       additionalProperties: false
@@ -1106,21 +1061,40 @@ components:
       - total_taker_volume
       - total_volume
       type: object
-    TransferRequestBody:
+    CreateSubaccountResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/TransferRequestBody.json
+          - https://api.qfex.com/schemas/CreateSubaccountResponseBody.json
           format: uri
           readOnly: true
           type: string
-        amount:
-          format: double
-          type: number
+        account_id:
+          format: uuid
+          type: string
       required:
-      - amount
+      - account_id
+      type: object
+    ListSubaccountsResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/ListSubaccountsResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        account_ids:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      required:
+      - account_ids
       type: object
     SetUserLeverageRequestBody:
       additionalProperties: false
@@ -1187,119 +1161,95 @@ components:
       - data
       - count
       type: object
-    HistoricUserPnlPoint:
+    UserVolumePoint:
       additionalProperties: false
       properties:
-        value:
-          format: double
-          type: number
-        window_start:
+        date:
           format: date-time
           type: string
-      required:
-      - window_start
-      - value
-      type: object
-    ErrorModel:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/ErrorModel.json
-          format: uri
-          readOnly: true
-          type: string
-        detail:
-          description: A human-readable explanation specific to this occurrence of the problem.
-          examples:
-          - Property foo is required but is missing.
-          type: string
-        errors:
-          description: Optional list of individual error details
-          items:
-            $ref: '#/components/schemas/ErrorDetail'
-          type:
-          - array
-          - 'null'
-        instance:
-          description: A URI reference that identifies the specific occurrence of the problem.
-          examples:
-          - https://example.com/error-log/abc123
-          format: uri
-          type: string
-        status:
-          description: HTTP status code
-          examples:
-          - 400
-          format: int64
-          type: integer
-        title:
-          description: A short, human-readable summary of the problem type. This value should not change between occurrences of the error.
-          examples:
-          - Bad Request
-          type: string
-        type:
-          default: about:blank
-          description: A URI reference to human-readable documentation for the error.
-          examples:
-          - https://example.com/errors/example
-          format: uri
-          type: string
-      type: object
-    AccountEquityPoint:
-      additionalProperties: false
-      properties:
-        value:
+        maker_volume:
           format: double
           type: number
-        window_start:
-          format: date-time
-          type: string
-      required:
-      - window_start
-      - value
-      type: object
-    BalancePublic:
-      additionalProperties: false
-      properties:
-        available_balance:
+        taker_volume:
           format: double
           type: number
-        deposit:
+        volume:
+          format: double
+          type: number
+      required:
+      - date
+      - maker_volume
+      - taker_volume
+      - volume
+      type: object
+    PositionPublic:
+      additionalProperties: false
+      properties:
+        average_price:
+          format: double
+          type: number
+        initial_margin:
+          format: double
+          type: number
+        leverage:
+          format: double
+          type: number
+        maintenance_margin:
           format: double
           type: number
         net_funding:
           format: double
           type: number
-        order_margin:
+        open_orders:
+          format: int64
+          type: integer
+        open_quantity:
           format: double
           type: number
-        position_margin:
+        position:
           format: double
           type: number
         realised_pnl:
           format: double
           type: number
+        symbol:
+          type: string
         unrealised_pnl:
           format: double
           type: number
       required:
-      - deposit
+      - symbol
+      - position
       - realised_pnl
-      - order_margin
-      - position_margin
       - unrealised_pnl
       - net_funding
-      - available_balance
+      - open_orders
+      - open_quantity
+      - leverage
+      - initial_margin
+      - maintenance_margin
+      - average_price
       type: object
-    AccountEquityResponseBody:
+    FeeEntry:
+      additionalProperties: false
+      properties:
+        maker_fee:
+          format: int64
+          type: integer
+        taker_fee:
+          format: int64
+          type: integer
+      required:
+      - maker_fee
+      - taker_fee
+      type: object
+    TradesResponseBody:
       additionalProperties: false
       properties:
         $schema:
           description: A URL to the JSON Schema for this object.
           examples:
-          - https://api.qfex.com/schemas/AccountEquityResponseBody.json
+          - https://api.qfex.com/schemas/TradesResponseBody.json
           format: uri
           readOnly: true
           type: string
@@ -1308,44 +1258,7 @@ components:
           type: integer
         data:
           items:
-            $ref: '#/components/schemas/AccountEquityPoint'
-          type:
-          - array
-          - 'null'
-        duration:
-          type: string
-        end:
-          format: date-time
-          type: string
-        interval_minutes:
-          format: int64
-          type: integer
-        start:
-          format: date-time
-          type: string
-      required:
-      - duration
-      - interval_minutes
-      - end
-      - data
-      - count
-      type: object
-    HistoricOrdersResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/HistoricOrdersResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/HistoricOrder'
+            $ref: '#/components/schemas/Trade'
           type:
           - array
           - 'null'
@@ -1353,18 +1266,105 @@ components:
       - data
       - count
       type: object
-    ReferralReward:
+    HistoricTwap:
       additionalProperties: false
       properties:
-        amount:
+        average_fill_price:
           format: double
           type: number
-        reward_date:
+        client_twap_id:
+          type:
+          - string
+          - 'null'
+        created_at:
           format: date-time
+          type:
+          - string
+          - 'null'
+        filled_num_orders:
+          format: int64
+          minimum: 0
+          type: integer
+        filled_quantity:
+          format: double
+          type: number
+        order_interval_secs:
+          format: int64
+          minimum: 0
+          type: integer
+        reduce_only:
+          type: boolean
+        side:
           type: string
+        status:
+          type: string
+        symbol:
+          type: string
+        total_num_orders:
+          format: int64
+          minimum: 0
+          type: integer
+        total_quantity:
+          format: double
+          type: number
+        twap_id:
+          type: string
+        updated_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
       required:
-      - reward_date
-      - amount
+      - twap_id
+      - client_twap_id
+      - status
+      - symbol
+      - total_quantity
+      - filled_quantity
+      - average_fill_price
+      - total_num_orders
+      - filled_num_orders
+      - order_interval_secs
+      - reduce_only
+      - side
+      - updated_at
+      - created_at
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
+    FeesResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/FeesResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        fees:
+          additionalProperties:
+            $ref: '#/components/schemas/FeeEntry'
+          examples:
+          - AUD-USD:
+              maker_fee: 10000
+              taker_fee: 20000
+            EUR-USD:
+              maker_fee: 10000
+              taker_fee: 20000
+          type: object
+      required:
+      - fees
       type: object
   securitySchemes:
     HMACSignature:
