@@ -69,6 +69,65 @@ paths:
       - PNL
 components:
   schemas:
+    HourlyPnlResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/HourlyPnlResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/PnlHour'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    PnlHour:
+      additionalProperties: false
+      properties:
+        cost:
+          format: double
+          type: number
+        fees:
+          format: double
+          type: number
+        hour:
+          format: date-time
+          type: string
+        net_funding:
+          format: double
+          type: number
+        quantity:
+          format: double
+          type: number
+        realised_pnl:
+          format: double
+          type: number
+        symbol:
+          type: string
+        unrealised_pnl:
+          format: double
+          type: number
+      required:
+      - symbol
+      - hour
+      - realised_pnl
+      - unrealised_pnl
+      - net_funding
+      - fees
+      - quantity
+      - cost
+      type: object
     ErrorModel:
       additionalProperties: false
       properties:
@@ -115,65 +174,6 @@ components:
           - https://example.com/errors/example
           format: uri
           type: string
-      type: object
-    PnlHour:
-      additionalProperties: false
-      properties:
-        cost:
-          format: double
-          type: number
-        fees:
-          format: double
-          type: number
-        hour:
-          format: date-time
-          type: string
-        net_funding:
-          format: double
-          type: number
-        quantity:
-          format: double
-          type: number
-        realised_pnl:
-          format: double
-          type: number
-        symbol:
-          type: string
-        unrealised_pnl:
-          format: double
-          type: number
-      required:
-      - symbol
-      - hour
-      - realised_pnl
-      - unrealised_pnl
-      - net_funding
-      - fees
-      - quantity
-      - cost
-      type: object
-    HourlyPnlResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/HourlyPnlResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/PnlHour'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
       type: object
     ErrorDetail:
       additionalProperties: false

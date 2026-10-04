@@ -416,343 +416,6 @@ paths:
       - Market Data
 components:
   schemas:
-    SettlementPricesResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/SettlementPricesResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/SettlementPrice'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    OpenInterestHistoricResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/OpenInterestHistoricResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/OpenInterestPoint'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    TakerVolumeHistoricResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/TakerVolumeHistoricResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/TakerVolumePoint'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    UnderlierPoint:
-      additionalProperties: false
-      properties:
-        closePrice:
-          format: double
-          type: number
-        highPrice:
-          format: double
-          type: number
-        interval:
-          type: string
-        lowPrice:
-          format: double
-          type: number
-        openPrice:
-          format: double
-          type: number
-        symbol:
-          type: string
-        windowStart:
-          type: string
-      required:
-      - symbol
-      - interval
-      - windowStart
-      - openPrice
-      - closePrice
-      - highPrice
-      - lowPrice
-      type: object
-    TakerVolumePoint:
-      additionalProperties: false
-      properties:
-        intervalMinutes:
-          format: int64
-          type: integer
-        netTakerQty:
-          format: double
-          type: number
-        symbol:
-          type: string
-        takerBuyNotional:
-          format: double
-          type: number
-        takerBuyQty:
-          format: double
-          type: number
-        takerSellNotional:
-          format: double
-          type: number
-        takerSellQty:
-          format: double
-          type: number
-        windowStart:
-          type: string
-      required:
-      - symbol
-      - intervalMinutes
-      - windowStart
-      - takerBuyQty
-      - takerSellQty
-      - takerBuyNotional
-      - takerSellNotional
-      - netTakerQty
-      type: object
-    FundingHistoricResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/FundingHistoricResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/FundingPoint'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    SymbolLongShortHistoricResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/SymbolLongShortHistoricResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/SymbolLongShortPoint'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    FundingPoint:
-      additionalProperties: false
-      properties:
-        intervalMinutes:
-          format: int64
-          type: integer
-        rate:
-          format: double
-          type:
-          - number
-          - 'null'
-        symbol:
-          type: string
-        windowStart:
-          type: string
-      required:
-      - symbol
-      - intervalMinutes
-      - windowStart
-      - rate
-      type: object
-    UnderlierHistoricResponseBody:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/UnderlierHistoricResponseBody.json
-          format: uri
-          readOnly: true
-          type: string
-        count:
-          format: int64
-          type: integer
-        data:
-          items:
-            $ref: '#/components/schemas/UnderlierPoint'
-          type:
-          - array
-          - 'null'
-      required:
-      - data
-      - count
-      type: object
-    RefdataResponse:
-      additionalProperties: false
-      properties:
-        $schema:
-          description: A URL to the JSON Schema for this object.
-          examples:
-          - https://api.qfex.com/schemas/RefdataResponse.json
-          format: uri
-          readOnly: true
-          type: string
-        data:
-          items:
-            $ref: '#/components/schemas/RefdataSymbol'
-          type:
-          - array
-          - 'null'
-        type:
-          type: string
-      required:
-      - type
-      - data
-      type: object
-    Candle:
-      additionalProperties: false
-      properties:
-        baseTokenVolume:
-          type: string
-        close:
-          type: string
-        high:
-          type: string
-        low:
-          type: string
-        open:
-          type: string
-        orderbookMidPriceClose:
-          type: string
-        orderbookMidPriceOpen:
-          type: string
-        resolution:
-          type: string
-        startedAt:
-          type: string
-        startingOpenInterest:
-          type: string
-        ticker:
-          type: string
-        trades:
-          format: int64
-          minimum: 0
-          type: integer
-        usdVolume:
-          type: string
-      required:
-      - startedAt
-      - ticker
-      - resolution
-      - low
-      - high
-      - open
-      - close
-      - baseTokenVolume
-      - usdVolume
-      - trades
-      - startingOpenInterest
-      - orderbookMidPriceOpen
-      - orderbookMidPriceClose
-      type: object
-    SymbolLongShortPoint:
-      additionalProperties: false
-      properties:
-        interval:
-          type: string
-        longUsers:
-          format: int64
-          minimum: 0
-          type: integer
-        shortUsers:
-          format: int64
-          minimum: 0
-          type: integer
-        symbol:
-          type: string
-        windowStart:
-          type: string
-      required:
-      - symbol
-      - interval
-      - windowStart
-      - longUsers
-      - shortUsers
-      type: object
-    OpenInterestPoint:
-      additionalProperties: false
-      properties:
-        intervalMinutes:
-          format: int64
-          type: integer
-        openInterest:
-          format: double
-          type:
-          - number
-          - 'null'
-        symbol:
-          type: string
-        windowStart:
-          type: string
-      required:
-      - symbol
-      - intervalMinutes
-      - windowStart
-      - openInterest
-      type: object
     SettlementCalendarEntry:
       additionalProperties: false
       properties:
@@ -790,6 +453,189 @@ components:
       - active_until
       - future_symbol
       - qfex_symbol
+      type: object
+    UnderlierPoint:
+      additionalProperties: false
+      properties:
+        closePrice:
+          format: double
+          type: number
+        highPrice:
+          format: double
+          type: number
+        interval:
+          type: string
+        lowPrice:
+          format: double
+          type: number
+        openPrice:
+          format: double
+          type: number
+        symbol:
+          type: string
+        windowStart:
+          type: string
+      required:
+      - symbol
+      - interval
+      - windowStart
+      - openPrice
+      - closePrice
+      - highPrice
+      - lowPrice
+      type: object
+    SymbolLongShortPoint:
+      additionalProperties: false
+      properties:
+        interval:
+          type: string
+        longUsers:
+          format: int64
+          minimum: 0
+          type: integer
+        shortUsers:
+          format: int64
+          minimum: 0
+          type: integer
+        symbol:
+          type: string
+        windowStart:
+          type: string
+      required:
+      - symbol
+      - interval
+      - windowStart
+      - longUsers
+      - shortUsers
+      type: object
+    SettlementPricesResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/SettlementPricesResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/SettlementPrice'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    SettlementPrice:
+      additionalProperties: false
+      properties:
+        asof:
+          type: string
+        future_settlement_price:
+          format: double
+          type: number
+        future_symbol:
+          type: string
+        inserted_at:
+          format: date-time
+          type: string
+        spot_settlement_price:
+          format: double
+          type: number
+        spot_to_future_ratio:
+          format: double
+          type: number
+        symbol:
+          type: string
+      required:
+      - symbol
+      - future_symbol
+      - future_settlement_price
+      - spot_settlement_price
+      - asof
+      - inserted_at
+      - spot_to_future_ratio
+      type: object
+    ErrorDetail:
+      additionalProperties: false
+      properties:
+        location:
+          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+          type: string
+        message:
+          description: Error message text
+          type: string
+        value:
+          description: The value at the given location
+      type: object
+    OpenInterestPoint:
+      additionalProperties: false
+      properties:
+        intervalMinutes:
+          format: int64
+          type: integer
+        openInterest:
+          format: double
+          type:
+          - number
+          - 'null'
+        symbol:
+          type: string
+        windowStart:
+          type: string
+      required:
+      - symbol
+      - intervalMinutes
+      - windowStart
+      - openInterest
+      type: object
+    FundingPoint:
+      additionalProperties: false
+      properties:
+        intervalMinutes:
+          format: int64
+          type: integer
+        rate:
+          format: double
+          type:
+          - number
+          - 'null'
+        symbol:
+          type: string
+        windowStart:
+          type: string
+      required:
+      - symbol
+      - intervalMinutes
+      - windowStart
+      - rate
+      type: object
+    RefdataResponse:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/RefdataResponse.json
+          format: uri
+          readOnly: true
+          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/RefdataSymbol'
+          type:
+          - array
+          - 'null'
+        type:
+          type: string
+      required:
+      - type
+      - data
       type: object
     ErrorModel:
       additionalProperties: false
@@ -856,6 +702,144 @@ components:
           - 'null'
       required:
       - candles
+      type: object
+    OpenInterestHistoricResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/OpenInterestHistoricResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/OpenInterestPoint'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    TakerVolumeHistoricResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/TakerVolumeHistoricResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/TakerVolumePoint'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    Candle:
+      additionalProperties: false
+      properties:
+        baseTokenVolume:
+          type: string
+        close:
+          type: string
+        high:
+          type: string
+        low:
+          type: string
+        open:
+          type: string
+        orderbookMidPriceClose:
+          type: string
+        orderbookMidPriceOpen:
+          type: string
+        resolution:
+          type: string
+        startedAt:
+          type: string
+        startingOpenInterest:
+          type: string
+        ticker:
+          type: string
+        trades:
+          format: int64
+          minimum: 0
+          type: integer
+        usdVolume:
+          type: string
+      required:
+      - startedAt
+      - ticker
+      - resolution
+      - low
+      - high
+      - open
+      - close
+      - baseTokenVolume
+      - usdVolume
+      - trades
+      - startingOpenInterest
+      - orderbookMidPriceOpen
+      - orderbookMidPriceClose
+      type: object
+    UnderlierHistoricResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/UnderlierHistoricResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/UnderlierPoint'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
+      type: object
+    FundingHistoricResponseBody:
+      additionalProperties: false
+      properties:
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/FundingHistoricResponseBody.json
+          format: uri
+          readOnly: true
+          type: string
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/FundingPoint'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
       type: object
     RefdataSymbol:
       additionalProperties: false
@@ -930,47 +914,63 @@ components:
       - status
       - product_category
       type: object
-    SettlementPrice:
+    TakerVolumePoint:
       additionalProperties: false
       properties:
-        asof:
-          type: string
-        future_settlement_price:
-          format: double
-          type: number
-        future_symbol:
-          type: string
-        inserted_at:
-          format: date-time
-          type: string
-        spot_settlement_price:
-          format: double
-          type: number
-        spot_to_future_ratio:
+        intervalMinutes:
+          format: int64
+          type: integer
+        netTakerQty:
           format: double
           type: number
         symbol:
           type: string
+        takerBuyNotional:
+          format: double
+          type: number
+        takerBuyQty:
+          format: double
+          type: number
+        takerSellNotional:
+          format: double
+          type: number
+        takerSellQty:
+          format: double
+          type: number
+        windowStart:
+          type: string
       required:
       - symbol
-      - future_symbol
-      - future_settlement_price
-      - spot_settlement_price
-      - asof
-      - inserted_at
-      - spot_to_future_ratio
+      - intervalMinutes
+      - windowStart
+      - takerBuyQty
+      - takerSellQty
+      - takerBuyNotional
+      - takerSellNotional
+      - netTakerQty
       type: object
-    ErrorDetail:
+    SymbolLongShortHistoricResponseBody:
       additionalProperties: false
       properties:
-        location:
-          description: Where the error occurred, e.g. 'body.items[3].tags' or 'path.thing-id'
+        $schema:
+          description: A URL to the JSON Schema for this object.
+          examples:
+          - https://api.qfex.com/schemas/SymbolLongShortHistoricResponseBody.json
+          format: uri
+          readOnly: true
           type: string
-        message:
-          description: Error message text
-          type: string
-        value:
-          description: The value at the given location
+        count:
+          format: int64
+          type: integer
+        data:
+          items:
+            $ref: '#/components/schemas/SymbolLongShortPoint'
+          type:
+          - array
+          - 'null'
+      required:
+      - data
+      - count
       type: object
   securitySchemes:
     HMACSignature:
