@@ -170,6 +170,8 @@ apis:
   - type: DataModel
     url: data-model/qfex-data-model.yml
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/qfex/overview
 - url: https://research.qfex.com/feed
   type: BlogRSS
 - type: Website
