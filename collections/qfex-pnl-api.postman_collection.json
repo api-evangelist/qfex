@@ -1,89 +1,105 @@
 {
+  "info": {
+    "_postman_id": "f4f6483a-82b8-4a4d-a551-ed4debfcba4c",
+    "name": "QFEX REST Pnl API",
+    "description": "REST API for QFEX\n\nContact Support:\n Name: QFEX Support\n Email: support@qfex.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:19:19.000Z",
+    "updatedAt": "2026-10-21T21:19:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f4f6483a-82b8-4a4d-a551-ed4debfcba4c"
+  },
   "item": [
     {
-      "id": "90b3b613-3db0-4a4e-90e7-c9e8b6915ef9",
       "name": "pnl",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
       "item": [
         {
-          "id": "d60b96a7-5346-435a-8074-e8c9c604ab78",
           "name": "Hourly PnL (approx. first position per hour)",
+          "id": "b60db33e-6bde-4854-856e-4180087c76cf",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Hourly PnL (approx. first position per hour)",
-            "description": {
-              "content": "Return approximate first position per symbol per hour for the user, including realised/unrealised pnl, net_funding, fees, quantity, and cost.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "pnl"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
+            "auth": {
+              "type": "apikey",
+              "apikey": [
                 {
-                  "disabled": false,
-                  "key": "symbol",
-                  "value": "<string>"
+                  "key": "key",
+                  "value": "x-qfex-hmac-signature",
+                  "type": "string"
                 },
                 {
-                  "disabled": false,
-                  "key": "start",
-                  "value": "<dateTime>"
+                  "key": "value",
+                  "value": "{{apiKey}}",
+                  "type": "string"
                 },
                 {
-                  "disabled": false,
-                  "key": "end",
-                  "value": "<dateTime>"
-                },
-                {
-                  "disabled": false,
-                  "key": "limit_hours",
-                  "value": "168"
+                  "key": "in",
+                  "value": "header",
+                  "type": "string"
                 }
-              ],
-              "variable": []
+              ]
             },
+            "method": "GET",
             "header": [
               {
                 "key": "Accept",
                 "value": "application/json"
               }
             ],
-            "method": "GET",
-            "auth": {
-              "type": "apikey",
-              "apikey": [
+            "url": {
+              "raw": "{{baseUrl}}/pnl?symbol=<string>&start=<dateTime>&end=<dateTime>&limit_hours=168",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pnl"
+              ],
+              "query": [
                 {
-                  "key": "key",
-                  "value": "x-qfex-hmac-signature"
+                  "key": "symbol",
+                  "value": "<string>"
                 },
                 {
-                  "key": "value",
-                  "value": "{{apiKey}}"
+                  "key": "start",
+                  "value": "<dateTime>"
                 },
                 {
-                  "key": "in",
-                  "value": "header"
+                  "key": "end",
+                  "value": "<dateTime>"
+                },
+                {
+                  "key": "limit_hours",
+                  "value": "168"
                 }
               ]
-            }
+            },
+            "description": "Return approximate first position per symbol per hour for the user, including realised/unrealised pnl, net_funding, fees, quantity, and cost."
           },
           "response": [
             {
-              "id": "6426cdfa-81da-4acf-aa8f-803d3e28b2d3",
+              "id": "9d21a8f0-3139-4099-ab26-d493393f60dd",
               "name": "OK",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-qfex-hmac-signature",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "pnl"
-                  ],
+                  "raw": "{{baseUrl}}/pnl?symbol=<string>&start=<dateTime>&end=<dateTime>&limit_hours=168",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pnl"
                   ],
                   "query": [
                     {
@@ -102,48 +118,48 @@
                       "key": "limit_hours",
                       "value": "168"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-qfex-hmac-signature",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"symbol\": \"string\",\n      \"hour\": \"2014-10-15T11:24:05.710Z\",\n      \"realised_pnl\": 1242.1899506876798,\n      \"unrealised_pnl\": 9935.97778298268,\n      \"net_funding\": 6468.2628014086795,\n      \"fees\": 2982.8854095454526,\n      \"quantity\": 2509.654472700076,\n      \"cost\": 8179.800996683397\n    },\n    {\n      \"symbol\": \"string\",\n      \"hour\": \"1965-11-08T20:51:54.501Z\",\n      \"realised_pnl\": 9947.12757859265,\n      \"unrealised_pnl\": 9505.7695959112,\n      \"net_funding\": 2272.1517544709714,\n      \"fees\": 4448.930751285637,\n      \"quantity\": 8066.198006767991,\n      \"cost\": 6881.383142680202\n    }\n  ],\n  \"count\": 7130,\n  \"$schema\": \"https://api.qfex.com/schemas/HourlyPnlResponseBody.json\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": \"<array,null>\",\n  \"count\": \"<long>\",\n  \"$schema\": \"<uri>\"\n}",
+              "createdAt": "2026-10-21T21:19:20.000Z",
+              "updatedAt": "2026-10-21T21:19:20.000Z",
+              "uid": "35240-9d21a8f0-3139-4099-ab26-d493393f60dd"
             },
             {
-              "id": "71365425-6b64-4f07-a7e0-cf7d1470f912",
+              "id": "12618966-b1fb-47d9-a753-f0b105fbfe2b",
               "name": "Error",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "x-qfex-hmac-signature",
+                    "value": "<API Key>"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "pnl"
-                  ],
+                  "raw": "{{baseUrl}}/pnl?symbol=<string>&start=<dateTime>&end=<dateTime>&limit_hours=168",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pnl"
                   ],
                   "query": [
                     {
@@ -162,63 +178,41 @@
                       "key": "limit_hours",
                       "value": "168"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "description": {
-                      "content": "Added as a part of security scheme: apikey",
-                      "type": "text/plain"
-                    },
-                    "key": "x-qfex-hmac-signature",
-                    "value": "<API Key>"
-                  },
-                  {
-                    "key": "Accept",
-                    "value": "application/problem+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/problem+json"
                 }
               ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+              "createdAt": "2026-10-21T21:19:20.000Z",
+              "updatedAt": "2026-10-21T21:19:20.000Z",
+              "uid": "35240-12618966-b1fb-47d9-a753-f0b105fbfe2b"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T21:19:20.000Z",
+          "updatedAt": "2026-10-21T21:19:20.000Z",
+          "uid": "35240-b60db33e-6bde-4854-856e-4180087c76cf"
         }
       ],
-      "event": []
+      "id": "ab135f6b-8f47-44d7-826f-44df9158fc3d",
+      "createdAt": "2026-10-21T21:19:20.000Z",
+      "updatedAt": "2026-10-21T21:19:20.000Z",
+      "uid": "35240-ab135f6b-8f47-44d7-826f-44df9158fc3d"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.qfex.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.qfex.com"
     }
-  ],
-  "info": {
-    "_postman_id": "d9e56028-6298-452c-9194-1604161ba963",
-    "name": "QFEX REST market-data pnl API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "REST API for QFEX\n\nContact Support:\n Name: QFEX Support\n Email: support@qfex.com",
-      "type": "text/plain"
-    }
-  }
+  ]
 }

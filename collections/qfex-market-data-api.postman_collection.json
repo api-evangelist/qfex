@@ -1,867 +1,956 @@
 {
+  "info": {
+    "_postman_id": "cc8b8fca-0775-48f9-b9a0-bcb6cb5f5d29",
+    "name": "QFEX REST Market Data API",
+    "description": "REST API for QFEX\n\nContact Support:\n Name: QFEX Support\n Email: support@qfex.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-10-21T21:19:15.000Z",
+    "updatedAt": "2026-10-21T21:19:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-cc8b8fca-0775-48f9-b9a0-bcb6cb5f5d29"
+  },
   "item": [
     {
-      "id": "1289894c-bc50-4c18-89a0-8273a9710378",
-      "name": "market-data",
-      "description": {
-        "content": "",
-        "type": "text/plain"
-      },
+      "name": "candles",
       "item": [
         {
-          "id": "60ee8ff2-0aa5-4e62-a2ca-611fa1bde61e",
-          "name": "Candles",
-          "request": {
-            "name": "Candles",
-            "description": {
-              "content": "Return OHLCV candles for a symbol over a time range.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "candles",
-                ":symbol"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "resolution",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "fromISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "toISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "symbol",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
+          "name": "{symbol}",
+          "item": [
             {
-              "id": "ba843ecf-6a78-4627-a3d1-3e54a2f8f413",
-              "name": "OK",
-              "originalRequest": {
+              "name": "Candles",
+              "id": "1e8e289f-9b6b-4ae8-992a-c76637d9d0a9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
+                  "raw": "{{baseUrl}}/candles/:symbol?resolution=<string>&fromISO=<string>&toISO=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
                   "path": [
                     "candles",
                     ":symbol"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "resolution",
                       "value": "<string>"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "fromISO",
                       "value": "<string>"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "toISO",
                       "value": "<string>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "6523a898-2141-4ba9-873e-93d82bf0e4e0",
                       "key": "symbol",
+                      "value": "<string>",
                       "description": "(Required) "
                     }
                   ]
                 },
+                "description": "Return OHLCV candles for a symbol over a time range."
+              },
+              "response": [
+                {
+                  "id": "557e83da-6846-4b09-ab40-86fd7a6144ee",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/candles/:symbol?resolution=<string>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "candles",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "resolution",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"candles\": \"<array,null>\",\n  \"$schema\": \"<uri>\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-557e83da-6846-4b09-ab40-86fd7a6144ee"
+                },
+                {
+                  "id": "0e85296a-0e1d-4fbd-95ab-7a95b917e27a",
+                  "name": "Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/candles/:symbol?resolution=<string>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "candles",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "resolution",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-0e85296a-0e1d-4fbd-95ab-7a95b917e27a"
+                }
+              ],
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-1e8e289f-9b6b-4ae8-992a-c76637d9d0a9"
+            }
+          ],
+          "id": "c13395fc-2e27-468f-9c31-d39a494dc1b9",
+          "createdAt": "2026-10-21T21:19:15.000Z",
+          "updatedAt": "2026-10-21T21:19:15.000Z",
+          "uid": "35240-c13395fc-2e27-468f-9c31-d39a494dc1b9"
+        }
+      ],
+      "id": "c7ce03ba-c8dd-478a-b434-d28656c72e3c",
+      "createdAt": "2026-10-21T21:19:15.000Z",
+      "updatedAt": "2026-10-21T21:19:15.000Z",
+      "uid": "35240-c7ce03ba-c8dd-478a-b434-d28656c72e3c"
+    },
+    {
+      "name": "funding",
+      "item": [
+        {
+          "name": "{symbol}",
+          "item": [
+            {
+              "name": "Funding Historic",
+              "id": "c3dd9bda-aba8-4347-a072-042234208ec3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"candles\": [\n    {\n      \"startedAt\": \"string\",\n      \"ticker\": \"string\",\n      \"resolution\": \"string\",\n      \"low\": \"string\",\n      \"high\": \"string\",\n      \"open\": \"string\",\n      \"close\": \"string\",\n      \"baseTokenVolume\": \"string\",\n      \"usdVolume\": \"string\",\n      \"trades\": 4393,\n      \"startingOpenInterest\": \"string\",\n      \"orderbookMidPriceOpen\": \"string\",\n      \"orderbookMidPriceClose\": \"string\"\n    },\n    {\n      \"startedAt\": \"string\",\n      \"ticker\": \"string\",\n      \"resolution\": \"string\",\n      \"low\": \"string\",\n      \"high\": \"string\",\n      \"open\": \"string\",\n      \"close\": \"string\",\n      \"baseTokenVolume\": \"string\",\n      \"usdVolume\": \"string\",\n      \"trades\": 4801,\n      \"startingOpenInterest\": \"string\",\n      \"orderbookMidPriceOpen\": \"string\",\n      \"orderbookMidPriceClose\": \"string\"\n    }\n  ],\n  \"$schema\": \"https://api.qfex.com/schemas/CandlesResponseBody.json\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "554f278b-5eab-4b5a-b2c4-16c0fe732726",
-              "name": "Error",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "candles",
-                    ":symbol"
-                  ],
+                  "raw": "{{baseUrl}}/funding/:symbol?intervalMinutes=<long>&fromISO=<string>&toISO=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "resolution",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "fromISO",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "toISO",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "symbol",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/problem+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/problem+json"
-                }
-              ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "12116e7c-7f4a-4eae-8585-99307188b62b",
-          "name": "Funding Historic",
-          "request": {
-            "name": "Funding Historic",
-            "description": {
-              "content": "Return historic funding rates for a symbol over a time range with forward filling.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "funding",
-                ":symbol"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "intervalMinutes",
-                  "value": "<long>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "fromISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "toISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "symbol",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "45bf6371-c054-47f9-b08f-4bd6b5b60180",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "funding",
                     ":symbol"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "intervalMinutes",
                       "value": "<long>"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "fromISO",
                       "value": "<string>"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "toISO",
                       "value": "<string>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "d255896a-a09f-4850-915e-1925938efb94",
                       "key": "symbol",
+                      "value": "<string>",
                       "description": "(Required) "
                     }
                   ]
                 },
+                "description": "Return historic funding rates for a symbol over a time range with forward filling."
+              },
+              "response": [
+                {
+                  "id": "0f26fa4d-3be8-488f-b746-06664f66169c",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/funding/:symbol?intervalMinutes=<long>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "intervalMinutes",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": \"<array,null>\",\n  \"count\": \"<long>\",\n  \"$schema\": \"<uri>\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-0f26fa4d-3be8-488f-b746-06664f66169c"
+                },
+                {
+                  "id": "61be8695-8627-4658-8302-5da52993d058",
+                  "name": "Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/funding/:symbol?intervalMinutes=<long>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "funding",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "intervalMinutes",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-61be8695-8627-4658-8302-5da52993d058"
+                }
+              ],
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-c3dd9bda-aba8-4347-a072-042234208ec3"
+            }
+          ],
+          "id": "f9ee0240-2a6f-470d-9c34-76df125e4bc3",
+          "createdAt": "2026-10-21T21:19:15.000Z",
+          "updatedAt": "2026-10-21T21:19:15.000Z",
+          "uid": "35240-f9ee0240-2a6f-470d-9c34-76df125e4bc3"
+        }
+      ],
+      "id": "d8c25155-b87d-4118-b05a-46056751f663",
+      "createdAt": "2026-10-21T21:19:15.000Z",
+      "updatedAt": "2026-10-21T21:19:15.000Z",
+      "uid": "35240-d8c25155-b87d-4118-b05a-46056751f663"
+    },
+    {
+      "name": "open-interest",
+      "item": [
+        {
+          "name": "{symbol}",
+          "item": [
+            {
+              "name": "Open Interest Historic",
+              "id": "825c8c25-aaf6-4637-807e-7eeb11d20fd3",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"symbol\": \"string\",\n      \"intervalMinutes\": 8418,\n      \"windowStart\": \"string\",\n      \"rate\": 3729.3546805816713\n    },\n    {\n      \"symbol\": \"string\",\n      \"intervalMinutes\": 6932,\n      \"windowStart\": \"string\",\n      \"rate\": 2447.365167126645\n    }\n  ],\n  \"count\": 3992,\n  \"$schema\": \"https://api.qfex.com/schemas/FundingHistoricResponseBody.json\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "8570534f-1adb-42b7-9454-9b9c32ec4c73",
-              "name": "Error",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "funding",
-                    ":symbol"
-                  ],
+                  "raw": "{{baseUrl}}/open-interest/:symbol?intervalMinutes=<long>&fromISO=<string>&toISO=<string>",
                   "host": [
                     "{{baseUrl}}"
                   ],
-                  "query": [
-                    {
-                      "key": "intervalMinutes",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "fromISO",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "toISO",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "symbol",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/problem+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/problem+json"
-                }
-              ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "083df110-1739-4da9-b6ae-1f3095f17a01",
-          "name": "Open Interest Historic",
-          "request": {
-            "name": "Open Interest Historic",
-            "description": {
-              "content": "Return historic open interest for a symbol over a time range with forward filling.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "open-interest",
-                ":symbol"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "intervalMinutes",
-                  "value": "<long>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "fromISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "toISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "symbol",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "9cc35edc-4931-4adc-8e02-f2a1f7fd558b",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
                   "path": [
                     "open-interest",
                     ":symbol"
                   ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
                   "query": [
                     {
+                      "description": "(Required) ",
                       "key": "intervalMinutes",
                       "value": "<long>"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "fromISO",
                       "value": "<string>"
                     },
                     {
+                      "description": "(Required) ",
                       "key": "toISO",
                       "value": "<string>"
                     }
                   ],
                   "variable": [
                     {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
+                      "id": "134a23d4-d4f9-4a00-bee8-9b01bc070208",
                       "key": "symbol",
+                      "value": "<string>",
                       "description": "(Required) "
                     }
                   ]
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                "description": "Return historic open interest for a symbol over a time range with forward filling."
               },
-              "status": "OK",
-              "code": 200,
-              "header": [
+              "response": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"symbol\": \"string\",\n      \"intervalMinutes\": 8977,\n      \"windowStart\": \"string\",\n      \"openInterest\": 8322.37955540985\n    },\n    {\n      \"symbol\": \"string\",\n      \"intervalMinutes\": 2237,\n      \"windowStart\": \"string\",\n      \"openInterest\": 1473.1972671623205\n    }\n  ],\n  \"count\": 1870,\n  \"$schema\": \"https://api.qfex.com/schemas/OpenInterestHistoricResponseBody.json\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "acfee36d-25bc-40a7-9ff7-666e3ac1b44d",
-              "name": "Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "open-interest",
-                    ":symbol"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
+                  "id": "2a3b828e-0eff-4042-82f1-421cea2df1d1",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/open-interest/:symbol?intervalMinutes=<long>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "open-interest",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "intervalMinutes",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
                     {
-                      "key": "intervalMinutes",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "fromISO",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "toISO",
-                      "value": "<string>"
+                      "key": "Content-Type",
+                      "value": "application/json"
                     }
                   ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "symbol",
-                      "description": "(Required) "
-                    }
-                  ]
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": \"<array,null>\",\n  \"count\": \"<long>\",\n  \"$schema\": \"<uri>\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-2a3b828e-0eff-4042-82f1-421cea2df1d1"
                 },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/problem+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
                 {
-                  "key": "Content-Type",
-                  "value": "application/problem+json"
+                  "id": "936bb4b8-f9c7-4150-9ef9-6a17bea7cfa1",
+                  "name": "Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/open-interest/:symbol?intervalMinutes=<long>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "open-interest",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "intervalMinutes",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-936bb4b8-f9c7-4150-9ef9-6a17bea7cfa1"
                 }
               ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-825c8c25-aaf6-4637-807e-7eeb11d20fd3"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
+          "id": "9c4b1e86-c877-48a3-9e59-90bca3fbdbd6",
+          "createdAt": "2026-10-21T21:19:15.000Z",
+          "updatedAt": "2026-10-21T21:19:15.000Z",
+          "uid": "35240-9c4b1e86-c877-48a3-9e59-90bca3fbdbd6"
+        }
+      ],
+      "id": "7b1325e6-ac16-473b-be9a-1253a38d9093",
+      "createdAt": "2026-10-21T21:19:15.000Z",
+      "updatedAt": "2026-10-21T21:19:15.000Z",
+      "uid": "35240-7b1325e6-ac16-473b-be9a-1253a38d9093"
+    },
+    {
+      "name": "refdata",
+      "item": [
         {
-          "id": "85839c8e-3358-41cb-a972-a8b2c8bfd3b5",
           "name": "Refdata",
+          "id": "b28c9afb-a28e-4df3-90bd-58b8ffd514f1",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
           "request": {
-            "name": "Refdata",
-            "description": {
-              "content": "Return symbol reference data.",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/refdata?ticker=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "refdata"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
                   "key": "ticker",
                   "value": "<string>"
                 }
-              ],
-              "variable": []
+              ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Return symbol reference data."
           },
           "response": [
             {
-              "id": "b9c4b218-ec62-4fd9-87a1-4f1e73fe16c2",
+              "id": "5fff4fd3-8238-4e83-b845-17c6d403efbb",
               "name": "OK",
               "originalRequest": {
-                "url": {
-                  "path": [
-                    "refdata"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "ticker",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": []
-                },
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "disabled": false,
-                  "key": "Cache-Control",
-                  "value": "string",
-                  "description": ""
-                },
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"type\": \"string\",\n  \"data\": [\n    {\n      \"clobPairId\": \"string\",\n      \"symbol\": \"string\",\n      \"underlier_price\": \"string\",\n      \"price_change_24h\": \"string\",\n      \"default_max_leverage\": 5443,\n      \"tick_size\": \"string\",\n      \"lot_size\": \"string\",\n      \"min_price\": \"string\",\n      \"max_price\": \"string\",\n      \"min_quantity\": \"string\",\n      \"max_quantity\": \"string\",\n      \"base_asset\": \"string\",\n      \"quote_asset\": \"string\",\n      \"margin_asset\": \"string\",\n      \"order_time_in_force\": [\n        \"string\",\n        \"string\"\n      ],\n      \"order_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"market_hours\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"status\": \"string\",\n      \"product_category\": \"string\"\n    },\n    {\n      \"clobPairId\": \"string\",\n      \"symbol\": \"string\",\n      \"underlier_price\": \"string\",\n      \"price_change_24h\": \"string\",\n      \"default_max_leverage\": 6905,\n      \"tick_size\": \"string\",\n      \"lot_size\": \"string\",\n      \"min_price\": \"string\",\n      \"max_price\": \"string\",\n      \"min_quantity\": \"string\",\n      \"max_quantity\": \"string\",\n      \"base_asset\": \"string\",\n      \"quote_asset\": \"string\",\n      \"margin_asset\": \"string\",\n      \"order_time_in_force\": [\n        \"string\",\n        \"string\"\n      ],\n      \"order_types\": [\n        \"string\",\n        \"string\"\n      ],\n      \"market_hours\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"status\": \"string\",\n      \"product_category\": \"string\"\n    }\n  ],\n  \"$schema\": \"https://api.qfex.com/schemas/RefdataResponse.json\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "5960f2a3-7cf1-4a36-b824-77f69c2c8288",
-              "name": "Error",
-              "originalRequest": {
                 "url": {
-                  "path": [
-                    "refdata"
-                  ],
+                  "raw": "{{baseUrl}}/refdata?ticker=<string>",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refdata"
                   ],
                   "query": [
                     {
                       "key": "ticker",
                       "value": "<string>"
                     }
-                  ],
-                  "variable": []
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
                 },
+                {
+                  "disabled": false,
+                  "description": {
+                    "content": "",
+                    "type": "text/plain"
+                  },
+                  "key": "Cache-Control",
+                  "value": "<string>"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"type\": \"<string>\",\n  \"data\": \"<array,null>\",\n  \"$schema\": \"<uri>\"\n}",
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-5fff4fd3-8238-4e83-b845-17c6d403efbb"
+            },
+            {
+              "id": "3c4a6af7-4dc5-4428-8d74-9c0e07a3a53b",
+              "name": "Error",
+              "originalRequest": {
+                "method": "GET",
                 "header": [
                   {
                     "key": "Accept",
                     "value": "application/problem+json"
                   }
                 ],
-                "method": "GET",
-                "body": {}
+                "url": {
+                  "raw": "{{baseUrl}}/refdata?ticker=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "refdata"
+                  ],
+                  "query": [
+                    {
+                      "key": "ticker",
+                      "value": "<string>"
+                    }
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/problem+json"
                 }
               ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-3c4a6af7-4dc5-4428-8d74-9c0e07a3a53b"
             }
           ],
-          "event": [],
+          "createdAt": "2026-10-21T21:19:15.000Z",
+          "updatedAt": "2026-10-21T21:19:15.000Z",
+          "uid": "35240-b28c9afb-a28e-4df3-90bd-58b8ffd514f1"
+        }
+      ],
+      "id": "f9c262cc-0a3b-45f8-abd5-c43d4ca48b51",
+      "createdAt": "2026-10-21T21:19:15.000Z",
+      "updatedAt": "2026-10-21T21:19:15.000Z",
+      "uid": "35240-f9c262cc-0a3b-45f8-abd5-c43d4ca48b51"
+    },
+    {
+      "name": "settlement-calendar",
+      "item": [
+        {
+          "name": "Settlement Calendar",
+          "id": "05576af7-359b-46e2-8378-d1d96f6885cf",
           "protocolProfileBehavior": {
             "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "74a3c30a-dfde-409c-b206-4a53a5c27df3",
-          "name": "Settlement Calendar",
+          },
           "request": {
-            "name": "Settlement Calendar",
-            "description": {
-              "content": "Return the settlement calendar entry used to resolve the dated future for a futures-based QFEX product at a given time. This is the source of truth for oracle roll state for symbols such as CL-USD, US100-USD, COPPER-USD, and NATGAS-USD. If `time` is omitted, the currently active contract is returned.",
-              "type": "text/plain"
-            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
             "url": {
+              "raw": "{{baseUrl}}/settlement-calendar?symbol=<string>&time=<dateTime>",
+              "host": [
+                "{{baseUrl}}"
+              ],
               "path": [
                 "settlement-calendar"
               ],
-              "host": [
-                "{{baseUrl}}"
-              ],
               "query": [
                 {
-                  "disabled": false,
-                  "key": "symbol",
-                  "value": "<string>",
-                  "description": "(Required) QFEX symbol to resolve, for example `CL-USD`, `US100-USD`, `COPPER-USD`, or `NATGAS-USD`."
-                },
-                {
-                  "disabled": false,
-                  "key": "time",
-                  "value": "<dateTime>",
-                  "description": "Optional timestamp to resolve against the settlement calendar. If omitted, QFEX returns the currently active dated future."
-                }
-              ],
-              "variable": []
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "66e386d0-bf38-4657-9d4b-ad7ffba7abe3",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "settlement-calendar"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "symbol",
-                      "value": "CL-USD"
-                    },
-                    {
-                      "key": "time",
-                      "value": "2026-04-14T00:00:00Z"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/SettlementCalendarEntry.json\",\n  \"expiration\": \"2026-04-21T21:30:00Z\",\n  \"active_until\": \"2026-04-13T21:30:00Z\",\n  \"future_symbol\": \"CLK6\",\n  \"qfex_symbol\": \"CL-USD\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "2c6bbc00-46ab-4d5c-955f-16f1537c4c18",
-              "name": "Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "settlement-calendar"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "symbol",
-                      "value": "CL-USD"
-                    },
-                    {
-                      "key": "time",
-                      "value": "2026-04-14T00:00:00Z"
-                    }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/problem+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/problem+json"
-                }
-              ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "23ead857-0f4e-42e1-910a-f3ce6cd83f3c",
-          "name": "Settlement Prices",
-          "request": {
-            "name": "Settlement Prices",
-            "description": {
-              "content": "Return current and historic settlement prices and ratios.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "settlement-prices"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
+                  "description": "(Required) QFEX symbol to resolve, for example `CL-USD`, `US100-USD`, `COPPER-USD`, or `NATGAS-USD`.",
                   "key": "symbol",
                   "value": "<string>"
                 },
                 {
-                  "disabled": false,
+                  "description": "Optional timestamp to resolve against the settlement calendar. If omitted, QFEX returns the currently active dated future.",
+                  "key": "time",
+                  "value": "<dateTime>"
+                }
+              ]
+            },
+            "description": "Return the settlement calendar entry used to resolve the dated future for a futures-based QFEX product at a given time. This is the source of truth for oracle roll state for symbols such as CL-USD, US100-USD, COPPER-USD, and NATGAS-USD. If `time` is omitted, the currently active contract is returned."
+          },
+          "response": [
+            {
+              "id": "510eeacf-2575-420c-a336-5ad17f392c23",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/settlement-calendar?symbol=<string>&time=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "settlement-calendar"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) QFEX symbol to resolve, for example `CL-USD`, `US100-USD`, `COPPER-USD`, or `NATGAS-USD`.",
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional timestamp to resolve against the settlement calendar. If omitted, QFEX returns the currently active dated future.",
+                      "key": "time",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"expiration\": \"<dateTime>\",\n  \"active_until\": \"<dateTime>\",\n  \"future_symbol\": \"<string>\",\n  \"qfex_symbol\": \"<string>\",\n  \"$schema\": \"<uri>\"\n}",
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-510eeacf-2575-420c-a336-5ad17f392c23"
+            },
+            {
+              "id": "1161da69-0f34-420c-bf0a-0ca7bde9bcdc",
+              "name": "Error",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/settlement-calendar?symbol=<string>&time=<dateTime>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "settlement-calendar"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) QFEX symbol to resolve, for example `CL-USD`, `US100-USD`, `COPPER-USD`, or `NATGAS-USD`.",
+                      "key": "symbol",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Optional timestamp to resolve against the settlement calendar. If omitted, QFEX returns the currently active dated future.",
+                      "key": "time",
+                      "value": "<dateTime>"
+                    }
+                  ]
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-1161da69-0f34-420c-bf0a-0ca7bde9bcdc"
+            }
+          ],
+          "createdAt": "2026-10-21T21:19:15.000Z",
+          "updatedAt": "2026-10-21T21:19:15.000Z",
+          "uid": "35240-05576af7-359b-46e2-8378-d1d96f6885cf"
+        }
+      ],
+      "id": "e1e7d767-835f-48da-a53b-b43953b5bf22",
+      "createdAt": "2026-10-21T21:19:15.000Z",
+      "updatedAt": "2026-10-21T21:19:15.000Z",
+      "uid": "35240-e1e7d767-835f-48da-a53b-b43953b5bf22"
+    },
+    {
+      "name": "settlement-prices",
+      "item": [
+        {
+          "name": "Settlement Prices",
+          "id": "1a60779f-deec-440c-a3e5-29e9e4073734",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/settlement-prices?symbol=<string>&start=<dateTime>&end=<dateTime>&limit=100",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "settlement-prices"
+              ],
+              "query": [
+                {
+                  "key": "symbol",
+                  "value": "<string>"
+                },
+                {
                   "key": "start",
                   "value": "<dateTime>"
                 },
                 {
-                  "disabled": false,
                   "key": "end",
                   "value": "<dateTime>"
                 },
                 {
-                  "disabled": false,
                   "key": "limit",
                   "value": "100"
                 }
-              ],
-              "variable": []
+              ]
             },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
+            "description": "Return current and historic settlement prices and ratios."
           },
           "response": [
             {
-              "id": "0f3b6fc2-e137-45d2-8b97-4b5639229a58",
+              "id": "7db66037-0fe4-4700-b889-b109de99682b",
               "name": "OK",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "settlement-prices"
-                  ],
+                  "raw": "{{baseUrl}}/settlement-prices?symbol=<string>&start=<dateTime>&end=<dateTime>&limit=100",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "settlement-prices"
                   ],
                   "query": [
                     {
@@ -880,40 +969,43 @@
                       "key": "limit",
                       "value": "100"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "OK",
               "code": 200,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/json"
                 }
               ],
-              "body": "{\n  \"data\": [\n    {\n      \"symbol\": \"string\",\n      \"future_symbol\": \"string\",\n      \"future_settlement_price\": 3464.648606127958,\n      \"spot_settlement_price\": 1877.5148239106732,\n      \"asof\": \"string\",\n      \"inserted_at\": \"2009-11-14T07:16:49.584Z\",\n      \"spot_to_future_ratio\": 4005.2825927655244\n    },\n    {\n      \"symbol\": \"string\",\n      \"future_symbol\": \"string\",\n      \"future_settlement_price\": 4930.177950584912,\n      \"spot_settlement_price\": 8516.57930235756,\n      \"asof\": \"string\",\n      \"inserted_at\": \"1964-05-23T18:18:34.363Z\",\n      \"spot_to_future_ratio\": 513.8435833455912\n    }\n  ],\n  \"count\": 1913,\n  \"$schema\": \"https://api.qfex.com/schemas/SettlementPricesResponseBody.json\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"data\": \"<array,null>\",\n  \"count\": \"<long>\",\n  \"$schema\": \"<uri>\"\n}",
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-7db66037-0fe4-4700-b889-b109de99682b"
             },
             {
-              "id": "44ea7061-e2cd-4973-899a-b2f83ed28721",
+              "id": "14b99568-bb94-450c-8895-d32d984f550c",
               "name": "Error",
               "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
                 "url": {
-                  "path": [
-                    "settlement-prices"
-                  ],
+                  "raw": "{{baseUrl}}/settlement-prices?symbol=<string>&start=<dateTime>&end=<dateTime>&limit=100",
                   "host": [
                     "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "settlement-prices"
                   ],
                   "query": [
                     {
@@ -932,586 +1024,626 @@
                       "key": "limit",
                       "value": "100"
                     }
-                  ],
-                  "variable": []
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/problem+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
+                  ]
+                }
               },
               "status": "Internal Server Error",
               "code": 500,
+              "_postman_previewlanguage": "json",
               "header": [
                 {
                   "key": "Content-Type",
                   "value": "application/problem+json"
                 }
               ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
               "cookie": [],
-              "_postman_previewlanguage": "json"
+              "responseTime": null,
+              "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-14b99568-bb94-450c-8895-d32d984f550c"
             }
           ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "a0e55b61-2284-43db-8a1e-acf4bd9b6d77",
-          "name": "Symbol Long Short Historic",
-          "request": {
-            "name": "Symbol Long Short Historic",
-            "description": {
-              "content": "Return historic long and short user counts for a symbol over a time range.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "symbol-long-short",
-                ":symbol"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "interval",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "fromISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "toISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "symbol",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "7ead168c-df12-4f46-a045-6f6502dc26f9",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "symbol-long-short",
-                    ":symbol"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "interval",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "fromISO",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "toISO",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "symbol",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"symbol\": \"string\",\n      \"interval\": \"string\",\n      \"windowStart\": \"string\",\n      \"longUsers\": 2297,\n      \"shortUsers\": 3390\n    },\n    {\n      \"symbol\": \"string\",\n      \"interval\": \"string\",\n      \"windowStart\": \"string\",\n      \"longUsers\": 900,\n      \"shortUsers\": 1018\n    }\n  ],\n  \"count\": 3975,\n  \"$schema\": \"https://api.qfex.com/schemas/SymbolLongShortHistoricResponseBody.json\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "0d33b6c0-bb45-4d35-a4a8-f8988259b543",
-              "name": "Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "symbol-long-short",
-                    ":symbol"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "interval",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "fromISO",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "toISO",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "symbol",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/problem+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/problem+json"
-                }
-              ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "c541fb94-8244-43b9-a438-d0750d94fa02",
-          "name": "Taker Volume Historic",
-          "request": {
-            "name": "Taker Volume Historic",
-            "description": {
-              "content": "Return historic taker volume metrics for a symbol over a time range.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "taker-volume",
-                ":symbol"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "intervalMinutes",
-                  "value": "<long>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "fromISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "toISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "symbol",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "33aa8243-1da3-4f0e-ad71-702d443be511",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "taker-volume",
-                    ":symbol"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "intervalMinutes",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "fromISO",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "toISO",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "symbol",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"symbol\": \"string\",\n      \"intervalMinutes\": 5866,\n      \"windowStart\": \"string\",\n      \"takerBuyQty\": 9849.021373313117,\n      \"takerSellQty\": 6690.074921062713,\n      \"takerBuyNotional\": 370.22932470954674,\n      \"takerSellNotional\": 804.9457127788851,\n      \"netTakerQty\": 4434.6256322004965\n    },\n    {\n      \"symbol\": \"string\",\n      \"intervalMinutes\": 3590,\n      \"windowStart\": \"string\",\n      \"takerBuyQty\": 9686.898491638536,\n      \"takerSellQty\": 998.9292754318446,\n      \"takerBuyNotional\": 1586.9175161314242,\n      \"takerSellNotional\": 9075.077766374658,\n      \"netTakerQty\": 6602.158987412071\n    }\n  ],\n  \"count\": 7528,\n  \"$schema\": \"https://api.qfex.com/schemas/TakerVolumeHistoricResponseBody.json\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "ce6d0e36-2343-491a-b7da-274b69af14cb",
-              "name": "Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "taker-volume",
-                    ":symbol"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "intervalMinutes",
-                      "value": "<long>"
-                    },
-                    {
-                      "key": "fromISO",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "toISO",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "symbol",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/problem+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/problem+json"
-                }
-              ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
-        },
-        {
-          "id": "ad8baff0-5c77-4e01-860f-f7802a5bb308",
-          "name": "Underlier Historic",
-          "request": {
-            "name": "Underlier Historic",
-            "description": {
-              "content": "Return historic underlier OHLC data for a symbol over a time range.",
-              "type": "text/plain"
-            },
-            "url": {
-              "path": [
-                "underlier",
-                ":symbol"
-              ],
-              "host": [
-                "{{baseUrl}}"
-              ],
-              "query": [
-                {
-                  "disabled": false,
-                  "key": "interval",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "fromISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                },
-                {
-                  "disabled": false,
-                  "key": "toISO",
-                  "value": "<string>",
-                  "description": "(Required) "
-                }
-              ],
-              "variable": [
-                {
-                  "disabled": false,
-                  "type": "any",
-                  "value": "<string>",
-                  "key": "symbol",
-                  "description": "(Required) "
-                }
-              ]
-            },
-            "header": [
-              {
-                "key": "Accept",
-                "value": "application/json"
-              }
-            ],
-            "method": "GET",
-            "auth": null
-          },
-          "response": [
-            {
-              "id": "70c3c582-c10e-44dc-9f1c-6216d8fb6b3c",
-              "name": "OK",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "underlier",
-                    ":symbol"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "interval",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "fromISO",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "toISO",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "symbol",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "OK",
-              "code": 200,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/json"
-                }
-              ],
-              "body": "{\n  \"data\": [\n    {\n      \"symbol\": \"string\",\n      \"interval\": \"string\",\n      \"windowStart\": \"string\",\n      \"openPrice\": 7893.649152219644,\n      \"closePrice\": 7073.564881069705,\n      \"highPrice\": 4104.76164232619,\n      \"lowPrice\": 1147.552057904505\n    },\n    {\n      \"symbol\": \"string\",\n      \"interval\": \"string\",\n      \"windowStart\": \"string\",\n      \"openPrice\": 7997.100995768828,\n      \"closePrice\": 1926.228651947638,\n      \"highPrice\": 8140.42485086862,\n      \"lowPrice\": 8815.998235843976\n    }\n  ],\n  \"count\": 9394,\n  \"$schema\": \"https://api.qfex.com/schemas/UnderlierHistoricResponseBody.json\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            },
-            {
-              "id": "89685b15-5037-47af-a410-dba72caf4e4f",
-              "name": "Error",
-              "originalRequest": {
-                "url": {
-                  "path": [
-                    "underlier",
-                    ":symbol"
-                  ],
-                  "host": [
-                    "{{baseUrl}}"
-                  ],
-                  "query": [
-                    {
-                      "key": "interval",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "fromISO",
-                      "value": "<string>"
-                    },
-                    {
-                      "key": "toISO",
-                      "value": "<string>"
-                    }
-                  ],
-                  "variable": [
-                    {
-                      "disabled": false,
-                      "type": "any",
-                      "value": "<string>",
-                      "key": "symbol",
-                      "description": "(Required) "
-                    }
-                  ]
-                },
-                "header": [
-                  {
-                    "key": "Accept",
-                    "value": "application/problem+json"
-                  }
-                ],
-                "method": "GET",
-                "body": {}
-              },
-              "status": "Internal Server Error",
-              "code": 500,
-              "header": [
-                {
-                  "key": "Content-Type",
-                  "value": "application/problem+json"
-                }
-              ],
-              "body": "{\n  \"$schema\": \"https://api.qfex.com/schemas/ErrorModel.json\",\n  \"detail\": \"Property foo is required but is missing.\",\n  \"errors\": [\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    },\n    {\n      \"location\": \"string\",\n      \"message\": \"string\",\n      \"value\": {}\n    }\n  ],\n  \"instance\": \"https://example.com/error-log/abc123\",\n  \"status\": 400,\n  \"title\": \"Bad Request\",\n  \"type\": \"https://example.com/errors/example\"\n}",
-              "cookie": [],
-              "_postman_previewlanguage": "json"
-            }
-          ],
-          "event": [],
-          "protocolProfileBehavior": {
-            "disableBodyPruning": true
-          }
+          "createdAt": "2026-10-21T21:19:15.000Z",
+          "updatedAt": "2026-10-21T21:19:15.000Z",
+          "uid": "35240-1a60779f-deec-440c-a3e5-29e9e4073734"
         }
       ],
-      "event": []
+      "id": "26e15bd0-d4c7-4def-856d-caaef1d8d27a",
+      "createdAt": "2026-10-21T21:19:15.000Z",
+      "updatedAt": "2026-10-21T21:19:15.000Z",
+      "uid": "35240-26e15bd0-d4c7-4def-856d-caaef1d8d27a"
+    },
+    {
+      "name": "symbol-long-short",
+      "item": [
+        {
+          "name": "{symbol}",
+          "item": [
+            {
+              "name": "Symbol Long Short Historic",
+              "id": "105a96a2-61d2-452a-b958-13ee08c97f74",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/symbol-long-short/:symbol?interval=<string>&fromISO=<string>&toISO=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "symbol-long-short",
+                    ":symbol"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "fromISO",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "toISO",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "2cda6f9c-84c0-4ac2-8210-d723217b3f94",
+                      "key": "symbol",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Return historic long and short user counts for a symbol over a time range."
+              },
+              "response": [
+                {
+                  "id": "06b38d62-14e5-4a7f-9ca2-e70c76c30d21",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/symbol-long-short/:symbol?interval=<string>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "symbol-long-short",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "interval",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": \"<array,null>\",\n  \"count\": \"<long>\",\n  \"$schema\": \"<uri>\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-06b38d62-14e5-4a7f-9ca2-e70c76c30d21"
+                },
+                {
+                  "id": "dda2c62e-a6d7-4c2d-b3bd-84fa9f54c96c",
+                  "name": "Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/symbol-long-short/:symbol?interval=<string>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "symbol-long-short",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "interval",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-dda2c62e-a6d7-4c2d-b3bd-84fa9f54c96c"
+                }
+              ],
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-105a96a2-61d2-452a-b958-13ee08c97f74"
+            }
+          ],
+          "id": "84e12850-39b2-4127-99f9-cfe0c6500e7b",
+          "createdAt": "2026-10-21T21:19:15.000Z",
+          "updatedAt": "2026-10-21T21:19:15.000Z",
+          "uid": "35240-84e12850-39b2-4127-99f9-cfe0c6500e7b"
+        }
+      ],
+      "id": "7d9a2741-78c7-42c8-8852-66ce42560294",
+      "createdAt": "2026-10-21T21:19:15.000Z",
+      "updatedAt": "2026-10-21T21:19:15.000Z",
+      "uid": "35240-7d9a2741-78c7-42c8-8852-66ce42560294"
+    },
+    {
+      "name": "taker-volume",
+      "item": [
+        {
+          "name": "{symbol}",
+          "item": [
+            {
+              "name": "Taker Volume Historic",
+              "id": "e8c23186-3fd0-4ac6-b26e-c155c9402866",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/taker-volume/:symbol?intervalMinutes=<long>&fromISO=<string>&toISO=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "taker-volume",
+                    ":symbol"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "intervalMinutes",
+                      "value": "<long>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "fromISO",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "toISO",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "a997b454-0ca0-432d-a595-f17ddf4a20bb",
+                      "key": "symbol",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Return historic taker volume metrics for a symbol over a time range."
+              },
+              "response": [
+                {
+                  "id": "04f2452e-2d6c-48e5-a747-74b4125822b2",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/taker-volume/:symbol?intervalMinutes=<long>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "taker-volume",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "intervalMinutes",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": \"<array,null>\",\n  \"count\": \"<long>\",\n  \"$schema\": \"<uri>\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-04f2452e-2d6c-48e5-a747-74b4125822b2"
+                },
+                {
+                  "id": "61a7e781-f2ed-44b9-adda-c6dd535eca06",
+                  "name": "Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/taker-volume/:symbol?intervalMinutes=<long>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "taker-volume",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "intervalMinutes",
+                          "value": "<long>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-61a7e781-f2ed-44b9-adda-c6dd535eca06"
+                }
+              ],
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-e8c23186-3fd0-4ac6-b26e-c155c9402866"
+            }
+          ],
+          "id": "1202fa76-0bf0-40d5-9516-ff50496f4093",
+          "createdAt": "2026-10-21T21:19:15.000Z",
+          "updatedAt": "2026-10-21T21:19:15.000Z",
+          "uid": "35240-1202fa76-0bf0-40d5-9516-ff50496f4093"
+        }
+      ],
+      "id": "04ebf8ff-888d-4647-979a-fd7859c3b363",
+      "createdAt": "2026-10-21T21:19:15.000Z",
+      "updatedAt": "2026-10-21T21:19:15.000Z",
+      "uid": "35240-04ebf8ff-888d-4647-979a-fd7859c3b363"
+    },
+    {
+      "name": "underlier",
+      "item": [
+        {
+          "name": "{symbol}",
+          "item": [
+            {
+              "name": "Underlier Historic",
+              "id": "376a68c3-db2d-473b-8370-a4bf70d4810c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/underlier/:symbol?interval=<string>&fromISO=<string>&toISO=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "underlier",
+                    ":symbol"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) ",
+                      "key": "interval",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "fromISO",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) ",
+                      "key": "toISO",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "id": "9def9a98-1225-4a7b-bf87-6c5f99af370d",
+                      "key": "symbol",
+                      "value": "<string>",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "description": "Return historic underlier OHLC data for a symbol over a time range."
+              },
+              "response": [
+                {
+                  "id": "693d949a-b27c-4f73-af7b-8aa42a420497",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/underlier/:symbol?interval=<string>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "underlier",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "interval",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": \"<array,null>\",\n  \"count\": \"<long>\",\n  \"$schema\": \"<uri>\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-693d949a-b27c-4f73-af7b-8aa42a420497"
+                },
+                {
+                  "id": "cc5d69a1-4822-47b3-8e1d-8ae3a30df233",
+                  "name": "Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/underlier/:symbol?interval=<string>&fromISO=<string>&toISO=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "underlier",
+                        ":symbol"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) ",
+                          "key": "interval",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "fromISO",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "(Required) ",
+                          "key": "toISO",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "key": "symbol"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/problem+json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"$schema\": \"<uri>\",\n  \"detail\": \"<string>\",\n  \"errors\": \"<array,null>\",\n  \"instance\": \"<uri>\",\n  \"status\": \"<long>\",\n  \"title\": \"<string>\",\n  \"type\": \"about:blank\"\n}",
+                  "createdAt": "2026-10-21T21:19:15.000Z",
+                  "updatedAt": "2026-10-21T21:19:15.000Z",
+                  "uid": "35240-cc5d69a1-4822-47b3-8e1d-8ae3a30df233"
+                }
+              ],
+              "createdAt": "2026-10-21T21:19:15.000Z",
+              "updatedAt": "2026-10-21T21:19:15.000Z",
+              "uid": "35240-376a68c3-db2d-473b-8370-a4bf70d4810c"
+            }
+          ],
+          "id": "eba9c6cd-3435-4fb3-b231-f474ca025d10",
+          "createdAt": "2026-10-21T21:19:15.000Z",
+          "updatedAt": "2026-10-21T21:19:15.000Z",
+          "uid": "35240-eba9c6cd-3435-4fb3-b231-f474ca025d10"
+        }
+      ],
+      "id": "235e6b16-e935-445b-86ab-86f1e1d9f002",
+      "createdAt": "2026-10-21T21:19:15.000Z",
+      "updatedAt": "2026-10-21T21:19:15.000Z",
+      "uid": "35240-235e6b16-e935-445b-86ab-86f1e1d9f002"
     }
   ],
-  "event": [],
   "variable": [
     {
-      "type": "string",
-      "value": "https://api.qfex.com",
-      "key": "baseUrl"
+      "key": "baseUrl",
+      "value": "https://api.qfex.com"
     }
-  ],
-  "info": {
-    "_postman_id": "212ec183-79c2-42fa-ac3c-ef04b9c16e35",
-    "name": "QFEX REST market-data API",
-    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "description": {
-      "content": "REST API for QFEX\n\nContact Support:\n Name: QFEX Support\n Email: support@qfex.com",
-      "type": "text/plain"
-    }
-  }
+  ]
 }
